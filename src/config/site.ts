@@ -31,16 +31,14 @@ export const SITE = {
 } as const;
 
 /**
- * Canal de contacto. Actualmente WhatsApp es el único canal oficial de la marca.
- * TODO: reemplazar `numero` por el número real en formato internacional sin
- * signos ni espacios (Honduras = 504 + 8 dígitos). El enlace no funcionará
- * mientras siga el valor de ejemplo.
+ * Canal de contacto. WhatsApp es el único canal oficial de la marca.
+ * Formato internacional sin signos ni espacios: 504 (Honduras) + 8 dígitos.
  */
 export const CONTACTO = {
   whatsapp: {
-    numero: '50400000000',
+    numero: '50499653413',
     /** Cómo se muestra el número en el sitio. */
-    numeroVisible: '+504 0000-0000',
+    numeroVisible: '+504 9965-3413',
     /** Mensaje que se prellena cuando el visitante abre el chat genérico. */
     mensajePorDefecto:
       '¡Hola Arteanía Honduras! Vengo desde su sitio web y quiero información sobre sus piezas artesanales.',

@@ -1,0 +1,65 @@
+# Configuración de Dependabot para Arteanía Honduras.
+#
+# Objetivo: enterarnos de las actualizaciones de seguridad y de las versiones
+# menores sin ruido. Los saltos de versión MAYOR no se proponen automáticamente
+# porque implican migraciones planificadas: Astro 5 → 7, por ejemplo, rompe el
+# build y exige revisar la integración de Tailwind y la configuración del sitio.
+#
+# Cuando se quiera migrar de versión mayor, se hace a mano y con su propia rama.
+
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/Tegucigalpa'
+    open-pull-requests-limit: 5
+    versioning-strategy: 'increase'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependencias'
+    groups:
+      # Una sola PR agrupada para todo lo que sea menor o parche.
+      actualizaciones-menores:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+    ignore:
+      - dependency-name: 'astro'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@astrojs/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'tailwindcss'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@tailwindcss/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'typescript'
+        update-types: ['version-update:semver-major']
+      # `sharp` no se usa: el sitio trabaja con SVG y el servicio de imágenes de
+      # Astro está desactivado, así que no tiene sentido actualizarlo.
+      - dependency-name: 'sharp'
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/Tegucigalpa'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependencias'
+    groups:
+      acciones:
+        patterns:
+          - '*'

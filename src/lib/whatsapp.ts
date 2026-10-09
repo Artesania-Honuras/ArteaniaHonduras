@@ -1,4 +1,5 @@
 import { CONTACTO, FUNCIONES, SITE } from '@/config/site';
+import { urlAbsoluta } from '@/lib/rutas';
 
 /** Devuelve `true` si el número de WhatsApp ya fue reemplazado por uno real. */
 export function whatsappConfigurado(): boolean {
@@ -24,7 +25,9 @@ export function mensajeProducto(producto: {
     `¡Hola ${SITE.nombre}! Me interesa esta pieza del catálogo:`,
     '',
     `• ${producto.nombre}${producto.categoriaNombre ? ` (${producto.categoriaNombre})` : ''}`,
-    `• Enlace: ${new URL(`/producto/${producto.slug}/`, SITE.url).href}`,
+    // Se usa urlAbsoluta() para que el enlace incluya el subdirectorio de
+    // GitHub Pages; construirlo a mano producía un 404 al abrirlo desde el chat.
+    `• Enlace: ${urlAbsoluta(`/producto/${producto.slug}/`)}`,
     '',
     FUNCIONES.mostrarPrecios
       ? '¿Está disponible y cuál es el total con envío?'
