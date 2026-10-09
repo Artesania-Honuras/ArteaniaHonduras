@@ -1,0 +1,110 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import BotonWhatsAppFlotante from '@/components/BotonWhatsAppFlotante.astro';
+import { SITE } from '@/config/site';
+import { canonica, enlace, urlAbsoluta } from '@/lib/rutas';
+import { organizacionSchema, sitioWebSchema } from '@/lib/seo';
+
+interface Props {
+  /** Título de la página. Se le añade el nombre de la marca salvo que `sufijo` sea false. */
+  titulo: string;
+  descripcion?: string;
+  /** Imagen para Open Graph. Por defecto la tarjeta social de la marca. */
+  imagen?: string;
+  tipo?: 'website' | 'product' | 'article';
+  /** Excluye la página de los buscadores. */
+  noindex?: boolean;
+  /** Bloques JSON-LD adicionales de la página. */
+  jsonLd?: Record<string, unknown>[];
+  /** Añade el sufijo con el nombre de la marca al título. */
+  sufijo?: boolean;
+  /** Etiqueta del botón flotante de WhatsApp. */
+  mensajeFlotante?: string;
+}
+
+const {
+  titulo,
+  descripcion = SITE.descripcion,
+  imagen = urlAbsoluta('/imagenes/og-default.png'),
+  tipo = 'website',
+  noindex = false,
+  jsonLd = [],
+  sufijo = true,
+  mensajeFlotante,
+} = Astro.props;
+
+const tituloCompleto = sufijo ? `${titulo} | ${SITE.nombre}` : titulo;
+const urlCanonica = canonica(Astro.url.pathname);
+const datosEstructurados = [organizacionSchema(), sitioWebSchema(), ...jsonLd];
+---
+
+<!doctype html>
+<html lang={SITE.idioma}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={urlCanonica} />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      )
+    }
+
+    <meta name="theme-color" content="#B4522C" />
+    <meta name="author" content={SITE.nombre} />
+    <meta name="geo.region" content="HN" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={tipo} />
+    <meta property="og:site_name" content={SITE.nombre} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={urlCanonica} />
+    <meta property="og:image" content={imagen} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${SITE.nombre} — ${SITE.eslogan}`} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={tituloCompleto} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={imagen} />
+
+    <!-- Iconos y metadatos de aplicación -->
+    <link rel="icon" href={enlace('/favicon.svg')} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={enlace('/apple-touch-icon.png')} />
+    <link rel="manifest" href={enlace('/manifest.webmanifest')} />
+    <link rel="sitemap" href={enlace('/sitemap-index.xml')} type="application/xml" />
+
+    {
+      datosEstructurados.map((dato) => (
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(dato)} />
+      ))
+    }
+  </head>
+
+  <body class="flex min-h-dvh flex-col bg-fondo text-texto antialiased">
+    <a href="#contenido" class="salto-contenido">Saltar al contenido principal</a>
+
+    <Header />
+
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <BotonWhatsAppFlotante mensaje={mensajeFlotante} />
+  </body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "slug": "aretes-coco-concha-roatan",
+  "nombre": "Aretes de coco y concha",
+  "categoria": "joyeria",
+  "subtitulo": "Artesanía isleña del Caribe hondureño",
+  "resumen": "Aretes ligeros de coco pulido y concha, elaborados por artesanos de Roatán, Islas de la Bahía.",
+  "descripcion": [
+    "En Roatán, el coco que cae de las palmas no se desperdicia. La cáscara se parte, se lija y se pule hasta lograr una superficie oscura y brillante que recuerda a la madera dura. Con discos de coco y piezas de concha recogida en la playa, los artesanos de la isla arman estos aretes ligeros, ensartados en gancho de metal inoxidable. El contraste entre el café profundo del coco y el brillo nacarado de la concha es lo que los hace distintos. Cada par se pule a mano y se revisa antes de salir del taller.",
+    "Son aretes de diario: pesan poco, no jalan el lóbulo y combinan con ropa de playa, lino y algodón. Se llevan bien con el sol, la sal y el viento porque el coco pulido no se opaca con facilidad. También funcionan como recuerdo de la isla para quien visita Roatán y quiere llevar consigo algo hecho ahí mismo, por manos de la comunidad.",
+    "Manténgalos secos y limpie el coco con un paño suave; evite perfumes y cremas directas sobre la pieza. Guarde cada par por separado para que la concha no se raye. No los use en el mar ni en la piscina. Comprarlos apoya a talladores y artesanas de la isla que trabajan con material recolectado localmente."
+  ],
+  "materiales": [
+    "Cáscara de coco pulida",
+    "Concha de playa",
+    "Gancho de metal inoxidable"
+  ],
+  "medidas": "4 x 2 cm cada uno; 8 g el par",
+  "cuidados": [
+    "Mantener secos y limpiar con paño suave",
+    "Guardar cada par por separado para evitar rayones",
+    "No usarlos en el mar ni en la piscina"
+  ],
+  "origen": {
+    "departamento": "Islas de la Bahía",
+    "municipio": "Roatán",
+    "pueblo": "West End"
+  },
+  "taller": {
+    "nombre": "Taller Isla Verde",
+    "artesano": "Don Erlin Bódden",
+    "historia": "Don Erlin trabaja frente al mar, en un puesto con mesa de lijado y pulido. Recoge el coco de las palmas del barrio y guarda las conchas que deja la marea para clasificarlas por tamaño."
+  },
+  "tiempoElaboracion": "2 a 3 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "coco",
+    "concha",
+    "artesanía isleña"
+  ],
+  "colores": [
+    "#8A5A33",
+    "#E4D2B0"
+  ],
+  "icono": "aretes"
+}

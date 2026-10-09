@@ -1,0 +1,25 @@
+---
+import Icono from '@/components/Icono.astro';
+import { enlaceWhatsApp } from '@/lib/whatsapp';
+
+interface Props {
+  /** Mensaje prellenado del chat flotante. */
+  mensaje?: string;
+  /** Etiqueta visible en pantallas grandes. */
+  etiqueta?: string;
+}
+
+const { mensaje, etiqueta = 'Pedir por WhatsApp' } = Astro.props;
+---
+
+<a
+  href={enlaceWhatsApp(mensaje)}
+  class="group fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full bg-whatsapp-600 px-4 py-4 text-sm font-semibold text-white shadow-[var(--shadow-elevada)] transition duration-300 ease-[var(--ease-artesanal)] hover:-translate-y-0.5 hover:bg-whatsapp-700 sm:right-6 sm:bottom-6 sm:px-5"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Abrir conversación de WhatsApp con Arteanía Honduras"
+  data-analytics="whatsapp-flotante"
+>
+  <Icono nombre="whatsapp" clase="h-5 w-5 shrink-0" />
+  <span class="hidden sm:inline">{etiqueta}</span>
+</a>

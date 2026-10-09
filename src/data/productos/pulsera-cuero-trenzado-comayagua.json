@@ -1,0 +1,46 @@
+{
+  "slug": "pulsera-cuero-trenzado-comayagua",
+  "nombre": "Pulsera de cuero trenzado",
+  "categoria": "joyeria",
+  "subtitulo": "Cuero curtido y trenzado a mano",
+  "resumen": "Pulsera de cuero trenzado a mano por talabarteros de Comayagua, con cierre ajustable.",
+  "descripcion": [
+    "Comayagua tiene tradición de talabartería: ahí el cuero se curte, se corta y se trabaja para sillas, cinchos y vainas. De esa misma escuela sale esta pulsera, hecha con tiras de cuero curtido que se trenzan a mano y se remachan en el cierre. El trenzado da flexibilidad y resistencia, y con el uso el cuero toma un tono más profundo y se amolda a la muñeca. No lleva pegamento industrial a la vista ni costuras frágiles: todo se sostiene con el cruce de las tiras. Es una pieza sencilla, de esas que casi no se quitan.",
+    "Se ajusta a muñecas medianas y grandes gracias al cierre de hebilla, y combina con reloj, anillos y ropa casual. Aguanta el agua de lluvia y el uso rudo, aunque no está hecha para nadar en el mar todos los días.",
+    "Limpie con un paño apenas húmedo y deje secar al aire, nunca al sol directo ni cerca del calor. Aplique una capa fina de grasa incolora para cuero cada cierto tiempo. Si se moja, séquela con paño y deje que termine de secar a la sombra. Este taller de Comayagua corta el cuero a mano y aprovecha los recortes."
+  ],
+  "materiales": [
+    "Cuero curtido",
+    "Hebilla metálica",
+    "Hilo encerado de remate"
+  ],
+  "medidas": "22 x 1.5 x 0.4 cm; 25 g aproximadamente",
+  "cuidados": [
+    "Limpiar con paño apenas húmedo",
+    "Secar al aire, lejos del sol directo",
+    "Aplicar grasa incolora para cuero de vez en cuando"
+  ],
+  "origen": {
+    "departamento": "Comayagua",
+    "municipio": "Comayagua",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Talabartería El Lazo",
+    "artesano": "Don Eliseo Pineda",
+    "historia": "Don Eliseo aprendió el oficio reparando monturas en el taller de su tío. Hoy corta y trenza cuero para cinchos, carteras y pulseras, y guarda los patrones de papel que ha usado por más de veinte años."
+  },
+  "tiempoElaboracion": "2 a 3 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "cuero",
+    "pulsera",
+    "talabartería"
+  ],
+  "colores": [
+    "#7B4A2D",
+    "#C08552"
+  ],
+  "icono": "pulsera"
+}

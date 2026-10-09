@@ -1,0 +1,267 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import Acordeon from '@/components/Acordeon.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import { ENVIOS, METODOS_PAGO, SITE } from '@/config/site';
+import { enlace } from '@/lib/rutas';
+import { faqSchema } from '@/lib/seo';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+const pasos = [
+  {
+    numero: '01',
+    titulo: 'Elige tus piezas',
+    texto:
+      'Recorre el catálogo y guarda los enlaces de lo que te interesa. No hay carrito ni registro: cada pieza se consulta directamente.',
+  },
+  {
+    numero: '02',
+    titulo: 'Escríbenos por WhatsApp',
+    texto:
+      'Toca el botón de la pieza y el mensaje se abre con el nombre ya escrito. Agrega tu ciudad y para cuándo la necesitas.',
+  },
+  {
+    numero: '03',
+    titulo: 'Recibe tu cotización',
+    texto:
+      'Te confirmamos disponibilidad, precio exacto y costo de envío a tu destino. Si la pieza es sobre pedido, te damos la fecha del taller.',
+  },
+  {
+    numero: '04',
+    titulo: 'Paga y recibe',
+    texto:
+      'Eliges cómo pagar, te compartimos los datos de forma privada y despachamos. Te enviamos el número de guía para que sigas tu pedido.',
+  },
+];
+
+const faqEnvio = [
+  {
+    pregunta: '¿Cuánto cuesta el envío?',
+    respuesta:
+      'Depende del destino, del peso y del volumen de la pieza. Las piezas de barro o madera pesan y ocupan más que una joya, por eso no publicamos una tarifa única. Te damos el costo exacto por WhatsApp antes de que pagues.',
+  },
+  {
+    pregunta: '¿Cuánto tarda en llegar mi pedido?',
+    respuesta:
+      'Si la pieza está en inventario del taller, se despacha en 1 a 2 días hábiles y llega en 1 a 3 días hábiles en zona urbana, hasta 5 días en zonas alejadas. Si es sobre pedido, el tiempo de elaboración aparece en la ficha de cada producto y empieza a contar desde que se confirma el pago.',
+  },
+  {
+    pregunta: '¿Cómo empaquetan las piezas frágiles?',
+    respuesta:
+      'El barro, la cerámica, la madera tallada y la joyería se empacan con protección reforzada y material de amortiguación. Aun así, si tu pedido llega dañado, escríbenos el mismo día de la entrega con fotografías del empaque y de la pieza: revisamos el caso y te ofrecemos reposición, ajuste o devolución.',
+  },
+  {
+    pregunta: '¿Puedo recoger mi pedido en persona?',
+    respuesta:
+      'Sí. Tenemos tienda física y puedes ver las piezas antes de comprar. Atendemos con cita previa por WhatsApp para dedicarte el tiempo necesario.',
+  },
+  {
+    pregunta: '¿Hacen envíos al extranjero?',
+    respuesta:
+      'Sí, enviamos artesanía hondureña al exterior. Cotizamos por peso y destino con la paquetería disponible y te compartimos el detalle antes de confirmar. Ten en cuenta que los aranceles o impuestos de importación del país de destino corren por cuenta del comprador.',
+  },
+  {
+    pregunta: '¿Qué pasa si el pago no se refleja?',
+    respuesta:
+      'Envíanos el comprobante por WhatsApp. Con transferencias y billeteras móviles puede tardar unos minutos en reflejarse; si tras verificarlo hay algún problema, lo resolvemos antes de despachar.',
+  },
+];
+
+const faqPago = [
+  {
+    pregunta: '¿Qué formas de pago aceptan?',
+    respuesta:
+      'Transferencia o depósito bancario, Tigo Money, BAC Credomatic y pago contra entrega en zonas de cobertura. Los datos de pago se comparten de forma privada al confirmar cada pedido; no publicamos números de cuenta en el sitio.',
+  },
+  {
+    pregunta: '¿Piden algún anticipo?',
+    respuesta:
+      'En piezas sobre pedido o personalizadas sí solicitamos un anticipo, porque el taller compra materiales y reserva tiempo de trabajo para ti. El porcentaje te lo indicamos antes de que pagues. En piezas disponibles de inventario normalmente no se requiere.',
+  },
+  {
+    pregunta: '¿Emiten factura?',
+    respuesta:
+      'Sí, podemos emitir factura. Indícanos al momento de hacer el pedido el nombre o razón social y el RTN para prepararla correctamente.',
+  },
+  {
+    pregunta: '¿El pago contra entrega está disponible en todo el país?',
+    respuesta:
+      'No en todos los destinos. Depende de la zona de cobertura del courier y del monto del pedido. Escríbenos con tu ubicación y te confirmamos si aplica.',
+  },
+];
+
+const jsonLd = [faqSchema([...faqEnvio, ...faqPago])];
+---
+
+<Base
+  titulo="Envíos y formas de pago"
+  descripcion="Cómo comprar en Arteanía Honduras: envíos a todo Honduras y al extranjero, tienda física, y pago por transferencia bancaria, Tigo Money, BAC Credomatic o contra entrega."
+  jsonLd={jsonLd}
+  mensajeFlotante={mensajeGeneral('Tengo una duda sobre envíos o pagos')}
+>
+  <Migas items={[{ nombre: 'Envíos y pagos', ruta: '/envios-y-pagos' }]} />
+
+  <section class="degradado-calido relative overflow-hidden border-b border-crema-200">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative py-16">
+      <SeccionEncabezado
+        nivel="h1"
+        antetitulo="Compra sin sorpresas"
+        titulo="Envíos y formas de pago"
+        descripcion="Sin carrito, sin registro y sin costos escondidos. Cotizamos tu envío antes de que pagues y te decimos con claridad qué pasa si algo sale mal."
+      />
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <BotonWhatsApp tamano="grande" etiqueta="Cotizar mi envío" mensaje={mensajeGeneral('Quiero cotizar un envío')} />
+        <a href={enlace('/tienda')} class="btn-secundario btn-lg">
+          <Icono nombre="bolsa" clase="h-4 w-4" />
+          Ir al catálogo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CÓMO COMPRAR ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="El proceso"
+        titulo="Cómo comprar, en cuatro pasos"
+        alineacion="centro"
+      />
+
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          pasos.map((paso) => (
+            <li class="tarjeta p-6">
+              <span class="font-display text-4xl font-semibold text-barro-200">{paso.numero}</span>
+              <h3 class="mt-3 font-display text-lg font-semibold text-tinta-900">{paso.titulo}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-tinta-600">{paso.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== MÉTODOS DE PAGO ===================== -->
+  <section class="border-y border-crema-200 bg-crema-200/40 py-16 sm:py-20">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Pagos"
+        titulo="Formas de pago que aceptamos"
+        descripcion="Elige la que te resulte más cómoda. Los datos de pago se comparten por WhatsApp al confirmar tu pedido, nunca se publican abiertos en el sitio."
+      />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          METODOS_PAGO.map((metodo) => (
+            <div class:list={['tarjeta p-6', metodo.destacado && 'border-barro-300 bg-barro-50/40']}>
+              <div class="flex items-start justify-between gap-3">
+                <span class="flex h-11 w-11 items-center justify-center rounded-full bg-superficie text-barro-600 shadow-[var(--shadow-suave)]">
+                  <Icono nombre={metodo.icono} clase="h-5 w-5" />
+                </span>
+                {metodo.destacado && <span class="etiqueta-acento">Más usado</span>}
+              </div>
+              <h3 class="mt-4 font-display text-lg font-semibold text-tinta-900">{metodo.nombre}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-tinta-600">{metodo.descripcion}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="mt-8 rounded-2xl border border-crema-300 bg-superficie p-5 text-sm leading-relaxed text-tinta-600">
+        <strong class="text-tinta-800">Sobre la seguridad del pago:</strong> este sitio no procesa pagos
+        ni guarda datos de tarjetas. Toda la coordinación del pago se hace de forma privada por
+        WhatsApp con nuestro equipo. Nunca compartas datos de tarjeta por chat: para tarjetas usamos
+        los canales oficiales de BAC Credomatic.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== ENVÍOS ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Entrega"
+        titulo="Dónde y cómo entregamos"
+        descripcion="Despachamos desde Honduras. Confirma el costo y el tiempo exacto por WhatsApp según tu dirección."
+      />
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        {
+          ENVIOS.map((envio) => (
+            <div class="tarjeta p-7">
+              <span class="flex h-12 w-12 items-center justify-center rounded-full bg-olivo-100 text-olivo-700">
+                <Icono nombre={envio.icono} clase="h-6 w-6" />
+              </span>
+              <h3 class="mt-5 font-display text-xl font-semibold text-tinta-900">{envio.nombre}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-tinta-600">{envio.descripcion}</p>
+              <p class="mt-4 flex items-start gap-2 rounded-2xl bg-crema-100 p-3 text-xs leading-relaxed text-tinta-700">
+                <Icono nombre="reloj" clase="mt-0.5 h-3.5 w-3.5 shrink-0 text-olivo-600" />
+                {envio.detalle}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 rounded-[var(--radius-pieza)] border border-dashed border-crema-300 bg-crema-50 p-6">
+        <h3 class="flex items-center gap-2 font-display text-lg font-semibold text-tinta-900">
+          <Icono nombre="ubicacion" clase="h-4 w-4 text-barro-600" />
+          Tienda física
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-tinta-600">
+          Estamos habilitando el espacio para que puedas ver las piezas en persona. Escríbenos para
+          coordinar una visita y te compartimos la dirección exacta y los horarios de atención.
+        </p>
+        <p class="mt-3 text-xs text-tinta-500">
+          TODO: publicar aquí la dirección completa, horarios y un enlace de Google Maps cuando el
+          espacio esté confirmado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ENVÍO ===================== -->
+  <section class="bg-crema-200/40 py-16 sm:py-20">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Dudas frecuentes"
+        titulo="Preguntas sobre envíos"
+        alineacion="centro"
+      />
+      <Acordeon items={faqEnvio} clase="mt-10" />
+    </div>
+  </section>
+
+  <!-- ===================== FAQ PAGO ===================== -->
+  <section class="pb-20">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Dudas frecuentes"
+        titulo="Preguntas sobre pagos"
+        alineacion="centro"
+      />
+      <Acordeon items={faqPago} abrirPrimero={false} clase="mt-10" />
+
+      <div class="mt-12 flex flex-col items-center gap-4 text-center">
+        <h2 class="font-display text-2xl font-semibold text-tinta-900">
+          ¿Te quedó alguna duda?
+        </h2>
+        <p class="max-w-xl text-sm leading-relaxed text-tinta-600">
+          Escríbenos con tu ciudad y las piezas que te interesan. Te respondemos con el costo total,
+          sin compromiso. Horario de atención: {SITE.nombre} responde de lunes a sábado.
+        </p>
+        <BotonWhatsApp
+          tamano="grande"
+          etiqueta="Preguntar por WhatsApp"
+          mensaje={mensajeGeneral('Tengo una consulta antes de comprar')}
+        />
+      </div>
+    </div>
+  </section>
+</Base>

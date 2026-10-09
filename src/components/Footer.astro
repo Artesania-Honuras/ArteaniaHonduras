@@ -1,0 +1,159 @@
+---
+import Logo from '@/components/Logo.astro';
+import Icono from '@/components/Icono.astro';
+import { CATEGORIAS_FOOTER, ENLACES_LEGALES } from '@/config/navegacion';
+import { CONTACTO, ENVIOS, METODOS_PAGO, SITE } from '@/config/site';
+import { enlace } from '@/lib/rutas';
+import { enlaceWhatsApp } from '@/lib/whatsapp';
+
+const anioActual = new Date().getFullYear();
+const redes = Object.entries(CONTACTO.redes).filter(([, url]) => Boolean(url));
+---
+
+<footer class="mt-20 border-t border-crema-200 bg-crema-100">
+  <div class="contenedor py-14">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <!-- Marca -->
+      <div class="lg:col-span-4">
+        <Logo />
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-tinta-600">{SITE.descripcion}</p>
+        <a
+          href={enlaceWhatsApp()}
+          class="btn-whatsapp mt-6"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics="whatsapp"
+        >
+          <Icono nombre="whatsapp" clase="h-4 w-4" />
+          <span>Escríbenos por WhatsApp</span>
+        </a>
+        <p class="mt-3 text-xs text-tinta-500">{CONTACTO.whatsapp.horario}</p>
+      </div>
+
+      <!-- Catálogo -->
+      <nav aria-label="Categorías del catálogo" class="lg:col-span-2">
+        <h2 class="font-display text-base font-semibold text-tinta-900">Catálogo</h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li>
+            <a href={enlace('/tienda')} class="text-tinta-600 transition hover:text-barro-700">
+              Todas las piezas
+            </a>
+          </li>
+          {
+            CATEGORIAS_FOOTER.map((categoria) => (
+              <li>
+                <a
+                  href={enlace(`/tienda/${categoria.slug}`)}
+                  class="text-tinta-600 transition hover:text-barro-700"
+                >
+                  {categoria.nombre}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Información -->
+      <nav aria-label="Información de compra" class="lg:col-span-3">
+        <h2 class="font-display text-base font-semibold text-tinta-900">Información de compra</h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {
+            ENLACES_LEGALES.map((item) => (
+              <li>
+                <a href={enlace(item.ruta)} class="text-tinta-600 transition hover:text-barro-700">
+                  {item.etiqueta}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Contacto y confianza -->
+      <div class="lg:col-span-3">
+        <h2 class="font-display text-base font-semibold text-tinta-900">Contacto</h2>
+        <ul class="mt-4 space-y-3 text-sm text-tinta-600">
+          <li class="flex items-start gap-2.5">
+            <Icono nombre="whatsapp" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+            <span>
+              WhatsApp<br />
+              <span class="font-semibold text-tinta-800">{CONTACTO.whatsapp.numeroVisible}</span>
+            </span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <Icono nombre="ubicacion" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+            <span>Honduras · envíos nacionales e internacionales</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <Icono nombre="reloj" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+            <span>{CONTACTO.whatsapp.horario}</span>
+          </li>
+        </ul>
+
+        {
+          redes.length > 0 && (
+            <ul class="mt-5 flex flex-wrap gap-2">
+              {redes.map(([red, url]) => (
+                <li>
+                  <a
+                    href={url}
+                    class="etiqueta transition hover:border-barro-300 hover:text-barro-700"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {red}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </div>
+
+    <!-- Formas de pago y entrega -->
+    <div class="mt-12 grid gap-8 border-t border-crema-200 pt-10 lg:grid-cols-2">
+      <div>
+        <h2 class="antetitulo">Formas de pago</h2>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {
+            METODOS_PAGO.map((metodo) => (
+              <li class="etiqueta">
+                <Icono nombre={metodo.icono} clase="h-4 w-4 text-barro-500" />
+                {metodo.nombre}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="antetitulo">Entrega</h2>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {
+            ENVIOS.map((envio) => (
+              <li class="etiqueta">
+                <Icono nombre={envio.icono} clase="h-4 w-4 text-olivo-500" />
+                {envio.nombre}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-crema-200 bg-crema-200/60">
+    <div
+      class="contenedor flex flex-col items-center justify-between gap-3 py-5 text-xs text-tinta-500 sm:flex-row"
+    >
+      <p>
+        © {anioActual} {SITE.nombre}. Todos los derechos reservados.
+      </p>
+      <p class="inline-flex items-center gap-1.5">
+        <Icono nombre="corazon" clase="h-3.5 w-3.5 text-barro-500" />
+        Hecho a mano en Honduras
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,176 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import Acordeon from '@/components/Acordeon.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import { PREGUNTAS_FRECUENTES } from '@/config/site';
+import { enlace } from '@/lib/rutas';
+import { faqSchema } from '@/lib/seo';
+import { mensajeGeneral, mensajeMayoreo } from '@/lib/whatsapp';
+
+const accesos = [
+  {
+    icono: 'bolsa' as const,
+    titulo: 'Antes de comprar',
+    texto: 'Disponibilidad, precios, personalización y tiempos de elaboración.',
+    desde: 0,
+    hasta: 4,
+  },
+  {
+    icono: 'camion' as const,
+    titulo: 'Envíos y entrega',
+    texto: 'Cobertura, plazos, empaque de piezas frágiles y tienda física.',
+    desde: 4,
+    hasta: 6,
+  },
+  {
+    icono: 'tarjeta' as const,
+    titulo: 'Pagos y mayoreo',
+    texto: 'Formas de pago, facturación y pedidos para reventa o empresa.',
+    desde: 6,
+    hasta: PREGUNTAS_FRECUENTES.length,
+  },
+];
+---
+
+<Base
+  titulo="Preguntas frecuentes"
+  descripcion="Resolvemos las dudas más comunes sobre cómo comprar artesanía hondureña en Arteanía Honduras: pedidos, precios, personalización, envíos a todo Honduras y al extranjero, y formas de pago."
+  jsonLd={[faqSchema(PREGUNTAS_FRECUENTES)]}
+  mensajeFlotante={mensajeGeneral('Tengo una pregunta frecuente')}
+>
+  <Migas items={[{ nombre: 'Preguntas frecuentes', ruta: '/preguntas-frecuentes' }]} />
+
+  <section class="degradado-calido relative overflow-hidden border-b border-crema-200">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative py-16">
+      <SeccionEncabezado
+        nivel="h1"
+        antetitulo="Todo claro antes de pedir"
+        titulo="Preguntas frecuentes"
+        descripcion="Estas son las dudas que más nos escriben. Si la tuya no está aquí, escríbenos por WhatsApp: contestamos personalmente, sin respuestas automáticas."
+      />
+    </div>
+  </section>
+
+  <!-- ===================== ACCESOS RÁPIDOS ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          accesos.map((acceso) => (
+            <a href={`#${acceso.titulo.toLowerCase().replace(/\s+/g, '-')}`} class="tarjeta-interactiva p-6">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+                <Icono nombre={acceso.icono} clase="h-5 w-5" />
+              </span>
+              <h2 class="mt-4 font-display text-lg font-semibold text-tinta-900">{acceso.titulo}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-tinta-600">{acceso.texto}</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-barro-700">
+                Ver respuestas
+                <Icono nombre="flecha" clase="h-4 w-4" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ACORDEONES POR BLOQUE ===================== -->
+  <section class="pb-16">
+    <div class="contenedor space-y-14">
+      {
+        accesos.map((acceso) => {
+          const items = PREGUNTAS_FRECUENTES.slice(acceso.desde, acceso.hasta);
+          const ancla = acceso.titulo.toLowerCase().replace(/\s+/g, '-');
+          return (
+            <div id={ancla} class="scroll-mt-28">
+              <h2 class="font-display text-2xl font-semibold text-tinta-900">{acceso.titulo}</h2>
+              <Acordeon items={items} abrirPrimero={false} clase="mt-6" />
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- ===================== MAYOREO ===================== -->
+  <section class="border-y border-crema-200 bg-anil-700 py-16 text-crema-100">
+    <div class="contenedor grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="antetitulo text-ocre-300">Compra por volumen</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-crema-50">
+          Pedidos de mayoreo y reventa
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-crema-200">
+          Trabajamos con hoteles, tiendas de souvenirs, cafés, empresas y organizadores de eventos
+          que buscan regalos con identidad hondureña. Preparamos cotizaciones por volumen y
+          coordinamos los tiempos con los talleres.
+        </p>
+        <ul class="mt-6 grid gap-2 text-sm text-crema-200">
+          {
+            [
+              'Cotización por cantidad y tipo de pieza',
+              'Posibilidad de grabado o empaque corporativo',
+              'Factura con RTN',
+              'Coordinación de entregas por etapa',
+            ].map((item) => (
+              <li class="flex items-start gap-2">
+                <Icono nombre="check" clase="mt-0.5 h-4 w-4 shrink-0 text-ocre-300" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="rounded-[var(--radius-bloque)] border border-white/15 bg-white/5 p-7 backdrop-blur-sm">
+        <h3 class="font-display text-xl font-semibold text-crema-50">Cotiza tu pedido</h3>
+        <p class="mt-2 text-sm leading-relaxed text-crema-200">
+          Cuéntanos el tipo de piezas, la cantidad aproximada y la fecha en que las necesitas.
+        </p>
+        <BotonWhatsApp
+          variante="claro"
+          tamano="grande"
+          clase="mt-6 w-full"
+          etiqueta="Cotizar mayoreo"
+          mensaje={mensajeMayoreo()}
+        />
+        <a
+          href={enlace('/tienda')}
+          class="btn mt-3 w-full border border-white/40 text-crema-50 hover:bg-white/10"
+        >
+          Ver catálogo primero
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CIERRE ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="tarjeta flex flex-col items-center gap-5 p-8 text-center sm:p-12">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+          <Icono nombre="chat" clase="h-6 w-6" />
+        </span>
+        <h2 class="font-display text-2xl font-semibold text-tinta-900 sm:text-3xl">
+          ¿No encontraste tu respuesta?
+        </h2>
+        <p class="max-w-xl text-sm leading-relaxed text-tinta-600">
+          Escríbenos y te contestamos directo. Si tu duda es útil para otros, la agregamos a esta
+          página.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <BotonWhatsApp
+            tamano="grande"
+            etiqueta="Escribir por WhatsApp"
+            mensaje={mensajeGeneral('Tengo una duda que no está en las preguntas frecuentes')}
+          />
+          <a href={enlace('/contacto')} class="btn-secundario btn-lg">Ver formas de contacto</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

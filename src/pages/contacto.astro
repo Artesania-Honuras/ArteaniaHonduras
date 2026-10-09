@@ -1,0 +1,226 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import { CONTACTO, SITE } from '@/config/site';
+import { enlace } from '@/lib/rutas';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+/** Motivos de contacto con mensaje prellenado, para que nadie tenga que improvisar. */
+const motivos = [
+  {
+    icono: 'regalo' as const,
+    titulo: 'Busco un regalo',
+    texto: 'Cuéntanos para quién es, la ocasión y tu presupuesto aproximado.',
+    mensaje: mensajeGeneral('Busco un regalo y necesito recomendaciones'),
+    etiqueta: 'Pedir recomendación',
+  },
+  {
+    icono: 'bolsa' as const,
+    titulo: 'Quiero comprar una pieza',
+    texto: 'Dinos qué pieza del catálogo te interesa y tu ciudad de entrega.',
+    mensaje: mensajeGeneral('Quiero comprar una pieza del catálogo'),
+    etiqueta: 'Iniciar un pedido',
+  },
+  {
+    icono: 'mano' as const,
+    titulo: 'Quiero algo personalizado',
+    texto: 'Colores, medidas o grabado: lo consultamos con el taller.',
+    mensaje: mensajeGeneral('Quiero encargar una pieza personalizada'),
+    etiqueta: 'Encargar a la medida',
+  },
+  {
+    icono: 'personas' as const,
+    titulo: 'Compra de mayoreo',
+    texto: 'Hoteles, tiendas, empresas y eventos con pedidos por volumen.',
+    mensaje: mensajeGeneral('Quiero cotizar un pedido de mayoreo'),
+    etiqueta: 'Cotizar mayoreo',
+  },
+  {
+    icono: 'escudo' as const,
+    titulo: 'Estado de mi pedido',
+    texto: 'Envíanos tu nombre y el número de guía o la fecha del pedido.',
+    mensaje: mensajeGeneral('Quiero consultar el estado de mi pedido'),
+    etiqueta: 'Consultar pedido',
+  },
+  {
+    icono: 'hoja' as const,
+    titulo: 'Represento un taller',
+    texto: 'Si elaboras artesanía hondureña, queremos conocerte.',
+    mensaje: mensajeGeneral('Represento un taller artesanal y quiero vender con ustedes'),
+    etiqueta: 'Ser taller aliado',
+  },
+];
+---
+
+<Base
+  titulo="Contacto"
+  descripcion="Escríbenos por WhatsApp para cotizar piezas de artesanía hondureña, consultar envíos o coordinar una visita a la tienda física. Respuesta personal, sin bots."
+  mensajeFlotante={mensajeGeneral('Quiero contactar a Arteanía Honduras')}
+>
+  <Migas items={[{ nombre: 'Contacto', ruta: '/contacto' }]} />
+
+  <section class="degradado-calido relative overflow-hidden border-b border-crema-200">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative py-16">
+      <SeccionEncabezado
+        nivel="h1"
+        antetitulo="Estamos para ayudarte"
+        titulo="Contacto"
+        descripcion="Nuestro canal oficial es WhatsApp. Te atendemos personalmente para asesorarte sobre tamaños, materiales, personalizaciones, envíos y precios."
+      />
+
+      <div class="mt-8">
+        <BotonWhatsApp
+          tamano="grande"
+          etiqueta="Abrir WhatsApp ahora"
+          mensaje={mensajeGeneral('Hola, quiero información')}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DATOS DE CONTACTO ===================== -->
+  <section class="seccion">
+    <div class="contenedor grid gap-6 lg:grid-cols-3">
+      <div class="tarjeta border-barro-300 bg-barro-50/40 p-7 lg:col-span-2">
+        <div class="flex flex-wrap items-start gap-5">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-whatsapp-600 text-white">
+            <Icono nombre="whatsapp" clase="h-7 w-7" />
+          </span>
+          <div class="min-w-0 flex-1">
+            <p class="antetitulo">Canal principal</p>
+            <h2 class="mt-2 font-display text-2xl font-semibold text-tinta-900">
+              WhatsApp
+            </h2>
+            <p class="mt-1 font-display text-xl font-semibold text-barro-700">
+              {CONTACTO.whatsapp.numeroVisible}
+            </p>
+            <p class="mt-3 text-sm leading-relaxed text-tinta-600">
+              Es la vía más rápida para cotizar, resolver dudas y cerrar un pedido. El mensaje se
+              abre con un texto ya preparado; solo agrega tu ciudad y lo que necesitas.
+            </p>
+
+            <dl class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="flex items-start gap-2.5 rounded-2xl bg-superficie p-3.5">
+                <Icono nombre="reloj" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+                <div>
+                  <dt class="text-[0.7rem] font-semibold tracking-wide text-tinta-500 uppercase">
+                    Horario
+                  </dt>
+                  <dd class="mt-0.5 text-sm text-tinta-800">{CONTACTO.whatsapp.horario}</dd>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5 rounded-2xl bg-superficie p-3.5">
+                <Icono nombre="chat" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+                <div>
+                  <dt class="text-[0.7rem] font-semibold tracking-wide text-tinta-500 uppercase">
+                    Tiempo de respuesta
+                  </dt>
+                  <dd class="mt-0.5 text-sm text-tinta-800">
+                    Normalmente el mismo día hábil
+                  </dd>
+                </div>
+              </div>
+            </dl>
+
+            <BotonWhatsApp clase="mt-6" etiqueta="Escribir por WhatsApp" mensaje={mensajeGeneral('Hola, quiero información')} />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-6">
+        <div class="tarjeta p-6">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-crema-100 text-barro-600">
+            <Icono nombre="tienda" clase="h-5 w-5" />
+          </span>
+          <h2 class="mt-4 font-display text-lg font-semibold text-tinta-900">Tienda física</h2>
+          <p class="mt-2 text-sm leading-relaxed text-tinta-600">
+            Puedes ver y tocar las piezas antes de comprar. Atendemos con cita previa para
+            dedicarte el tiempo necesario.
+          </p>
+          <p class="mt-3 text-xs text-tinta-500">
+            TODO: dirección exacta, horarios y enlace de Google Maps cuando el espacio esté
+            confirmado.
+          </p>
+          <BotonWhatsApp
+            variante="claro"
+            clase="mt-4 w-full"
+            etiqueta="Agendar una visita"
+            mensaje={mensajeGeneral('Quiero agendar una visita a la tienda física')}
+          />
+        </div>
+
+        <div class="tarjeta p-6">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-crema-100 text-barro-600">
+            <Icono nombre="globo" clase="h-5 w-5" />
+          </span>
+          <h2 class="mt-4 font-display text-lg font-semibold text-tinta-900">Cobertura</h2>
+          <p class="mt-2 text-sm leading-relaxed text-tinta-600">
+            Enviamos a los 18 departamentos de Honduras y al extranjero. Escríbenos con tu
+            ubicación y te confirmamos costo y plazo.
+          </p>
+          <a href={enlace('/envios-y-pagos')} class="enlace-subrayado mt-4 inline-block text-sm">
+            Ver envíos y pagos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MOTIVOS ===================== -->
+  <section class="border-y border-crema-200 bg-crema-200/40 py-16 sm:py-20">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Agiliza tu consulta"
+        titulo="¿Cuál es el motivo de tu mensaje?"
+        descripcion="Elige el que mejor describa tu caso: el chat se abrirá con el mensaje ya escrito y así podemos responderte más rápido."
+        alineacion="centro"
+      />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          motivos.map((motivo) => (
+            <div class="tarjeta flex flex-col p-6">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+                <Icono nombre={motivo.icono} clase="h-5 w-5" />
+              </span>
+              <h3 class="mt-4 font-display text-lg font-semibold text-tinta-900">{motivo.titulo}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-tinta-600">{motivo.texto}</p>
+              <BotonWhatsApp
+                clase="mt-5 w-full"
+                etiqueta={motivo.etiqueta}
+                mensaje={motivo.mensaje}
+                etiquetaAccesible={`${motivo.etiqueta}: ${motivo.titulo}`}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NOTA Y CIERRE ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="tarjeta mx-auto max-w-3xl p-8 sm:p-10">
+        <h2 class="flex items-center gap-2 font-display text-xl font-semibold text-tinta-900">
+          <Icono nombre="escudo" clase="h-5 w-5 text-olivo-600" />
+          Un aviso importante
+        </h2>
+        <div class="prosa mt-4">
+          <p>
+            {SITE.nombre} se comunica <strong>únicamente por WhatsApp</strong>. No publicamos correos
+            ni teléfonos alternativos, y nunca pedimos datos de tarjeta por chat.
+          </p>
+          <p>
+            Si alguien te contacta ofreciendo piezas de {SITE.nombre} por otro medio y pide pagos
+            inusuales, verifícalo escribiéndonos al número de esta página.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

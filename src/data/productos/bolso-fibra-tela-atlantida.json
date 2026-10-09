@@ -1,0 +1,46 @@
+{
+  "slug": "bolso-fibra-tela-atlantida",
+  "nombre": "Bolso tejido de fibra natural",
+  "categoria": "textiles",
+  "subtitulo": "Fibras del Caribe hondureño",
+  "resumen": "Bolso tejido con fibras naturales recolectadas en la costa de Atlántida, ligero y de uso diario.",
+  "descripcion": [
+    "En la costa de Atlántida, entre el mar y la laguna, las artesanas recogen fibras de palma y bejuco, las raspan, las secan al sol y las tiñen con cortezas. Con esas tiras tejen este bolso de pared firme y fondo ancho, pensado para cargar lo necesario sin perder ligereza. El asa se refuerza con puntadas cruzadas y el cierre se remata a mano. El tejido deja ver el grano de la fibra, y el color cambia ligeramente según la luz del día. Es una pieza de playa, de mercado y de ciudad.",
+    "Su tamaño entra debajo del brazo y aguanta cuadernos, una botella de agua, el mercado pequeño o los útiles del día. El forro interno, cosido a mano, protege lo que lleva adentro y evita que las llaves se pierdan entre las fibras.",
+    "Evite mojarlo por completo; si se humedece, séquelo a la sombra y lejos del calor directo para que la fibra no se torne quebradiza. Sacuda el polvo con un cepillo suave. Guarde el bolso relleno con papel para conservar la forma. Detrás hay un grupo de artesanas de la costa de Tela que trabaja por encargo todo el año."
+  ],
+  "materiales": [
+    "Fibra de palma",
+    "Bejuco flexible",
+    "Forro de tela de algodón"
+  ],
+  "medidas": "30 x 28 x 12 cm; 400 g aproximadamente",
+  "cuidados": [
+    "Evitar mojarlo por completo",
+    "Secar a la sombra si se humedece",
+    "Guardar relleno con papel para conservar la forma"
+  ],
+  "origen": {
+    "departamento": "Atlántida",
+    "municipio": "Tela",
+    "pueblo": "Triunfo de la Cruz"
+  },
+  "taller": {
+    "nombre": "Taller Fibras del Caribe",
+    "artesano": "Doña Gloria Núñez",
+    "historia": "Doña Gloria reúne a un grupo de vecinas que recolecta y prepara la fibra en el patio de su casa. Cada bolso pasa por sus manos antes de salir, y ella anota el nombre de la artesana que lo tejió."
+  },
+  "tiempoElaboracion": "4 a 6 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "bolso tejido",
+    "fibra natural",
+    "Caribe"
+  ],
+  "colores": [
+    "#7A6A3A",
+    "#C9A24A"
+  ],
+  "icono": "bolso"
+}

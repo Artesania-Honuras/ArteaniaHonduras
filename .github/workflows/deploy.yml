@@ -1,0 +1,69 @@
+# Publica el sitio en GitHub Pages en cada push a la rama master.
+#
+# El repositorio es un "project site" de GitHub Pages: el sitio vive en el
+# subdirectorio /ArteaniaHonduras definido en astro.config.mjs. Como los
+# enlaces internos se construyen con enlace() de src/lib/rutas.ts, el
+# subdirectorio se aplica automáticamente y no hay que configurar nada aquí.
+#
+# No se usa la rama gh-pages: el artefacto generado en ./dist se publica
+# directamente con las acciones oficiales de Pages.
+
+name: Desplegar en GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Permisos mínimos necesarios: leer el código, publicar en Pages y emitir el
+# token de identidad que exige deploy-pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una sola publicación a la vez y sin cancelar la que esté en curso, para no
+# dejar el sitio en un estado intermedio.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Construir el sitio
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js 20 con caché de npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir el sitio estático
+        run: npm run build
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir el artefacto de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    name: Publicar
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

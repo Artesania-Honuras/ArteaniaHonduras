@@ -1,0 +1,163 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import TarjetaProducto from '@/components/TarjetaProducto.astro';
+import TarjetaCategoria from '@/components/TarjetaCategoria.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import Motivo from '@/components/Motivo.astro';
+import { SITE } from '@/config/site';
+import {
+  categorias,
+  conteoPorCategoria,
+  obtenerCategoria,
+  productosPorCategoria,
+  type Categoria,
+} from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+import { itemListSchema } from '@/lib/seo';
+import { mensajeCategoria, mensajeGeneral } from '@/lib/whatsapp';
+
+export function getStaticPaths() {
+  return categorias.map((categoria) => ({
+    params: { categoria: categoria.slug },
+    props: { slugCategoria: categoria.slug },
+  }));
+}
+
+interface Props {
+  slugCategoria: string;
+}
+
+const { slugCategoria } = Astro.props;
+
+const categoria = obtenerCategoria(slugCategoria);
+if (!categoria) {
+  throw new Error(`La categoría "${slugCategoria}" no existe en categorias.json`);
+}
+
+const piezas = productosPorCategoria(categoria.slug);
+const conteos = conteoPorCategoria();
+const hermanas = categorias.filter((c) => c.slug !== categoria.slug);
+
+const descripcion = `${categoria.descripcion} Piezas hechas a mano en Honduras. Consulta disponibilidad y precio por WhatsApp con envío a todo el país y al extranjero.`;
+---
+
+<Base
+  titulo={`${categoria.nombre} — Artesanía hondureña`}
+  descripcion={descripcion}
+  jsonLd={[
+    itemListSchema(piezas, categoria.nombre),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: categoria.nombre,
+      description: categoria.descripcion,
+      url: `${SITE.url}${enlace(`/tienda/${categoria.slug}`)}`,
+    },
+  ]}
+  mensajeFlotante={mensajeCategoria({ nombre: categoria.nombre, slug: categoria.slug })}
+>
+  <Migas items={[{ nombre: 'Catálogo', ruta: '/tienda' }, { nombre: categoria.nombre, ruta: `/tienda/${categoria.slug}` }]} />
+
+  <section class="degradado-calido relative overflow-hidden border-b border-crema-200">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative grid items-center gap-10 py-14 lg:grid-cols-3 lg:py-16">
+      <div class="lg:col-span-2">
+        <SeccionEncabezado
+          nivel="h1"
+          antetitulo={`${piezas.length} ${piezas.length === 1 ? 'pieza' : 'piezas'} en esta categoría`}
+          titulo={categoria.nombre}
+          descripcion={descripcion}
+        />
+
+        <div class="mt-7 flex flex-wrap gap-3">
+          <BotonWhatsApp
+            tamano="grande"
+            etiqueta="Consultar por WhatsApp"
+            mensaje={mensajeCategoria({ nombre: categoria.nombre, slug: categoria.slug })}
+          />
+          <a href={enlace('/tienda')} class="btn-secundario btn-lg">
+            Ver todo el catálogo
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden justify-center lg:flex">
+        <span
+          class="flex h-40 w-40 items-center justify-center rounded-full bg-superficie/80 text-barro-600 shadow-[var(--shadow-pieza)]"
+        >
+          <Motivo nombre={categoria.icono} tamano={48} grosor={1.6} clase="h-20 w-20" />
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      {
+        piezas.length > 0 ? (
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {piezas.map((producto, indice) => (
+              <TarjetaProducto producto={producto} prioridad={indice < 4} />
+            ))}
+          </div>
+        ) : (
+          <div class="rounded-[var(--radius-bloque)] border border-dashed border-crema-300 bg-crema-50 px-6 py-14 text-center">
+            <p class="font-display text-xl font-semibold text-tinta-800">
+              Estamos preparando esta categoría
+            </p>
+            <p class="mx-auto mt-2 max-w-md text-sm text-tinta-600">
+              Todavía no publicamos piezas aquí, pero el taller sí las elabora. Escríbenos y te
+              contamos qué tenemos disponible.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Otras categorías -->
+  <section class="bg-crema-200/50 py-16">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Sigue explorando"
+        titulo="Otras categorías del catálogo"
+      />
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          hermanas.map((hermana: Categoria, indice: number) => (
+            <TarjetaCategoria
+              categoria={hermana}
+              cantidad={conteos[hermana.slug] ?? 0}
+              indice={indice + 1}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="contenedor">
+      <div class="tarjeta flex flex-col items-center gap-5 p-8 text-center sm:p-12">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-olivo-100 text-olivo-700">
+          <Icono nombre="mano" clase="h-6 w-6" />
+        </span>
+        <h2 class="font-display text-2xl font-semibold text-tinta-900">
+          ¿Buscas algo específico en {categoria.nombre.toLowerCase()}?
+        </h2>
+        <p class="max-w-xl text-sm leading-relaxed text-tinta-600">
+          Varias piezas se elaboran sobre pedido y admiten personalización de color, medida o
+          grabado. Cuéntanos qué imaginas y lo consultamos con el taller.
+        </p>
+        <BotonWhatsApp
+          tamano="grande"
+          etiqueta="Encargar una pieza"
+          mensaje={mensajeGeneral(`Quiero encargar una pieza personalizada de ${categoria.nombre}`)}
+        />
+      </div>
+    </div>
+  </section>
+</Base>

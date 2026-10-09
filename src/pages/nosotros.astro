@@ -1,0 +1,284 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import Motivo from '@/components/Motivo.astro';
+import { SITE } from '@/config/site';
+import { categorias, productos } from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+const talleres = [...new Map(productos.map((p) => [p.taller.nombre, p.taller])).values()];
+
+const porDepartamento = productos.reduce<Record<string, number>>((acumulado, producto) => {
+  const clave = producto.origen.departamento;
+  acumulado[clave] = (acumulado[clave] ?? 0) + 1;
+  return acumulado;
+}, {});
+
+const departamentos = Object.entries(porDepartamento).sort((a, b) => b[1] - a[1]);
+
+const valores = [
+  {
+    icono: 'personas' as const,
+    titulo: 'Trato directo con el taller',
+    texto:
+      'No compramos por catálogo de intermediario. Conocemos a quien hace cada pieza y sabemos cuánto tarda y de qué material la trabaja.',
+  },
+  {
+    icono: 'mano' as const,
+    titulo: 'Precio justo para quien lo hace',
+    texto:
+      'El valor de una pieza incluye las horas de trabajo del artesano y su oficio. Explicamos el precio cuando nos lo preguntas, sin letra pequeña.',
+  },
+  {
+    icono: 'hoja' as const,
+    titulo: 'Materiales del país',
+    texto:
+      'Barro, fibra de tuno, algodón, madera de cedro, tagua, plata y cuero. Trabajamos con lo que da la tierra hondureña.',
+  },
+  {
+    icono: 'escudo' as const,
+    titulo: 'Sin promesas que no podamos cumplir',
+    texto:
+      'Si una pieza no está disponible o el taller no puede cumplir la fecha, te lo decimos antes de que pagues. Preferimos perder una venta a fallarte.',
+  },
+];
+
+const proceso = [
+  {
+    titulo: 'Visitamos el taller',
+    texto:
+      'Vamos al taller o a la cooperativa, vemos cómo se trabaja la pieza y acordamos precio y tiempos de entrega directamente con el artesano.',
+  },
+  {
+    titulo: 'Seleccionamos la pieza',
+    texto:
+      'Revisamos acabados y medidas. Publicamos en el catálogo solo lo que podemos entregar bien y describimos el origen real de cada pieza.',
+  },
+  {
+    titulo: 'La preparamos para viajar',
+    texto:
+      'Empacamos con protección reforzada según el material: barro, textil, madera o joyería. Es la parte que más nos importa cuidar.',
+  },
+  {
+    titulo: 'Te acompañamos después',
+    texto:
+      'Si tienes dudas de cuidado, quieres ampliar un juego o repetir un pedido, seguimos disponibles por WhatsApp.',
+  },
+];
+---
+
+<Base
+  titulo="Nuestra historia"
+  descripcion="Arteanía Honduras nace para acercar la artesanía hecha a mano en Honduras a quien la quiere comprar bien: con nombre, oficio y origen. Conoce cómo trabajamos con los talleres."
+  mensajeFlotante={mensajeGeneral('Quiero saber más sobre el proyecto')}
+>
+  <Migas items={[{ nombre: 'Nuestra historia', ruta: '/nosotros' }]} />
+
+  <!-- ===================== INTRO ===================== -->
+  <section class="degradado-calido relative overflow-hidden border-b border-crema-200">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-20">
+      <div>
+        <SeccionEncabezado
+          nivel="h1"
+          antetitulo="Quiénes somos"
+          titulo="Artesanía hondureña, contada con nombre y apellido"
+          descripcion="Arteanía Honduras es un proyecto para vender artesanía hecha a mano en Honduras sin borrar a quien la hace. Cada pieza del catálogo dice de qué municipio viene, qué taller la elabora y cuánto tiempo toma hacerla."
+        />
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        {
+          [
+            { valor: `${productos.length}`, etiqueta: 'Piezas publicadas' },
+            { valor: `${categorias.length}`, etiqueta: 'Oficios' },
+            { valor: `${talleres.length}`, etiqueta: 'Talleres aliados' },
+            { valor: `${departamentos.length}`, etiqueta: 'Departamentos' },
+          ].map((dato) => (
+            <div class="tarjeta items-center p-6 text-center">
+              <p class="font-display text-3xl font-semibold text-barro-600">{dato.valor}</p>
+              <p class="mt-1 text-xs font-medium tracking-wide text-tinta-500 uppercase">
+                {dato.etiqueta}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== POR QUÉ ===================== -->
+  <section class="seccion">
+    <div class="contenedor grid gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <h2 class="titulo-seccion">Por qué existe Arteanía</h2>
+
+        <div class="prosa mt-6">
+          <p>
+            Honduras está llena de oficios que se aprendieron de madre a hija y de padre a hijo:
+            alfarería lenca en La Paz, telares de cintura en Intibucá, tallado en madera en Valle de
+            Ángeles, filigrana de plata en Gracias, tejidos de fibra en la costa atlántica. Es
+            trabajo paciente, hecho a mano y en cantidades pequeñas.
+          </p>
+          <p>
+            El problema no es la calidad, es el acceso. Muchas veces la pieza se vende sin que nadie
+            sepa quién la hizo, a un precio que no reconoce las horas que costó, o simplemente no se
+            vende porque el taller no tiene cómo mostrarla fuera de su comunidad.
+          </p>
+          <p>
+            Arteanía Honduras existe para cerrar esa distancia: mostramos las piezas con
+            fotografías y descripciones honestas, decimos de dónde vienen y atendemos por WhatsApp
+            para responder lo que un catálogo nunca alcanza a explicar.
+          </p>
+          <p>
+            <strong>No somos una fábrica</strong> y no queremos serlo. Trabajamos con la producción
+            real de cada taller: si una pieza se agota, esperamos a que el artesano la vuelva a
+            hacer, y te lo decimos con claridad.
+          </p>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-2">
+        <div class="tarjeta p-6">
+          <h2 class="font-display text-lg font-semibold text-tinta-900">
+            Dónde se hace lo que vendemos
+          </h2>
+          <ul class="mt-4 space-y-2.5">
+            {
+              departamentos.map(([departamento, cantidad]) => (
+                <li class="flex items-center justify-between gap-3 border-b border-crema-200 pb-2.5 text-sm last:border-0 last:pb-0">
+                  <span class="flex items-center gap-2 text-tinta-700">
+                    <Icono nombre="ubicacion" clase="h-4 w-4 shrink-0 text-olivo-500" />
+                    {departamento}
+                  </span>
+                  <span class="text-xs text-tinta-500">
+                    {cantidad} {cantidad === 1 ? 'pieza' : 'piezas'}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mt-5 text-xs leading-relaxed text-tinta-500">
+            Publicamos el origen de cada pieza porque nos parece la forma más honesta de vender
+            artesanía. Si algún dato no coincide con lo que recibes, escríbenos: lo corregimos.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== VALORES ===================== -->
+  <section class="bg-crema-200/50 py-16 sm:py-20">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Cómo trabajamos"
+        titulo="Cuatro cosas que no negociamos"
+        alineacion="centro"
+      />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        {
+          valores.map((valor) => (
+            <div class="tarjeta flex-row gap-5 p-6">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+                <Icono nombre={valor.icono} clase="h-5 w-5" />
+              </span>
+              <div>
+                <h3 class="font-display text-lg font-semibold text-tinta-900">{valor.titulo}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-tinta-600">{valor.texto}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESO ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="De la mano del artesano a tu casa"
+        titulo="Nuestro proceso, paso a paso"
+        alineacion="centro"
+      />
+
+      <ol class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          proceso.map((paso, indice) => (
+            <li class="tarjeta p-6">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-olivo-100 font-display text-sm font-semibold text-olivo-700">
+                {indice + 1}
+              </span>
+              <h3 class="mt-4 font-display text-base font-semibold text-tinta-900">{paso.titulo}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-tinta-600">{paso.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== TALLERES ===================== -->
+  <section class="bg-anil-700 py-16 text-crema-100 sm:py-20">
+    <div class="contenedor">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="antetitulo text-ocre-300">Talleres aliados</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-crema-50 sm:text-4xl">
+          Las manos detrás del catálogo
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-crema-200">
+          Estos son los talleres y cooperativas que elaboran las piezas que publicamos hoy. La lista
+          crece a medida que sumamos oficios.
+        </p>
+      </div>
+
+      <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          talleres.map((taller) => (
+            <li class="rounded-[var(--radius-pieza)] border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-ocre-500/20 text-ocre-300">
+                <Icono nombre="personas" clase="h-5 w-5" />
+              </span>
+              <h3 class="mt-4 font-display text-base font-semibold text-crema-50">
+                {taller.nombre}
+              </h3>
+              <p class="text-xs text-crema-200/80">a cargo de {taller.artesano}</p>
+              <p class="mt-3 text-sm leading-relaxed text-crema-200">{taller.historia}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="tarjeta flex flex-col items-center gap-5 p-8 text-center sm:p-12">
+        <div class="flex gap-3 text-barro-500">
+          {categorias.map((categoria) => <Motivo nombre={categoria.icono} tamano={48} grosor={1.7} clase="h-9 w-9" />)}
+        </div>
+        <h2 class="font-display text-2xl font-semibold text-tinta-900 sm:text-3xl">
+          ¿Tienes un taller o conoces uno que deberíamos visitar?
+        </h2>
+        <p class="max-w-xl text-sm leading-relaxed text-tinta-600">
+          Estamos sumando artesanos y cooperativas de todo el país. Si trabajas artesanía hondureña y
+          quieres venderla con {SITE.nombre}, escríbenos y coordinamos una visita.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <BotonWhatsApp
+            tamano="grande"
+            etiqueta="Quiero ser taller aliado"
+            mensaje={mensajeGeneral('Represento un taller artesanal y quiero vender con ustedes')}
+          />
+          <a href={enlace('/tienda')} class="btn-secundario btn-lg">Ver el catálogo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

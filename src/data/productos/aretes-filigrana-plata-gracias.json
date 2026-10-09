@@ -1,0 +1,46 @@
+{
+  "slug": "aretes-filigrana-plata-gracias",
+  "nombre": "Aretes de filigrana de plata",
+  "categoria": "joyeria",
+  "subtitulo": "Plata hilada a mano, estilo colonial",
+  "resumen": "Aretes de filigrana de plata trabajados a mano por orfebres de Gracias, Lempira.",
+  "descripcion": [
+    "La filigrana es plata estirada hasta quedar como hilo y luego torcida en espirales menudas que forman encaje. En Gracias, Lempira, los orfebres aprendieron el oficio de los talleres coloniales de la zona y lo mantienen vivo con soplete, pinzas y mucha paciencia. Cada arete se arma sobre un molde, se suelda punto por punto y se pule hasta que el metal devuelve la luz. La pieza terminada es liviana, casi ingrávida, y deja pasar la claridad entre sus hilos. Un par puede llevar varios días de trabajo fino sobre la mesa.",
+    "Son aretes cómodos para usar todo el día por su peso mínimo. El diseño clásico combina con ropa formal y con la del diario, y el broche es firme para que no se pierdan. Es un regalo tradicional para madres, madrinas y graduaciones.",
+    "Guarde la pieza en su bolsa o en un compartimento seco, separada de otras joyas para evitar rayones. Limpie con paño de pulir para plata y evite el cloro, el perfume y el agua salada. Si se oscurece, una limpieza suave devuelve el brillo. Detrás hay un taller pequeño que enseña a nuevos aprendices en Gracias."
+  ],
+  "materiales": [
+    "Plata hilada a mano",
+    "Broche de plata",
+    "Paño de pulir para conservación"
+  ],
+  "medidas": "3.5 x 2 cm cada uno; 6 g el par",
+  "cuidados": [
+    "Guardar en bolsa seca y separada de otras joyas",
+    "Limpiar con paño de pulir para plata",
+    "Evitar cloro, perfume y agua salada"
+  ],
+  "origen": {
+    "departamento": "Lempira",
+    "municipio": "Gracias",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller Orfebres de Gracias",
+    "artesano": "Don Marvin Cáceres",
+    "historia": "Don Marvin trabaja la plata en un cuarto pequeño con mesa de metal y soplete de gas. Aprendió de un orfebre mayor del pueblo y ahora enseña a un aprendiz que llega todas las tardes después del colegio."
+  },
+  "tiempoElaboracion": "4 a 6 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "filigrana",
+    "plata",
+    "aretes"
+  ],
+  "colores": [
+    "#B9A16B",
+    "#6E5A3A"
+  ],
+  "icono": "aretes"
+}

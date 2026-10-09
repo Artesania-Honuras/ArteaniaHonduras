@@ -1,0 +1,38 @@
+---
+import { ICONOS, type NombreIcono } from '@/lib/iconos';
+
+interface Props {
+  nombre: NombreIcono;
+  /** Clases de Tailwind que controlan tamaño y color. */
+  clase?: string;
+  /** Tamaño en píxeles. Tiene prioridad sobre el tamaño que dan las clases. */
+  tamano?: number;
+  /** Título accesible. Si se omite, el icono se marca como decorativo. */
+  titulo?: string;
+  /** Grosor del trazo para iconos no rellenos. */
+  grosor?: number;
+}
+
+const { nombre, clase = 'h-5 w-5', tamano, titulo, grosor = 1.6 } = Astro.props;
+
+const icono = ICONOS[nombre];
+const dimensiones = tamano ? { width: tamano, height: tamano } : { width: 24, height: 24 };
+const accesible = Boolean(titulo);
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={icono.viewBox ?? '0 0 24 24'}
+  class={clase}
+  {...dimensiones}
+  fill={icono.relleno ? 'currentColor' : 'none'}
+  stroke={icono.relleno ? 'none' : 'currentColor'}
+  stroke-width={icono.relleno ? undefined : grosor}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role={accesible ? 'img' : undefined}
+  aria-hidden={accesible ? undefined : 'true'}
+>
+  {titulo && <title>{titulo}</title>}
+  {icono.trazos.map((d) => <path d={d} />)}
+</svg>

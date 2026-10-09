@@ -1,0 +1,426 @@
+---
+import Base from '@/layouts/Base.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import TarjetaProducto from '@/components/TarjetaProducto.astro';
+import TarjetaCategoria from '@/components/TarjetaCategoria.astro';
+import Acordeon from '@/components/Acordeon.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import { SITE, PREGUNTAS_FRECUENTES, METODOS_PAGO, ENVIOS } from '@/config/site';
+import { categorias, conteoPorCategoria, productos, productosDestacados } from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+import { faqSchema } from '@/lib/seo';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+const conteos = conteoPorCategoria();
+
+/** Departamentos de origen presentes en el catálogo, con su número de piezas. */
+const porDepartamento = productos.reduce<Record<string, number>>((acumulado, producto) => {
+  const clave = producto.origen.departamento;
+  acumulado[clave] = (acumulado[clave] ?? 0) + 1;
+  return acumulado;
+}, {});
+
+const departamentos = Object.entries(porDepartamento).sort((a, b) => b[1] - a[1]);
+const talleres = new Set(productos.map((p) => p.taller.nombre)).size;
+
+const compromisos = [
+  {
+    icono: 'mano' as const,
+    titulo: 'Hecho a mano, no en serie',
+    texto:
+      'Trabajamos con talleres y artesanos hondureños. Cada pieza se elabora una por una, por eso ninguna es idéntica a otra.',
+  },
+  {
+    icono: 'escudo' as const,
+    titulo: 'Empaque pensado para viajar',
+    texto:
+      'El barro, el textil y la plata se protegen con empaque reforzado para que lleguen completos a cualquier destino.',
+  },
+  {
+    icono: 'personas' as const,
+    titulo: 'Trato directo, sin intermediarios',
+    texto:
+      'Hablas con nosotros por WhatsApp desde la primera pregunta hasta que recibes tu pedido. Sin formularios eternos ni bots.',
+  },
+  {
+    icono: 'globo' as const,
+    titulo: 'Honduras y el mundo',
+    texto:
+      'Despachamos a los 18 departamentos y al extranjero. Te confirmamos el costo de envío antes de que pagues nada.',
+  },
+];
+
+const pasos = [
+  {
+    numero: '01',
+    titulo: 'Explora el catálogo',
+    texto:
+      'Filtra por categoría y revisa medidas, materiales y tiempo de elaboración de cada pieza. Si buscas algo especial, cuéntanoslo.',
+  },
+  {
+    numero: '02',
+    titulo: 'Consulta por WhatsApp',
+    texto:
+      'Toca el botón de la pieza que te gustó: el mensaje se abre con el nombre ya escrito. Te confirmamos disponibilidad y precio.',
+  },
+  {
+    numero: '03',
+    titulo: 'Elige cómo pagar y recibe',
+    texto:
+      'Transferencia, Tigo Money, BAC o pago contra entrega en zonas de cobertura. Te enviamos tu pedido con número de guía.',
+  },
+];
+
+const faqResumen = PREGUNTAS_FRECUENTES.slice(0, 4);
+---
+
+<Base
+  titulo={`${SITE.nombre} — Artesanía hondureña hecha a mano`}
+  descripcion={SITE.descripcion}
+  sufijo={false}
+  mensajeFlotante={mensajeGeneral('Quiero información sobre sus piezas')}
+  jsonLd={[faqSchema(faqResumen)]}
+>
+  <!-- ===================== HERO ===================== -->
+  <section class="relative overflow-hidden">
+    <div class="degradado-calido absolute inset-0" aria-hidden="true"></div>
+    <div class="patron-lenca absolute inset-0 opacity-40" aria-hidden="true"></div>
+    <div
+      class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-barro-200/40 blur-3xl"
+      aria-hidden="true"
+    ></div>
+
+    <div class="contenedor relative grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+      <div class="max-w-xl">
+        <p class="etiqueta-barro mb-6">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-barro-500"></span>
+          Hecho a mano en Honduras
+        </p>
+
+        <h1 class="font-display text-4xl leading-[1.1] font-semibold text-tinta-900 sm:text-5xl lg:text-6xl">
+          Artesanía hondureña con historia, <span class="text-barro-600">hecha para durar</span>
+        </h1>
+
+        <p class="entradilla mt-6">
+          Barro lenca, telares de cintura, tagua, plata y fibra natural. Cada pieza sale de las manos
+          de un artesano hondureño y llega a tu casa con su origen, su oficio y su nombre.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={enlace('/tienda')} class="btn-primario btn-lg">
+            <Icono nombre="bolsa" clase="h-5 w-5" />
+            Explorar el catálogo
+          </a>
+          <BotonWhatsApp
+            variante="claro"
+            tamano="grande"
+            etiqueta="Preguntar por WhatsApp"
+            mensaje={mensajeGeneral('Quiero asesoría para elegir una pieza')}
+          />
+        </div>
+
+        <ul class="mt-10 grid gap-3 text-sm text-tinta-600 sm:grid-cols-2">
+          {
+            [
+              'Piezas únicas, no producidas en serie',
+              'Envíos a todo Honduras y al extranjero',
+              'Pago por transferencia, Tigo Money o BAC',
+              'Asesoría directa, sin intermediarios',
+            ].map((texto) => (
+              <li class="flex items-start gap-2">
+                <Icono nombre="check" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+                <span>{texto}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="relative">
+        <div
+          class="absolute -inset-3 rounded-[2.5rem] bg-superficie/50 blur-xl"
+          aria-hidden="true"
+        >
+        </div>
+        <img
+          src={enlace('/imagenes/hero.svg')}
+          alt="Composición de piezas artesanales hondureñas: vasija de barro lenca, manta tejida en telar y collar de tagua"
+          width="1000"
+          height="1000"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="relative w-full rounded-[2rem] border border-crema-200 shadow-[var(--shadow-elevada)]"
+        />
+
+        <div
+          class="absolute -bottom-5 -left-3 hidden rounded-2xl border border-crema-200 bg-superficie/95 px-4 py-3 shadow-[var(--shadow-pieza)] backdrop-blur-sm sm:block"
+        >
+          <p class="text-[0.65rem] font-semibold tracking-[0.18em] text-tinta-500 uppercase">
+            Origen
+          </p>
+          <p class="font-display text-sm font-semibold text-tinta-900">
+            {departamentos.length} departamentos de Honduras
+          </p>
+        </div>
+
+        <div
+          class="absolute -top-4 right-2 hidden rounded-2xl border border-crema-200 bg-superficie/95 px-4 py-3 shadow-[var(--shadow-pieza)] backdrop-blur-sm sm:block"
+        >
+          <p class="text-[0.65rem] font-semibold tracking-[0.18em] text-tinta-500 uppercase">
+            Talleres aliados
+          </p>
+          <p class="font-display text-sm font-semibold text-tinta-900">{talleres} talleres</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CIFRAS ===================== -->
+  <section class="border-y border-crema-200 bg-superficie">
+    <div class="contenedor grid grid-cols-2 gap-6 py-8 text-center lg:grid-cols-4">
+      {
+        [
+          { valor: `${productos.length}`, etiqueta: 'Piezas en el catálogo' },
+          { valor: `${categorias.length}`, etiqueta: 'Categorías' },
+          { valor: `${departamentos.length}`, etiqueta: 'Departamentos de origen' },
+          { valor: `${talleres}`, etiqueta: 'Talleres y artesanos' },
+        ].map((cifra) => (
+          <div>
+            <p class="font-display text-3xl font-semibold text-barro-600 sm:text-4xl">
+              {cifra.valor}
+            </p>
+            <p class="mt-1 text-xs font-medium tracking-wide text-tinta-500 uppercase">
+              {cifra.etiqueta}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ===================== CATEGORÍAS ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Explora por categoría"
+        titulo="Tres oficios, una misma Honduras"
+        descripcion="Del barro que se trabaja en Marcala al hilo que se teje en La Esperanza. Elige por dónde empezar."
+        alineacion="centro"
+      />
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          categorias.map((categoria, indice) => (
+            <TarjetaCategoria
+              categoria={categoria}
+              cantidad={conteos[categoria.slug] ?? 0}
+              indice={indice}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DESTACADOS ===================== -->
+  <section class="bg-crema-200/50 py-16 sm:py-20 lg:py-24">
+    <div class="contenedor">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SeccionEncabezado
+          antetitulo="Selección de la casa"
+          titulo="Piezas destacadas"
+          descripcion="Las que más nos piden y las que mejor representan el trabajo de nuestros talleres."
+        />
+        <a href={enlace('/tienda')} class="btn-secundario">
+          Ver todo el catálogo
+          <Icono nombre="flecha" clase="h-4 w-4" />
+        </a>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          productosDestacados.slice(0, 4).map((producto, indice) => (
+            <TarjetaProducto producto={producto} prioridad={indice < 2} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CÓMO COMPRAR ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Cómo comprar"
+        titulo="Tres pasos, sin carritos ni registros"
+        descripcion="Preferimos conversar antes de vender: así te asesoramos bien y confirmamos que la pieza es la correcta."
+        alineacion="centro"
+      />
+
+      <ol class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          pasos.map((paso) => (
+            <li class="tarjeta p-7">
+              <span class="font-display text-4xl font-semibold text-barro-200">{paso.numero}</span>
+              <h3 class="mt-4 font-display text-xl font-semibold text-tinta-900">{paso.titulo}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-tinta-600">{paso.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-10 flex justify-center">
+        <BotonWhatsApp
+          tamano="grande"
+          etiqueta="Empezar mi pedido"
+          mensaje={mensajeGeneral('Quiero hacer un pedido')}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ORIGEN ===================== -->
+  <section class="relative overflow-hidden bg-anil-700 py-16 text-crema-100 sm:py-20">
+    <div class="patron-lenca absolute inset-0 opacity-20" aria-hidden="true"></div>
+    <div class="contenedor relative grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="antetitulo text-ocre-300">Trazabilidad</p>
+        <h2 class="titulo-seccion mt-3 text-crema-50">Sabes de dónde viene tu pieza</h2>
+        <p class="mt-4 text-base leading-relaxed text-crema-200">
+          No compramos artesanía al azar. Trabajamos con talleres familiares y cooperativas
+          identificadas, y publicamos el municipio y el departamento donde se elabora cada pieza. Es
+          nuestra forma de que el valor se quede donde se produce.
+        </p>
+
+        <ul class="mt-8 grid gap-2 sm:grid-cols-2">
+          {
+            departamentos.map(([departamento, cantidad]) => (
+              <li class="flex items-center justify-between gap-3 rounded-xl bg-white/5 px-4 py-2.5 text-sm">
+                <span class="text-crema-100">{departamento}</span>
+                <span class="text-xs text-ocre-300">
+                  {cantidad} {cantidad === 1 ? 'pieza' : 'piezas'}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="rounded-[var(--radius-bloque)] border border-white/15 bg-white/5 p-7 backdrop-blur-sm">
+        <h3 class="font-display text-xl font-semibold text-crema-50">Entrega y pago, claros desde el inicio</h3>
+
+        <ul class="mt-6 space-y-4">
+          {
+            ENVIOS.map((envio) => (
+              <li class="flex gap-3">
+                <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ocre-500/20 text-ocre-300">
+                  <Icono nombre={envio.icono} clase="h-4 w-4" />
+                </span>
+                <div>
+                  <p class="text-sm font-semibold text-crema-50">{envio.nombre}</p>
+                  <p class="text-xs leading-relaxed text-crema-200/80">{envio.detalle}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-7 flex flex-wrap gap-2">
+          {
+            METODOS_PAGO.map((metodo) => (
+              <span class="etiqueta border-white/20 bg-white/10 text-crema-100">{metodo.nombre}</span>
+            ))
+          }
+        </div>
+
+        <a href={enlace('/envios-y-pagos')} class="btn-primario mt-7 w-full">
+          Ver detalles de envío y pago
+          <Icono nombre="flecha" clase="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPROMISO ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <SeccionEncabezado
+        antetitulo="Nuestro compromiso"
+        titulo="Lo que puedes esperar de nosotros"
+        alineacion="centro"
+      />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          compromisos.map((compromiso) => (
+            <div class="tarjeta p-6">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+                <Icono nombre={compromiso.icono} clase="h-5 w-5" />
+              </span>
+              <h3 class="mt-4 font-display text-base font-semibold text-tinta-900">
+                {compromiso.titulo}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-tinta-600">{compromiso.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="bg-crema-200/50 py-16 sm:py-20">
+    <div class="contenedor grid gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <SeccionEncabezado
+          antetitulo="Antes de comprar"
+          titulo="Preguntas frecuentes"
+          descripcion="Lo que casi todos nos preguntan antes del primer pedido."
+        />
+        <a href={enlace('/preguntas-frecuentes')} class="btn-secundario mt-6">
+          Ver todas las preguntas
+          <Icono nombre="flecha" clase="h-4 w-4" />
+        </a>
+      </div>
+
+      <div class="lg:col-span-3">
+        <Acordeon items={faqResumen} abrirPrimero={false} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA FINAL ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="degradado-barro relative overflow-hidden rounded-[var(--radius-bloque)] px-8 py-14 text-center sm:px-14">
+        <div class="patron-lenca absolute inset-0 opacity-25" aria-hidden="true"></div>
+        <div class="relative mx-auto max-w-2xl">
+          <h2 class="font-display text-3xl font-semibold text-crema-50 sm:text-4xl">
+            ¿Buscas algo especial o al mayoreo?
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-crema-100">
+            Varias piezas se pueden personalizar en color, tamaño o grabado, y atendemos pedidos de
+            mayoreo para hoteles, tiendas y empresas. Cuéntanos qué necesitas.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <BotonWhatsApp
+              variante="claro"
+              tamano="grande"
+              etiqueta="Cotizar mi pedido"
+              mensaje={mensajeGeneral('Quiero cotizar un pedido especial o de mayoreo')}
+            />
+            <a
+              href={enlace('/tienda')}
+              class="btn border border-white/40 text-crema-50 hover:bg-white/10"
+            >
+              <Icono nombre="bolsa" clase="h-4 w-4" />
+              Ver catálogo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

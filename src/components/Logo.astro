@@ -1,0 +1,53 @@
+---
+import { enlace } from '@/lib/rutas';
+import { SITE } from '@/config/site';
+
+interface Props {
+  /** Muestra el lema debajo del logotipo. */
+  conLema?: boolean;
+  /** Tamaño del monograma en clases de Tailwind. */
+  tamano?: string;
+  /** Si es `false` se dibuja solo el monograma, sin el texto de marca. */
+  conTexto?: boolean;
+  clase?: string;
+}
+
+const { conLema = true, tamano = 'h-11 w-11', conTexto = true, clase = '' } = Astro.props;
+---
+
+<a
+  href={enlace('/')}
+  class={`group inline-flex items-center gap-3 rounded-full ${clase}`}
+  aria-label={`${SITE.nombre} — ir al inicio`}
+>
+  <span class={`relative inline-flex shrink-0 items-center justify-center ${tamano}`}>
+    <svg
+      viewBox="0 0 48 48"
+      class="h-full w-full transition-transform duration-500 ease-[var(--ease-artesanal)] group-hover:rotate-[8deg]"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M24 2.5 45.5 24 24 45.5 2.5 24z" class="fill-barro-600" />
+      <path d="M24 9 39 24 24 39 9 24z" class="fill-ocre-400" />
+      <path d="M24 13.5 33.5 34.5" class="stroke-barro-900" stroke-width="2.6" stroke-linecap="round" fill="none" />
+      <path d="M24 13.5 14.5 34.5" class="stroke-barro-900" stroke-width="2.6" stroke-linecap="round" fill="none" />
+      <path d="M19.2 27.5h9.6" class="stroke-barro-900" stroke-width="2.4" stroke-linecap="round" fill="none" />
+    </svg>
+  </span>
+
+  {
+    conTexto && (
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-xl leading-none font-semibold tracking-tight text-tinta-900">
+          Arteanía
+        </span>
+        <span class="mt-1 text-[0.62rem] font-semibold tracking-[0.3em] text-barro-600 uppercase">
+          Honduras
+        </span>
+        {conLema && (
+          <span class="sr-only">{SITE.eslogan}</span>
+        )}
+      </span>
+    )
+  }
+</a>

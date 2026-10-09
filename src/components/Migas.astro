@@ -1,0 +1,43 @@
+---
+import Icono from '@/components/Icono.astro';
+import { enlace } from '@/lib/rutas';
+import { migasSchema } from '@/lib/seo';
+
+interface Props {
+  /** Ruta desde la portada hasta la página actual, sin incluir "Inicio". */
+  items: { nombre: string; ruta: string }[];
+}
+
+const { items } = Astro.props;
+
+const todas = [{ nombre: 'Inicio', ruta: '/' }, ...items];
+const schema = migasSchema(todas);
+---
+
+<nav aria-label="Ruta de navegación" class="border-b border-crema-200 bg-crema-50/60">
+  <div class="contenedor">
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-xs text-tinta-500">
+      {
+        todas.map((item, indice) => {
+          const esUltimo = indice === todas.length - 1;
+          return (
+            <li class="flex items-center gap-2">
+              {indice > 0 && <Icono nombre="flecha" clase="h-3 w-3 text-tinta-300" />}
+              {esUltimo ? (
+                <span aria-current="page" class="font-semibold text-tinta-700">
+                  {item.nombre}
+                </span>
+              ) : (
+                <a href={enlace(item.ruta)} class="transition hover:text-barro-700">
+                  {item.nombre}
+                </a>
+              )}
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</nav>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

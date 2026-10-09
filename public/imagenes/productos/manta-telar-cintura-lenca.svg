@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Ilustración de Manta tejida en telar de cintura">
+  <defs>
+    <linearGradient id="fondo-manta-telar-cintura-lenca" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fefbf7" />
+      <stop offset="55%" stop-color="#f0dad1" />
+      <stop offset="100%" stop-color="#deada4" />
+    </linearGradient>
+    <pattern id="lenca-manta-telar-cintura-lenca" width="54" height="54" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#B03A2E" stroke-opacity="0.13" stroke-width="1.1">
+        <path d="M27 3 L51 27 L27 51 L3 27 Z" />
+        <path d="M27 13.5 L40.5 27 L27 40.5 L13.5 27 Z" />
+      </g>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#fondo-manta-telar-cintura-lenca)" />
+  <rect width="800" height="800" fill="url(#lenca-manta-telar-cintura-lenca)" />
+
+  <circle cx="400" cy="360" r="238" fill="#fffdfa" fill-opacity="0.9" />
+  <circle cx="400" cy="360" r="238" fill="none" stroke="#D9A441" stroke-opacity="0.55" stroke-width="3" />
+  <circle cx="400" cy="360" r="214" fill="none" stroke="#B03A2E" stroke-opacity="0.22" stroke-width="1.5" stroke-dasharray="7 9" />
+
+  <g transform="translate(400 360) scale(8.6) translate(-24 -24)">
+    <g fill="none" stroke="#B03A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="28" height="25" rx="2"/><path d="M10 19h28"/><path d="M10 28h28"/><path d="M17.5 11v25"/><path d="M30.5 11v25"/><path d="M13 36v6"/><path d="M19 36v6"/><path d="M25 36v6"/><path d="M31 36v6"/><path d="M35 36v6"/></g>
+  </g>
+
+  <g fill="#B03A2E" fill-opacity="0.9">
+    <path d="M400 640 l16 22 -16 22 -16 -22 z" />
+  </g>
+  <path d="M250 700 H550" stroke="#B03A2E" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round" />
+  <path d="M300 726 H500" stroke="#B03A2E" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round" />
+
+  <rect x="22" y="22" width="756" height="756" fill="none" stroke="#B03A2E" stroke-opacity="0.3" stroke-width="2.5" rx="26" />
+</svg>

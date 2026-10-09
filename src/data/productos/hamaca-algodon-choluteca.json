@@ -1,0 +1,46 @@
+{
+  "slug": "hamaca-algodon-choluteca",
+  "nombre": "Hamaca de algodón tejida",
+  "categoria": "textiles",
+  "subtitulo": "Descanso tejido hilo por hilo",
+  "resumen": "Hamaca de algodón tejida en telar por artesanos del sur de Honduras, fresca y resistente.",
+  "descripcion": [
+    "En el sur de Honduras, donde el calor aprieta, la hamaca es mueble, cama y sala al mismo tiempo. Esta se teje en telar con hilo de algodón resistente, y se remata a mano en los extremos con argollas y cabos bien ajustados para que el cuerpo quede repartido y no se hunda. El tejido abierto deja pasar el aire, así que se mantiene fresca en las tardes de verano. Los artesanos calculan el largo y la caída según la costumbre de la casa: alta para conversar, baja para dormir la siesta. Cada hamaca sale probada y revisada antes de entregarse.",
+    "Se cuelga entre dos árboles, en un corredor o dentro de un cuarto, con ganchos o lazos adecuados. Soporta el uso diario de adultos y niños, y se guarda enrollada sin ocupar mucho espacio. Es también un objeto de siesta, de lectura y de sobremesa.",
+    "Lave a mano con jabón suave, enjuague bien y seque a la sombra, colgada y extendida para que no se deforme. Revise de vez en cuando las argollas y los cabos. Guárdela seca y lejos de la humedad. Este taller del sur trabaja con proveedores locales de hilo y da empleo a varias familias de la zona."
+  ],
+  "materiales": [
+    "Hilo de algodón",
+    "Argollas metálicas",
+    "Cabo de algodón trenzado"
+  ],
+  "medidas": "200 x 120 cm; 1.4 kg aproximadamente",
+  "cuidados": [
+    "Lavar a mano con jabón suave",
+    "Secar a la sombra, extendida y colgada",
+    "Revisar periódicamente argollas y cabos"
+  ],
+  "origen": {
+    "departamento": "Choluteca",
+    "municipio": "Choluteca",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller Hamacas del Sur",
+    "artesano": "Don Ramón Espinal",
+    "historia": "Don Ramón aprendió a tejer hamacas de su padre y hoy trabaja con sus dos hijos en un corredor de paredes altas. El taller vende en la ciudad y por encargo a clientes que llegan de otros departamentos."
+  },
+  "tiempoElaboracion": "7 a 10 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "hamaca",
+    "algodón",
+    "descanso"
+  ],
+  "colores": [
+    "#A63A2B",
+    "#E3C07A"
+  ],
+  "icono": "hamaca"
+}

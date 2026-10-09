@@ -1,0 +1,384 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import TarjetaProducto from '@/components/TarjetaProducto.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import Motivo from '@/components/Motivo.astro';
+import { FUNCIONES, METODOS_PAGO, SITE } from '@/config/site';
+import {
+  obtenerProducto,
+  productos,
+  productosRelacionados,
+  type ProductoVista,
+} from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+import { productoSchema } from '@/lib/seo';
+import { mensajeGeneral, mensajeProducto } from '@/lib/whatsapp';
+
+export function getStaticPaths() {
+  return productos.map((producto) => ({
+    params: { slug: producto.slug },
+    props: { slugProducto: producto.slug },
+  }));
+}
+
+interface Props {
+  slugProducto: string;
+}
+
+const { slugProducto } = Astro.props;
+
+const producto = obtenerProducto(slugProducto);
+if (!producto) {
+  throw new Error(`El producto "${slugProducto}" no existe en src/data/productos`);
+}
+
+const relacionados = productosRelacionados(producto, 4);
+const mensaje = mensajeProducto({
+  nombre: producto.nombre,
+  slug: producto.slug,
+  categoriaNombre: producto.categoriaNombre,
+});
+
+const tieneGaleria = producto.imagenes.length > 1;
+
+const ficha = [
+  { icono: 'reloj' as const, etiqueta: 'Tiempo de elaboración', valor: producto.tiempoElaboracion },
+  { icono: 'hoja' as const, etiqueta: 'Materiales', valor: producto.materiales.join(' · ') },
+  { icono: 'escudo' as const, etiqueta: 'Medidas', valor: producto.medidas },
+  {
+    icono: 'mano' as const,
+    etiqueta: 'Personalizable',
+    valor: producto.personalizable
+      ? 'Sí, consúltanos color, medida o grabado'
+      : 'Pieza terminada, sin variantes',
+  },
+];
+---
+
+<Base
+  titulo={producto.nombre}
+  descripcion={`${producto.resumen} Hecha a mano en ${producto.origen.municipio}, ${producto.origen.departamento}, Honduras. Consulta precio y envío por WhatsApp.`}
+  imagen={producto.imagenPrincipal.startsWith('http') ? producto.imagenPrincipal : undefined}
+  tipo="product"
+  jsonLd={[productoSchema(producto)]}
+  mensajeFlotante={mensaje}
+>
+  <Migas
+    items={[
+      { nombre: 'Catálogo', ruta: '/tienda' },
+      { nombre: producto.categoriaNombre, ruta: `/tienda/${producto.categoria}` },
+      { nombre: producto.nombre, ruta: `/producto/${producto.slug}` },
+    ]}
+  />
+
+  <article class="seccion">
+    <div class="contenedor grid gap-10 lg:grid-cols-2 lg:gap-14">
+      <!-- ===================== GALERÍA ===================== -->
+      <div>
+        <div
+          class="relative overflow-hidden rounded-[var(--radius-bloque)] border border-crema-200 bg-crema-100 shadow-[var(--shadow-suave)]"
+        >
+          <img
+            src={producto.imagenPrincipal}
+            alt={`${producto.nombre} — ${producto.subtitulo}`}
+            width="1000"
+            height="1000"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+            <span class="etiqueta bg-superficie/95 backdrop-blur-sm">
+              {producto.categoriaNombre}
+            </span>
+            {
+              producto.personalizable && (
+                <span class="etiqueta-olivo bg-superficie/95 backdrop-blur-sm">
+                  <Icono nombre="mano" clase="h-3.5 w-3.5" />
+                  Personalizable
+                </span>
+              )
+            }
+            {
+              producto.destacado && (
+                <span class="etiqueta-acento bg-superficie/95 backdrop-blur-sm">
+                  <Icono nombre="estrella" clase="h-3.5 w-3.5" />
+                  Destacada
+                </span>
+              )
+            }
+          </div>
+        </div>
+
+        {
+          tieneGaleria && (
+            <ul class="mt-4 grid grid-cols-4 gap-3">
+              {producto.imagenes.map((imagen, indice) => (
+                <li>
+                  <img
+                    src={imagen}
+                    alt={`${producto.nombre}, vista ${indice + 1}`}
+                    width="240"
+                    height="240"
+                    loading="lazy"
+                    decoding="async"
+                    class="aspect-square w-full rounded-2xl border border-crema-200 object-cover"
+                  />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+
+        <div class="mt-6 flex flex-wrap items-center gap-3 rounded-2xl border border-crema-200 bg-superficie p-4">
+          <Motivo
+            nombre={producto.icono}
+            tamano={48}
+            grosor={1.7}
+            clase="h-10 w-10 text-barro-500"
+            titulo={`Motivo: ${producto.icono}`}
+          />
+          <p class="text-xs leading-relaxed text-tinta-500">
+            Las piezas son artesanales: el tono, la veta y las medidas pueden variar levemente
+            respecto a la fotografía. Si necesitas una medida exacta, consúltanos antes de pedir.
+          </p>
+        </div>
+      </div>
+
+      <!-- ===================== INFORMACIÓN ===================== -->
+      <div>
+        <p class="antetitulo">{producto.categoriaNombre}</p>
+        <h1 class="mt-3 font-display text-3xl leading-tight font-semibold text-tinta-900 sm:text-4xl">
+          {producto.nombre}
+        </h1>
+        <p class="mt-2 text-base font-medium text-barro-600">{producto.subtitulo}</p>
+
+        <p class="mt-5 text-base leading-relaxed text-tinta-600">{producto.resumen}</p>
+
+        <!-- Precio / cotización -->
+        <div class="mt-7 rounded-[var(--radius-pieza)] border border-crema-200 bg-crema-50 p-5">
+          {
+            FUNCIONES.mostrarPrecios && producto.precio ? (
+              <div>
+                <p class="text-xs font-semibold tracking-wide text-tinta-500 uppercase">Precio</p>
+                <p class="mt-1 font-display text-3xl font-semibold text-tinta-900">
+                  {SITE.monedaSimbolo} {producto.precio.toLocaleString('es-HN')}
+                </p>
+                <p class="mt-1 text-xs text-tinta-500">No incluye el costo de envío.</p>
+              </div>
+            ) : (
+              <div>
+                <p class="text-xs font-semibold tracking-wide text-tinta-500 uppercase">
+                  Precio
+                </p>
+                <p class="mt-1 font-display text-2xl font-semibold text-tinta-900">
+                  Consultar por WhatsApp
+                </p>
+                <p class="mt-2 text-sm leading-relaxed text-tinta-600">
+                  Cada pieza se valora según tamaño, materiales y horas de trabajo del artesano. Te
+                  damos el precio exacto junto con el costo de envío a tu ciudad, sin compromiso.
+                </p>
+              </div>
+            )
+          }
+
+          <div class="mt-5 flex flex-col gap-2 sm:flex-row">
+            <BotonWhatsApp
+              mensaje={mensaje}
+              etiqueta={FUNCIONES.mostrarPrecios ? 'Comprar por WhatsApp' : 'Consultar precio y envío'}
+              tamano="grande"
+              clase="flex-1"
+            />
+            <a href={enlace('/envios-y-pagos')} class="btn-claro btn-lg">
+              <Icono nombre="camion" clase="h-4 w-4" />
+              Envíos y pagos
+            </a>
+          </div>
+
+          <ul class="mt-5 grid gap-2 text-xs text-tinta-600">
+            <li class="flex items-center gap-2">
+              <Icono nombre="check" clase="h-3.5 w-3.5 text-olivo-500" />
+              Disponible {producto.disponible ? 'en inventario del taller' : 'bajo pedido'}
+            </li>
+            <li class="flex items-center gap-2">
+              <Icono nombre="check" clase="h-3.5 w-3.5 text-olivo-500" />
+              Envíos a todo Honduras y al extranjero
+            </li>
+            <li class="flex items-center gap-2">
+              <Icono nombre="check" clase="h-3.5 w-3.5 text-olivo-500" />
+              Empaque reforzado para piezas frágiles
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ficha técnica -->
+        <dl class="mt-7 grid gap-4 sm:grid-cols-2">
+          {
+            ficha.map((fila) => (
+              <div class="flex gap-3 rounded-2xl border border-crema-200 bg-superficie p-4">
+                <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crema-100 text-barro-600">
+                  <Icono nombre={fila.icono} clase="h-4 w-4" />
+                </span>
+                <div>
+                  <dt class="text-[0.7rem] font-semibold tracking-wide text-tinta-500 uppercase">
+                    {fila.etiqueta}
+                  </dt>
+                  <dd class="mt-0.5 text-sm text-tinta-800">{fila.valor}</dd>
+                </div>
+              </div>
+            ))
+          }
+        </dl>
+
+        <!-- Origen -->
+        <div class="mt-7 rounded-[var(--radius-pieza)] border border-olivo-300/60 bg-olivo-100/50 p-5">
+          <h2 class="flex items-center gap-2 font-display text-lg font-semibold text-tinta-900">
+            <Icono nombre="ubicacion" clase="h-4 w-4 text-olivo-700" />
+            Origen de la pieza
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-tinta-700">
+            Elaborada en <strong>{producto.origen.municipio}</strong>, departamento de{' '}
+            <strong>{producto.origen.departamento}</strong>
+            {producto.origen.pueblo ? `, comunidad de ${producto.origen.pueblo}` : ''}, Honduras.
+          </p>
+
+          <div class="mt-4 rounded-2xl bg-superficie/80 p-4">
+            <p class="text-xs font-semibold tracking-wide text-tinta-500 uppercase">
+              Taller responsable
+            </p>
+            <p class="mt-1 font-display text-base font-semibold text-tinta-900">
+              {producto.taller.nombre}
+            </p>
+            <p class="text-sm text-tinta-600">a cargo de {producto.taller.artesano}</p>
+            <p class="mt-2 text-sm leading-relaxed text-tinta-600">{producto.taller.historia}</p>
+          </div>
+        </div>
+
+        <!-- Métodos de pago -->
+        <div class="mt-6">
+          <p class="text-xs font-semibold tracking-wide text-tinta-500 uppercase">
+            Formas de pago aceptadas
+          </p>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {
+              METODOS_PAGO.map((metodo) => (
+                <li class="etiqueta">
+                  <Icono nombre={metodo.icono} clase="h-3.5 w-3.5 text-barro-500" />
+                  {metodo.nombre}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===================== DETALLE ===================== -->
+  <section class="border-y border-crema-200 bg-crema-200/40 py-16">
+    <div class="contenedor grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-2xl font-semibold text-tinta-900">Sobre esta pieza</h2>
+        <div class="prosa mt-5">
+          {producto.descripcion.map((parrafo) => <p>{parrafo}</p>)}
+        </div>
+
+        <h3 class="mt-9 font-display text-xl font-semibold text-tinta-900">
+          Cómo cuidar tu pieza
+        </h3>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+          {
+            producto.cuidados.map((cuidado) => (
+              <li class="flex gap-2.5 rounded-2xl border border-crema-200 bg-superficie p-4 text-sm text-tinta-600">
+                <Icono nombre="check" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
+                <span>{cuidado}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="tarjeta p-6">
+          <h2 class="font-display text-lg font-semibold text-tinta-900">Resumen rápido</h2>
+          <dl class="mt-4 space-y-3 text-sm">
+            <div class="flex justify-between gap-4 border-b border-crema-200 pb-3">
+              <dt class="text-tinta-500">Categoría</dt>
+              <dd class="text-right font-medium text-tinta-800">{producto.categoriaNombre}</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-b border-crema-200 pb-3">
+              <dt class="text-tinta-500">Medidas</dt>
+              <dd class="text-right font-medium text-tinta-800">{producto.medidas}</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-b border-crema-200 pb-3">
+              <dt class="text-tinta-500">Elaboración</dt>
+              <dd class="text-right font-medium text-tinta-800">{producto.tiempoElaboracion}</dd>
+            </div>
+            <div class="flex justify-between gap-4 border-b border-crema-200 pb-3">
+              <dt class="text-tinta-500">Origen</dt>
+              <dd class="text-right font-medium text-tinta-800">
+                {producto.origen.municipio}, {producto.origen.departamento}
+              </dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt class="text-tinta-500">Personalizable</dt>
+              <dd class="text-right font-medium text-tinta-800">
+                {producto.personalizable ? 'Sí' : 'No'}
+              </dd>
+            </div>
+          </dl>
+
+          <ul class="mt-5 flex flex-wrap gap-2">
+            {producto.etiquetas.map((etiqueta) => <li class="etiqueta">{etiqueta}</li>)}
+          </ul>
+
+          <BotonWhatsApp mensaje={mensaje} clase="mt-6 w-full" etiqueta="Preguntar por esta pieza" />
+        </div>
+
+        <div class="tarjeta mt-6 bg-anil-700 p-6 text-crema-100">
+          <h2 class="font-display text-lg font-semibold text-crema-50">¿Compras al mayoreo?</h2>
+          <p class="mt-2 text-sm leading-relaxed text-crema-200">
+            Atendemos hoteles, tiendas de souvenirs y empresas con pedidos repetidos y precios
+            especiales por volumen.
+          </p>
+          <BotonWhatsApp
+            variante="claro"
+            clase="mt-4 w-full"
+            etiqueta="Cotizar mayoreo"
+            mensaje={mensajeGeneral(`Quiero cotizar al mayoreo la pieza ${producto.nombre}`)}
+          />
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== RELACIONADOS ===================== -->
+  {
+    relacionados.length > 0 && (
+      <section class="seccion">
+        <div class="contenedor">
+          <div class="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p class="antetitulo">De la misma categoría</p>
+              <h2 class="titulo-seccion mt-3">También te puede gustar</h2>
+            </div>
+            <a href={enlace(`/tienda/${producto.categoria}`)} class="btn-secundario">
+              Ver {producto.categoriaNombre.toLowerCase()}
+              <Icono nombre="flecha" clase="h-4 w-4" />
+            </a>
+          </div>
+
+          <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {relacionados.map((relacionado: ProductoVista) => (
+              <TarjetaProducto producto={relacionado} conResumen={false} prioridad={false} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</Base>

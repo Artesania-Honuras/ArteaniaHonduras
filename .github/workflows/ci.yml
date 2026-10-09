@@ -1,0 +1,101 @@
+# Integración continua: verifica que el sitio compile y que el catálogo sea
+# válido en cada push a master y en cada pull request.
+#
+# Solo tiene permiso de LECTURA del repositorio: no publica nada. La
+# publicación la hace deploy.yml.
+
+name: Integración continua
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+# Permiso mínimo: leer el contenido del repositorio.
+permissions:
+  contents: read
+
+# Si se hacen varios push seguidos a la misma rama, solo interesa el último.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Verificar y construir
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js 20 con caché de npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Revisar tipos y plantillas (astro check)
+        run: npm run check
+
+      - name: Validar el catálogo con Zod
+        run: npm run catalogo:validar
+
+      - name: Construir el sitio
+        run: npm run build
+
+      # Red de seguridad contra publicar un sitio sin canal de contacto real.
+      #
+      # El número de WhatsApp es un dato externo al código: es fácil desplegar
+      # con el marcador de posición y dejar el sitio entero sin forma de
+      # contactar. En un pull request solo se advierte, para no bloquear el
+      # trabajo en ramas; en master el workflow FALLA y no se publica.
+      - name: Comprobar que el número de WhatsApp no sea el de ejemplo
+        run: |
+          node --input-type=module -e "
+          import { readFileSync } from 'node:fs';
+
+          const MARCADOR = '50400000000';
+          const ARCHIVO = 'src/config/site.ts';
+          const enMaster = process.env.GITHUB_REF === 'refs/heads/master';
+
+          let contenido;
+          try {
+            contenido = readFileSync(ARCHIVO, 'utf8');
+          } catch {
+            console.error('::error::No se encontró ' + ARCHIVO + '. No se puede comprobar el contacto.');
+            process.exit(1);
+          }
+
+          const numero = contenido.match(/numero:\s*'([^']*)'/)?.[1];
+
+          if (numero === undefined) {
+            console.error('::error::No se pudo leer CONTACTO.whatsapp.numero en ' + ARCHIVO + '.');
+            process.exit(1);
+          }
+
+          if (numero !== MARCADOR) {
+            console.log('Número de WhatsApp configurado (' + numero.length + ' dígitos). Correcto.');
+            process.exit(0);
+          }
+
+          const mensaje =
+            'CONTACTO.whatsapp.numero en ' +
+            ARCHIVO +
+            ' sigue siendo el valor de ejemplo (' +
+            MARCADOR +
+            '). Los botones de WhatsApp NO abren ningún chat: es el único canal ' +
+            'de contacto del sitio. Reemplázalo por el número real en formato ' +
+            'internacional sin signos ni espacios (504 + 8 dígitos). Ver README.md ' +
+            'y docs/CHECKLIST-LANZAMIENTO.md.';
+
+          if (enMaster) {
+            console.error('::error::' + mensaje);
+            process.exit(1);
+          }
+
+          console.log('::warning::' + mensaje);
+          "

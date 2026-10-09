@@ -1,0 +1,23 @@
+{
+  "name": "Arteanía Honduras",
+  "short_name": "Arteanía",
+  "description": "Artesanías, textiles y joyería hechas a mano en Honduras. Pedidos por WhatsApp.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf4ec",
+  "theme_color": "#b4522c",
+  "lang": "es-HN",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

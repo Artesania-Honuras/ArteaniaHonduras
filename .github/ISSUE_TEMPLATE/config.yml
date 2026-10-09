@@ -1,0 +1,19 @@
+# Configuración del selector de incidencias de Arteanía Honduras.
+#
+# No hay plantillas de incidencia: este repositorio es privado de contenido y
+# no recibe reportes de terceros. Se deja abierta la opción de crear una
+# incidencia en blanco para notas internas del equipo.
+
+blank_issues_enabled: true
+
+contact_links:
+  # TODO: reemplazar por el enlace real de WhatsApp cuando el número esté
+  # confirmado en src/config/site.ts (CONTACTO.whatsapp.numero).
+  #
+  #   url: https://wa.me/50400000000
+  #
+  # El número de arriba es el MARCADOR DE EJEMPLO que todavía está en el
+  # código: no abre ningún chat real.
+  - name: Consultas sobre productos y pedidos (WhatsApp)
+    url: https://wa.me/NUMERO_POR_CONFIRMAR
+    about: Escríbenos por WhatsApp para consultar precios, disponibilidad, envíos y pedidos. Canal oficial de atención de Arteanía Honduras.

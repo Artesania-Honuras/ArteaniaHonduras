@@ -1,0 +1,22 @@
+---
+import { motivoSvg, motivoDesdeIcono } from '@/lib/motivos.mjs';
+
+interface Props {
+  /** Nombre del motivo. Si no existe se usa la vasija. */
+  nombre: string;
+  /** Tamaño en píxeles del cuadro del SVG. */
+  tamano?: number;
+  /** Grosor del trazo. */
+  grosor?: number;
+  /** Clases del elemento `<svg>`. */
+  clase?: string;
+  /** Título accesible. Si se omite, el motivo es decorativo. */
+  titulo?: string;
+}
+
+const { nombre, tamano = 48, grosor = 1.9, clase = '', titulo } = Astro.props;
+
+const markup = motivoSvg(motivoDesdeIcono(nombre), { tamano, grosor, clase, titulo });
+---
+
+<Fragment set:html={markup} />

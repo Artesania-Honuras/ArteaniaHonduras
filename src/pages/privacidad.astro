@@ -1,0 +1,184 @@
+---
+import Base from '@/layouts/Base.astro';
+import Migas from '@/components/Migas.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import { CONTACTO, SITE } from '@/config/site';
+import { enlace } from '@/lib/rutas';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+const bloques = [
+  {
+    titulo: '1. Quién es responsable de tus datos',
+    parrafos: [
+      `El responsable del tratamiento de los datos personales que nos compartes es ${SITE.nombre}, marca comercial que opera desde Honduras. Puedes contactarnos por WhatsApp al ${CONTACTO.whatsapp.numeroVisible}, que es nuestro único canal oficial de atención.`,
+      'Esta política describe qué información recogemos cuando usas este sitio web y cuando nos escribes para hacer un pedido.',
+    ],
+  },
+  {
+    titulo: '2. Qué datos recogemos',
+    parrafos: [
+      'Este sitio web es informativo y no tiene carrito de compras ni formularios de registro. No creamos cuentas de usuario y no aplicamos cobros en línea.',
+      'Los datos que podemos llegar a tratar son únicamente los que tú nos entregas voluntariamente al escribirnos por WhatsApp: nombre, número de teléfono, ciudad o dirección de entrega, correo electrónico si decides darlo, y el detalle de las piezas que te interesan.',
+      'Si necesitamos factura, también trataremos el nombre o razón social y el RTN que nos proporciones.',
+    ],
+  },
+  {
+    titulo: '3. Para qué usamos tus datos',
+    parrafos: [
+      'Usamos tus datos exclusivamente para: cotizar y confirmar tu pedido, coordinar el envío con la empresa de paquetería, gestionar el pago que acordemos, emitir factura cuando corresponda, y darte seguimiento después de la entrega si tienes dudas o necesitas reposición.',
+      'No vendemos, alquilamos ni cedemos tus datos a terceros con fines publicitarios.',
+    ],
+  },
+  {
+    titulo: '4. Con quién los compartimos',
+    parrafos: [
+      'Compartimos la información estrictamente necesaria con quienes hacen posible la entrega: la empresa de paquetería o courier que transporta tu pedido y, cuando aplica, la entidad financiera o billetera móvil a través de la cual se realiza el pago.',
+      'El servicio de mensajería WhatsApp es operado por Meta Platforms. El uso de esa aplicación se rige además por las políticas propias de dicho proveedor, sobre las cuales no tenemos control.',
+    ],
+  },
+  {
+    titulo: '5. Cuánto tiempo los conservamos',
+    parrafos: [
+      'Conservamos la información de pedidos durante el tiempo necesario para atender garantías, reposiciones y obligaciones contables o fiscales. Cuando deja de ser necesaria, la eliminamos.',
+      'Puedes pedirnos en cualquier momento que borremos tu conversación y tus datos de contacto, salvo aquella información que debamos conservar por obligación legal.',
+    ],
+  },
+  {
+    titulo: '6. Tus derechos',
+    parrafos: [
+      'Puedes solicitarnos en cualquier momento: acceder a los datos que tenemos sobre ti, corregirlos si están equivocados, pedir su eliminación, oponerte a que los usemos para un fin distinto o retirar tu consentimiento.',
+      'Para ejercer cualquiera de estos derechos escríbenos por WhatsApp al número indicado arriba e indícanos qué necesitas. Responderemos en un plazo razonable.',
+    ],
+  },
+  {
+    titulo: '7. Cookies y medición',
+    parrafos: [
+      'Este sitio no instala cookies de publicidad ni de seguimiento entre sitios. Se trata de un sitio estático alojado en GitHub Pages, y no ejecutamos perfiles de usuario.',
+      'Si en el futuro incorporamos herramientas de analítica para entender qué páginas se visitan más, actualizaremos esta política y, cuando la ley lo requiera, pediremos tu consentimiento antes de activarlas.',
+    ],
+  },
+  {
+    titulo: '8. Seguridad',
+    parrafos: [
+      'El sitio se sirve mediante HTTPS. No almacenamos datos de tarjetas de crédito ni de débito: los pagos con tarjeta, cuando aplican, se procesan en los canales oficiales de la entidad financiera correspondiente.',
+      'Nunca te pediremos datos de tarjeta por WhatsApp. Si recibes una solicitud de ese tipo a nombre de la marca, repórtala al número oficial.',
+    ],
+  },
+  {
+    titulo: '9. Menores de edad',
+    parrafos: [
+      'Nuestros productos y servicios están dirigidos a personas mayores de edad con capacidad para contratar. No recogemos deliberadamente datos de menores.',
+    ],
+  },
+  {
+    titulo: '10. Cambios en esta política',
+    parrafos: [
+      'Podemos actualizar esta política para reflejar cambios en nuestra operación o en la normativa aplicable. La versión vigente será siempre la publicada en esta página, con su fecha de última actualización visible.',
+    ],
+  },
+];
+
+const ultimaActualizacion = '9 de octubre de 2026';
+---
+
+<Base
+  titulo="Política de privacidad"
+  descripcion="Cómo trata Arteanía Honduras los datos personales que compartes al escribirnos por WhatsApp: qué recogemos, para qué lo usamos, con quién lo compartimos y cómo ejercer tus derechos."
+  mensajeFlotante={mensajeGeneral('Tengo una consulta sobre privacidad')}
+>
+  <Migas items={[{ nombre: 'Política de privacidad', ruta: '/privacidad' }]} />
+
+  <section class="degradado-calido border-b border-crema-200">
+    <div class="contenedor py-14">
+      <SeccionEncabezado
+        nivel="h1"
+        antetitulo={`Última actualización: ${ultimaActualizacion}`}
+        titulo="Política de privacidad"
+        descripcion="Queremos que sepas con claridad qué pasa con la información que nos compartes. Sin letra pequeña y en lenguaje sencillo."
+      />
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor grid gap-12 lg:grid-cols-4">
+      <!-- Índice -->
+      <aside class="lg:col-span-1">
+        <nav aria-label="Índice de la política" class="lg:sticky lg:top-28">
+          <p class="antetitulo">Contenido</p>
+          <ol class="mt-4 space-y-2 text-sm">
+            {
+              bloques.map((bloque) => {
+                const ancla = bloque.titulo
+                  .toLowerCase()
+                  .normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/[^a-z0-9\s-]/g, '')
+                  .trim()
+                  .replace(/\s+/g, '-');
+                return (
+                  <li>
+                    <a href={`#${ancla}`} class="text-tinta-600 transition hover:text-barro-700">
+                      {bloque.titulo}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ol>
+        </nav>
+      </aside>
+
+      <!-- Contenido -->
+      <div class="lg:col-span-3">
+        <div class="space-y-10">
+          {
+            bloques.map((bloque) => {
+              const ancla = bloque.titulo
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9\s-]/g, '')
+                .trim()
+                .replace(/\s+/g, '-');
+              return (
+                <section id={ancla} class="scroll-mt-28">
+                  <h2 class="font-display text-xl font-semibold text-tinta-900 sm:text-2xl">
+                    {bloque.titulo}
+                  </h2>
+                  <div class="prosa mt-4">
+                    {bloque.parrafos.map((parrafo) => (
+                      <p>{parrafo}</p>
+                    ))}
+                  </div>
+                </section>
+              );
+            })
+          }
+        </div>
+
+        <div class="mt-12 rounded-[var(--radius-pieza)] border border-dashed border-crema-300 bg-crema-50 p-6">
+          <h2 class="flex items-center gap-2 font-display text-base font-semibold text-tinta-900">
+            <Icono nombre="escudo" clase="h-4 w-4 text-barro-600" />
+            Aviso importante
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-tinta-600">
+            Este documento se redactó para describir con honestidad cómo operamos y no constituye
+            asesoría legal. Antes de difundir el sitio a gran escala, conviene que un abogado
+            hondureño lo revise y lo ajuste a la normativa vigente en materia de protección de datos
+            personales y comercio electrónico.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <BotonWhatsApp etiqueta="Ejercer mis derechos" mensaje={mensajeGeneral('Quiero ejercer mis derechos sobre mis datos personales')} />
+          <a href={enlace('/terminos')} class="btn-claro">
+            Ver términos y condiciones
+            <Icono nombre="flecha" clase="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

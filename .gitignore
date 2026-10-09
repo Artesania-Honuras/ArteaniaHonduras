@@ -1,0 +1,35 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+.npm-cache/
+
+# Salida de build
+dist/
+.astro/
+.output/
+
+# Entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# Cachés de herramientas
+.eslintcache
+*.tsbuildinfo
+
+# Copias temporales para revisión de código de terceros (nunca se publican)
+_revision/

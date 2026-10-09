@@ -1,0 +1,133 @@
+---
+import Logo from '@/components/Logo.astro';
+import Icono from '@/components/Icono.astro';
+import { NAVEGACION, SITE } from '@/config/site';
+import { enlace, esRutaActiva } from '@/lib/rutas';
+import { enlaceWhatsApp } from '@/lib/whatsapp';
+
+const rutaActual = Astro.url.pathname;
+---
+
+<header class="relative z-50">
+  <!-- Barra de aviso -->
+  <div class="bg-barro-800 text-crema-100">
+    <div class="contenedor flex flex-wrap items-center justify-center gap-x-6 gap-y-1 py-2 text-center text-xs sm:text-[0.8rem]">
+      <span class="inline-flex items-center gap-1.5">
+        <Icono nombre="camion" clase="h-3.5 w-3.5 shrink-0 text-ocre-300" />
+        Envíos a todo Honduras y al extranjero
+      </span>
+      <span class="hidden items-center gap-1.5 sm:inline-flex">
+        <Icono nombre="tienda" clase="h-3.5 w-3.5 shrink-0 text-ocre-300" />
+        Tienda física con cita previa
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <Icono nombre="mano" clase="h-3.5 w-3.5 shrink-0 text-ocre-300" />
+        Piezas hechas a mano, una por una
+      </span>
+    </div>
+  </div>
+
+  <div class="sticky top-0 border-b border-crema-200 bg-crema-50/95 backdrop-blur-md">
+    <div class="contenedor flex items-center justify-between gap-4 py-3">
+      <Logo />
+
+      <!-- Navegación de escritorio -->
+      <nav aria-label="Navegación principal" class="hidden lg:block">
+        <ul class="flex items-center gap-1">
+          {
+            NAVEGACION.map((item) => {
+              const href = enlace(item.ruta);
+              const activo = esRutaActiva(rutaActual, href);
+              return (
+                <li>
+                  <a
+                    href={href}
+                    class:list={[
+                      'rounded-full px-3.5 py-2 text-sm font-medium transition',
+                      activo
+                        ? 'bg-barro-50 text-barro-700'
+                        : 'text-tinta-700 hover:bg-crema-100 hover:text-barro-700',
+                    ]}
+                    aria-current={activo ? 'page' : undefined}
+                  >
+                    {item.etiqueta}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          href={enlaceWhatsApp()}
+          class="btn-whatsapp hidden px-5 py-2.5 text-xs sm:inline-flex"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics="whatsapp"
+        >
+          <Icono nombre="whatsapp" clase="h-4 w-4" />
+          <span>Pedir por WhatsApp</span>
+        </a>
+
+        <!-- Menú móvil sin JavaScript -->
+        <details class="group relative lg:hidden" data-menu-movil>
+          <summary
+            class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-crema-300 bg-superficie text-tinta-800 transition hover:border-barro-300 hover:text-barro-700 [&::-webkit-details-marker]:hidden"
+            aria-label="Abrir menú de navegación"
+          >
+            <Icono nombre="menu" clase="h-5 w-5 group-open:hidden" />
+            <Icono nombre="cerrar" clase="hidden h-5 w-5 group-open:block" />
+          </summary>
+
+          <div
+            class="absolute right-0 z-50 mt-3 w-[min(20rem,calc(100vw-2.5rem))] overflow-hidden rounded-[var(--radius-pieza)] border border-crema-200 bg-superficie shadow-[var(--shadow-elevada)]"
+          >
+            <nav aria-label="Navegación móvil" class="p-2">
+              <ul class="flex flex-col">
+                {
+                  NAVEGACION.map((item) => {
+                    const href = enlace(item.ruta);
+                    const activo = esRutaActiva(rutaActual, href);
+                    return (
+                      <li>
+                        <a
+                          href={href}
+                          class:list={[
+                            'flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition',
+                            activo
+                              ? 'bg-barro-50 text-barro-700'
+                              : 'text-tinta-700 hover:bg-crema-100',
+                          ]}
+                          aria-current={activo ? 'page' : undefined}
+                        >
+                          {item.etiqueta}
+                          <Icono nombre="flecha" clase="h-4 w-4 text-tinta-300" />
+                        </a>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+            </nav>
+
+            <div class="border-t border-crema-200 bg-crema-50 p-4">
+              <a
+                href={enlaceWhatsApp()}
+                class="btn-whatsapp w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-analytics="whatsapp"
+              >
+                <Icono nombre="whatsapp" clase="h-4 w-4" />
+                <span>Pedir por WhatsApp</span>
+              </a>
+              <p class="mt-3 text-center text-xs text-tinta-500">{SITE.eslogan}</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</header>

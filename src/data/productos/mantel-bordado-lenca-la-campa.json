@@ -1,0 +1,46 @@
+{
+  "slug": "mantel-bordado-lenca-la-campa",
+  "nombre": "Mantel bordado a mano",
+  "categoria": "textiles",
+  "subtitulo": "Bordado lenca para la mesa",
+  "resumen": "Mantel de manta de algodón con bordado lenca hecho a mano en La Campa, Lempira.",
+  "descripcion": [
+    "El bordado es una conversación lenta entre el hilo y la tela. Este mantel se corta de manta de algodón, se marca el dibujo y se borda a mano con puntadas que forman rombos, flores y franjas de aire lenca. Las bordadoras de La Campa, en Lempira, trabajan de día y también a la luz de la lámpara, corrigiendo cada vuelta para que el revés quede tan limpio como el derecho. El color se elige de una paleta de tierras y cochinilla, sin tonos que griten. Un mantel así puede llevar una semana completa de puntadas.",
+    "Queda bien en una mesa de comedor, en un altar familiar o como base para exhibir barro y velas. El algodón se lava fácil y se suaviza con el uso, mientras el bordado se mantiene firme y nítido durante años.",
+    "Lave a mano o en ciclo delicado con agua fría y jabón suave, y no use blanqueador. Seque a la sombra y planche del revés, con la plancha tibia sobre el bordado. Guárdelo doblado y sin peso encima. Comprar bordado hecho a mano sostiene a las mujeres de La Campa, que con aguja e hilo ayudan a la economía de sus casas."
+  ],
+  "materiales": [
+    "Manta de algodón",
+    "Hilo de algodón teñido",
+    "Hilo de remate"
+  ],
+  "medidas": "150 x 150 cm; 650 g aproximadamente",
+  "cuidados": [
+    "Lavar a mano o en ciclo delicado con agua fría",
+    "No usar blanqueador",
+    "Planchar del revés sobre el bordado"
+  ],
+  "origen": {
+    "departamento": "Lempira",
+    "municipio": "La Campa",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller Bordados de La Campa",
+    "artesano": "Doña Juana Bautista",
+    "historia": "Doña Juana aprendió a bordar de su abuela, junto a la ventana de la cocina. Hoy dirige un grupo de bordadoras que se reparte los dibujos y trabaja por encargo para familias de todo el país."
+  },
+  "tiempoElaboracion": "7 a 10 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "bordado a mano",
+    "mantel",
+    "lenca"
+  ],
+  "colores": [
+    "#9C3B2E",
+    "#E8D3A9"
+  ],
+  "icono": "tejido"
+}

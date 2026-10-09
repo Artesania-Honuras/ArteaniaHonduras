@@ -1,0 +1,126 @@
+---
+import Icono from '@/components/Icono.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import { FUNCIONES, SITE } from '@/config/site';
+import type { ProductoVista } from '@/lib/catalogo';
+import { mensajeProducto } from '@/lib/whatsapp';
+
+interface Props {
+  producto: ProductoVista;
+  /** Carga la imagen con prioridad alta (para los primeros productos visibles). */
+  prioridad?: boolean;
+  /** Muestra la descripción corta. */
+  conResumen?: boolean;
+  clase?: string;
+}
+
+const { producto, prioridad = false, conResumen = true, clase = '' } = Astro.props;
+
+const etiquetaBoton = FUNCIONES.mostrarPrecios ? 'Comprar por WhatsApp' : 'Consultar precio';
+const mensaje = mensajeProducto({
+  nombre: producto.nombre,
+  slug: producto.slug,
+  categoriaNombre: producto.categoriaNombre,
+});
+---
+
+<article class={`tarjeta-interactiva group ${clase}`}>
+  <a
+    href={producto.ruta}
+    class="relative block overflow-hidden bg-crema-100"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <img
+      src={producto.imagenPrincipal}
+      alt=""
+      width="800"
+      height="800"
+      loading={prioridad ? 'eager' : 'lazy'}
+      fetchpriority={prioridad ? 'high' : 'auto'}
+      decoding="async"
+      class="aspect-square w-full object-cover transition duration-700 ease-[var(--ease-artesanal)] group-hover:scale-[1.05]"
+    />
+
+    <div class="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-3">
+      <span class="etiqueta bg-superficie/95 backdrop-blur-sm">{producto.categoriaNombre}</span>
+      {
+        producto.personalizable && (
+          <span class="etiqueta-olivo bg-superficie/95 backdrop-blur-sm">
+            <Icono nombre="mano" clase="h-3.5 w-3.5" />
+            Personalizable
+          </span>
+        )
+      }
+    </div>
+
+    {
+      !producto.disponible && (
+        <div class="absolute inset-0 flex items-center justify-center bg-tinta-900/55">
+          <span class="rounded-full bg-superficie px-4 py-2 text-xs font-semibold tracking-wide text-tinta-800 uppercase">
+            Sobre pedido
+          </span>
+        </div>
+      )
+    }
+  </a>
+
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="font-display text-lg leading-snug font-semibold text-tinta-900">
+      <a href={producto.ruta} class="transition hover:text-barro-700">{producto.nombre}</a>
+    </h3>
+
+    <p class="mt-1 text-xs font-medium tracking-wide text-barro-600">{producto.subtitulo}</p>
+
+    {
+      conResumen && (
+        <p class="mt-3 text-sm leading-relaxed text-tinta-600">{producto.resumen}</p>
+      )
+    }
+
+    <dl class="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-tinta-500">
+      <div class="inline-flex items-center gap-1.5">
+        <dt class="sr-only">Origen</dt>
+        <Icono nombre="ubicacion" clase="h-3.5 w-3.5 text-olivo-500" />
+        <dd>{producto.origen.municipio}, {producto.origen.departamento}</dd>
+      </div>
+      <div class="inline-flex items-center gap-1.5">
+        <dt class="sr-only">Tiempo de elaboración</dt>
+        <Icono nombre="reloj" clase="h-3.5 w-3.5 text-olivo-500" />
+        <dd>{producto.tiempoElaboracion}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-auto pt-5">
+      {
+        FUNCIONES.mostrarPrecios && producto.precio ? (
+          <div class="mb-3 flex items-baseline gap-1.5">
+            <span class="font-display text-2xl font-semibold text-tinta-900">
+              {SITE.monedaSimbolo} {producto.precio.toLocaleString('es-HN')}
+            </span>
+          </div>
+        ) : (
+          <p class="mb-3 text-xs text-tinta-500">
+            Precio personalizado según tamaño y acabado.
+          </p>
+        )
+      }
+
+      <div class="flex gap-2">
+        <BotonWhatsApp
+          mensaje={mensaje}
+          etiqueta={etiquetaBoton}
+          clase="flex-1"
+          etiquetaAccesible={`${etiquetaBoton}: ${producto.nombre}`}
+        />
+        <a
+          href={producto.ruta}
+          class="btn-claro px-3.5"
+          aria-label={`Ver ficha completa de ${producto.nombre}`}
+        >
+          <Icono nombre="flecha" clase="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

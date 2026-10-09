@@ -1,0 +1,43 @@
+---
+import Icono from '@/components/Icono.astro';
+
+interface Props {
+  antetitulo?: string;
+  titulo: string;
+  descripcion?: string;
+  /** Alineación del bloque. */
+  alineacion?: 'izquierda' | 'centro';
+  /** Nivel del encabezado para no romper la jerarquía del documento. */
+  nivel?: 'h1' | 'h2';
+  clase?: string;
+}
+
+const {
+  antetitulo,
+  titulo,
+  descripcion,
+  alineacion = 'izquierda',
+  nivel = 'h2',
+  clase = '',
+} = Astro.props;
+
+const Etiqueta = nivel;
+const contenedor = alineacion === 'centro' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl';
+---
+
+<div class={`${contenedor} ${clase}`}>
+  {
+    antetitulo && (
+      <p class="antetitulo mb-3 flex items-center gap-2" class:list={{ 'justify-center': alineacion === 'centro' }}>
+        <span class="inline-block h-px w-6 bg-barro-400" aria-hidden="true"></span>
+        {antetitulo}
+      </p>
+    )
+  }
+
+  <Etiqueta class="titulo-seccion">{titulo}</Etiqueta>
+
+  {descripcion && <p class="entradilla mt-4">{descripcion}</p>}
+
+  <slot />
+</div>

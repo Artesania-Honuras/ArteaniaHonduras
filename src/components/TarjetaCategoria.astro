@@ -1,0 +1,60 @@
+---
+import Icono from '@/components/Icono.astro';
+import Motivo from '@/components/Motivo.astro';
+import type { Categoria } from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+
+interface Props {
+  categoria: Categoria;
+  /** Cantidad de piezas publicadas en la categoría. */
+  cantidad?: number;
+  /** Índice para variar el tratamiento visual. */
+  indice?: number;
+}
+
+const { categoria, cantidad, indice = 0 } = Astro.props;
+
+const tratamientos = [
+  'from-barro-100 to-crema-100',
+  'from-olivo-100 to-crema-100',
+  'from-anil-100 to-crema-100',
+];
+const degradado = tratamientos[indice % tratamientos.length];
+---
+
+<a
+  href={enlace(`/tienda/${categoria.slug}`)}
+  class="tarjeta-interactiva group relative p-0"
+  aria-label={`Ver ${cantidad ?? ''} piezas de ${categoria.nombre}`}
+>
+  <div class={`relative aspect-[4/3] w-full overflow-hidden bg-linear-to-br ${degradado}`}>
+    <div class="patron-lenca absolute inset-0 opacity-70" aria-hidden="true"></div>
+
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span
+        class="flex h-24 w-24 items-center justify-center rounded-full bg-superficie/90 text-barro-600 shadow-[var(--shadow-suave)] transition duration-500 group-hover:scale-105"
+      >
+        <Motivo nombre={categoria.icono} tamano={48} grosor={1.8} clase="h-12 w-12" />
+      </span>
+    </div>
+
+    {
+      typeof cantidad === 'number' && (
+        <span class="etiqueta absolute top-3 right-3 bg-superficie/95 backdrop-blur-sm">
+          {cantidad} {cantidad === 1 ? 'pieza' : 'piezas'}
+        </span>
+      )
+    }
+  </div>
+
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="font-display text-lg font-semibold text-tinta-900 transition group-hover:text-barro-700">
+      {categoria.nombre}
+    </h3>
+    <p class="mt-2 text-sm leading-relaxed text-tinta-600">{categoria.descripcion}</p>
+    <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-barro-700">
+      Ver piezas
+      <Icono nombre="flecha" clase="h-4 w-4 transition group-hover:translate-x-1" />
+    </span>
+  </div>
+</a>

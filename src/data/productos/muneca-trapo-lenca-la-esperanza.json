@@ -1,0 +1,46 @@
+{
+  "slug": "muneca-trapo-lenca-la-esperanza",
+  "nombre": "Muñeca de trapo lenca",
+  "categoria": "artesanias",
+  "subtitulo": "Tradición de La Esperanza, Intibucá",
+  "resumen": "Muñeca de trapo vestida con telas y bordados lenca, hecha a mano en La Esperanza, Intibucá.",
+  "descripcion": [
+    "La muñeca de trapo es uno de los juguetes más queridos de la casa hondureña. Esta se cose a mano en La Esperanza, Intibucá, con retazos de manta y tela de algodón que se rellenan de fibra hasta darle cuerpo y peso. El vestido lleva vuelos, cintas y bordados con las franjas y los rombos que identifican el trabajo lenca. El cabello se hace con hilo de algodón, y el rostro se borda con puntadas sencillas, sin pintura, para que sea segura en manos de los niños. Es una pieza que se hereda de una generación a otra.",
+    "Sirve como juguete, como adorno de cuna y como recuerdo para quien vive fuera del país. Su tamaño es cómodo para abrazar y su confección resiste el uso diario. Muchas familias la compran para regalar en Navidad o para acompañar la primera habitación de una niña o un niño.",
+    "Lave a mano con jabón suave y agua fría, y deje secar a la sombra. No la meta en secadora ni la remoje por mucho tiempo, porque el relleno pierde cuerpo. Con cuidado, la muñeca acompañará varios años de juegos y luego quedará como recuerdo. Cada puntada es de una artesana que trabaja desde su casa en Intibucá."
+  ],
+  "materiales": [
+    "Manta de algodón",
+    "Relleno de fibra",
+    "Hilo de algodón para bordado"
+  ],
+  "medidas": "38 x 14 x 8 cm; 300 g aproximadamente",
+  "cuidados": [
+    "Lavar a mano con jabón suave y agua fría",
+    "Secar a la sombra, nunca en secadora",
+    "No remojar por períodos largos"
+  ],
+  "origen": {
+    "departamento": "Intibucá",
+    "municipio": "La Esperanza",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller Manos de Intibucá",
+    "artesano": "Doña Santos Cruz",
+    "historia": "Doña Santos cose muñecas en el corredor de su casa y guarda los retazos de cada vestido para combinarlos de nuevo. Un grupo de vecinas del barrio trabaja con ella por encargo durante todo el año."
+  },
+  "tiempoElaboracion": "4 a 6 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "muñeca de trapo",
+    "juguete artesanal",
+    "bordado lenca"
+  ],
+  "colores": [
+    "#C0392B",
+    "#E0B25C"
+  ],
+  "icono": "muneca"
+}

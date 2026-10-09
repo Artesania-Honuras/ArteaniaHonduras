@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "artesanias",
+    "nombre": "Artesanías y manualidades",
+    "descripcion": "Piezas de barro, madera, fibra y semilla trabajadas a mano por talleres hondureños, para dar carácter a la casa y mantener vivos los oficios de siempre en cada departamento.",
+    "icono": "vasija",
+    "color": "#B4552D"
+  },
+  {
+    "slug": "textiles",
+    "nombre": "Textiles y ropa típica",
+    "descripcion": "Telas, mantas, hamacas y bordados hechos en telar y aguja por artesanas de Honduras, con algodón, color natural y diseños que pasan de generación en generación.",
+    "icono": "tejido",
+    "color": "#A63A2B"
+  },
+  {
+    "slug": "joyeria",
+    "nombre": "Joyería y accesorios",
+    "descripcion": "Collares, aretes y pulseras armados a mano con plata, tagua, cuero y materiales del mar, piezas ligeras para usar todos los días y regalar con orgullo hondureño.",
+    "icono": "collar",
+    "color": "#B9A16B"
+  }
+]

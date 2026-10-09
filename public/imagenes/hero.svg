@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Composición de piezas artesanales hondureñas: barro lenca, textil y joyería">
+  <defs>
+    <linearGradient id="hero-fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf4ec" />
+      <stop offset="45%" stop-color="#f3e7d8" />
+      <stop offset="100%" stop-color="#ebbfa6" />
+    </linearGradient>
+    <radialGradient id="hero-brillo" cx="0.35" cy="0.3" r="0.75">
+      <stop offset="0%" stop-color="#fffdfa" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#fffdfa" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="hero-lenca" width="54" height="54" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#b4522c" stroke-opacity="0.14" stroke-width="1.1">
+        <path d="M27 3 L51 27 L27 51 L3 27 Z" />
+        <path d="M27 13.5 L40.5 27 L27 40.5 L13.5 27 Z" />
+      </g>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="1000" fill="url(#hero-fondo)" />
+  <rect width="1000" height="1000" fill="url(#hero-lenca)" />
+  <rect width="1000" height="1000" fill="url(#hero-brillo)" />
+
+  <circle cx="320" cy="330" r="215" fill="#fffdfa" fill-opacity="0.82" />
+  <circle cx="660" cy="470" r="168" fill="#fffdfa" fill-opacity="0.74" />
+  <circle cx="430" cy="730" r="150" fill="#fffdfa" fill-opacity="0.7" />
+
+  <g transform="translate(320 330) scale(8.4) translate(-24 -24)">
+      <g fill="none" stroke="#b4522c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11h16"/><path d="M18 11c-1 4-7 6.5-7 14 0 7 5.5 12 13 12s13-5 13-12c0-7.5-6-10-7-14"/><path d="M12.5 27c7.5 3.6 15.5 3.6 23 0"/><path d="M24 30.5l2.8 3.5L24 37.5 21.2 34z"/></g>
+    </g>
+  <g transform="translate(660 470) scale(6.6) translate(-24 -24)">
+      <g fill="none" stroke="#6e7c4b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="28" height="25" rx="2"/><path d="M10 19h28"/><path d="M10 28h28"/><path d="M17.5 11v25"/><path d="M30.5 11v25"/><path d="M13 36v6"/><path d="M19 36v6"/><path d="M25 36v6"/><path d="M31 36v6"/><path d="M35 36v6"/></g>
+    </g>
+  <g transform="translate(430 730) scale(6.2) translate(-24 -24)">
+      <g fill="none" stroke="#2f4a66" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12c0 13 6.5 19 15 19s15-6 15-19"/><path d="M24 27l5.5 6.5L24 40l-5.5-6.5z"/><circle cx="9" cy="12" r="2.4"/><circle cx="39" cy="12" r="2.4"/><circle cx="14.5" cy="22.5" r="2"/><circle cx="33.5" cy="22.5" r="2"/></g>
+    </g>
+
+  <g fill="none" stroke="#b4522c" stroke-opacity="0.3" stroke-width="3">
+    <path d="M40 40 H240 M40 40 V240" stroke-linecap="round" />
+    <path d="M960 40 H760 M960 40 V240" stroke-linecap="round" />
+    <path d="M40 960 H240 M40 960 V760" stroke-linecap="round" />
+    <path d="M960 960 H760 M960 960 V760" stroke-linecap="round" />
+  </g>
+
+  <g fill="#b4522c" fill-opacity="0.85">
+    <path d="M500 96 l14 20 -14 20 -14 -20 z" />
+    <path d="M500 864 l14 20 -14 20 -14 -20 z" />
+  </g>
+</svg>

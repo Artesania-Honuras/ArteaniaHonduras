@@ -1,0 +1,6 @@
+# Arteanía Honduras
+User-agent: *
+Allow: /
+
+# Sitemap del sitio (GitHub Pages sirve el sitio bajo /ArteaniaHonduras/)
+Sitemap: https://artesania-honuras.github.io/ArteaniaHonduras/sitemap-index.xml

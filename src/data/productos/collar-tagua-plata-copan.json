@@ -1,0 +1,46 @@
+{
+  "slug": "collar-tagua-plata-copan",
+  "nombre": "Collar de tagua y plata",
+  "categoria": "joyeria",
+  "subtitulo": "Nuez de tagua y plata trabajada a mano",
+  "resumen": "Collar de cuentas de tagua pulida con detalles de plata, armado a mano en Santa Rosa de Copán.",
+  "descripcion": [
+    "La tagua es la semilla dura de una palma que crece en las zonas húmedas del país. Cuando madura y se seca, se corta, se lija y se pule hasta parecer marfil vegetal, con vetas que van del blanco crema al café claro. En este collar, las cuentas de tagua se combinan con piezas de plata trabajadas a mano y se ensartan una por una sobre hilo encerado con cierre ajustable. El contraste entre el brillo sereno de la plata y la calidez de la semilla da una pieza sobria, de esas que se usan todos los días. Cada cuenta se pule con paño, no con barniz.",
+    "Es un collar de peso ligero que cae bien sobre camisa, vestido o suéter de lana. Combina con madera, cuero y textiles, y funciona igual para el trabajo que para una salida. También es un regalo fácil de acertar porque no depende de la talla.",
+    "Limpie la tagua con un paño suave y seco; evite perfumes, cremas y alcohol sobre la semilla. La plata se conserva con un paño de pulir y se guarda en su bolsa, lejos de la humedad. No lo sumerja en agua. Este taller de Santa Rosa de Copán trabaja con semilla de proveedores locales y reaprovecha la plata de sus recortes."
+  ],
+  "materiales": [
+    "Semilla de tagua pulida",
+    "Plata trabajada a mano",
+    "Hilo encerado con cierre ajustable"
+  ],
+  "medidas": "Contorno 45 cm; cuentas de 1.5 cm; 45 g aproximadamente",
+  "cuidados": [
+    "Limpiar la tagua con paño seco y suave",
+    "Evitar perfume, cremas y alcohol sobre la semilla",
+    "Guardar en bolsa seca, separado de otras joyas"
+  ],
+  "origen": {
+    "departamento": "Copán",
+    "municipio": "Santa Rosa de Copán",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller Tagua Copán",
+    "artesano": "Don Óscar Rivera",
+    "historia": "Don Óscar empezó cortando semilla de tagua para botones y hoy arma collares con dos ayudantes. El taller compra la semilla a recolectores de la zona y seca cada lote al menos un mes antes de pulirlo."
+  },
+  "tiempoElaboracion": "3 a 5 días",
+  "personalizable": true,
+  "destacado": true,
+  "etiquetas": [
+    "tagua",
+    "plata",
+    "collar artesanal"
+  ],
+  "colores": [
+    "#D9B382",
+    "#8C6A4A"
+  ],
+  "icono": "collar"
+}

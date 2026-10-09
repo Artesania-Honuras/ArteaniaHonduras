@@ -1,0 +1,34 @@
+# EditorConfig — https://editorconfig.org
+# Convenciones de edición compartidas por todo el equipo, independientes del editor.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 100
+
+# Markdown: el espacio final es significativo (salto de línea forzado)
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# JSON y configuración: dos espacios, igual que el resto del proyecto
+[*.{json,jsonc}]
+indent_size = 2
+
+# YAML de GitHub Actions
+[*.{yml,yaml}]
+indent_size = 2
+
+# Archivos generados y de bloqueo: no se formatean a mano
+[package-lock.json]
+insert_final_newline = false
+
+# Archivos de entorno
+[.env*]
+insert_final_newline = true

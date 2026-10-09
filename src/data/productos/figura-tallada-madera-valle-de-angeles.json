@@ -1,0 +1,46 @@
+{
+  "slug": "figura-tallada-madera-valle-de-angeles",
+  "nombre": "Figura tallada en madera de cedro",
+  "categoria": "artesanias",
+  "subtitulo": "Tallado a mano en Valle de Ángeles",
+  "resumen": "Figura decorativa tallada a mano en cedro por artesanos de Valle de Ángeles, Francisco Morazán.",
+  "descripcion": [
+    "En Valle de Ángeles, a media hora de Tegucigalpa, el aroma a cedro acompaña a los talleres desde hace décadas. Esta figura se corta de un bloque macizo y se trabaja con formón, gubia y lija hasta sacar la forma que el artesano vio dentro de la madera. No hay dos piezas iguales: la veta guía el corte, marca las luces y decide dónde queda el nudo. El acabado se logra con aceites y ceras naturales que protegen la madera sin tapar su color. Es un oficio de paciencia, donde cada golpe de formón cuenta y donde el error se convierte en detalle.",
+    "La pieza funciona sola sobre una repisa, un escritorio o una mesa de entrada, y combina bien con barro, textiles y velas. Su tamaño la hace fácil de mover y de limpiar, y su peso la mantiene estable. También es un buen regalo para quienes aprecian lo hecho a mano y quieren llevar a su casa un pedazo del bosque hondureño.",
+    "Limpie con paño seco o ligeramente húmedo, sin productos abrasivos. Evite exponerla al sol directo y a la humedad constante para que no se agriete. Una capa ligera de cera incolora una vez al año ayuda a mantener el brillo. Detrás de esta figura hay un taller familiar que compra la madera a proveedores locales y aprovecha cada recorte."
+  ],
+  "materiales": [
+    "Madera de cedro",
+    "Aceite natural para madera",
+    "Cera incolora"
+  ],
+  "medidas": "32 x 12 x 10 cm; 900 g aproximadamente",
+  "cuidados": [
+    "Limpiar con paño seco y sin abrasivos",
+    "Evitar sol directo y humedad constante",
+    "Aplicar cera incolora una vez al año"
+  ],
+  "origen": {
+    "departamento": "Francisco Morazán",
+    "municipio": "Valle de Ángeles",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller El Cedro",
+    "artesano": "Don Julio César Mejía",
+    "historia": "Taller de tres mesas donde se corta, se talla y se pule la madera en el mismo día. Don Julio César trabaja con dos aprendices del pueblo y firma cada pieza con una marca discreta en la base."
+  },
+  "tiempoElaboracion": "6 a 8 días",
+  "personalizable": true,
+  "destacado": true,
+  "etiquetas": [
+    "tallado en madera",
+    "cedro",
+    "decoración"
+  ],
+  "colores": [
+    "#8B5A2B",
+    "#3E2A1C"
+  ],
+  "icono": "madera"
+}

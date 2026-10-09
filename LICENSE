@@ -1,0 +1,91 @@
+# Licencia y condiciones de uso
+
+**Arteanía Honduras**
+Copyright © 2026 Arteanía Honduras. Todos los derechos reservados.
+
+> **Este proyecto NO tiene una licencia de código abierto.** No se ha publicado bajo MIT, Apache
+> ni ninguna otra licencia permisiva, y no se atribuye titularidad a terceros. Si en el futuro el
+> titular decide abrir el código, este archivo debe reemplazarse por la licencia elegida.
+
+---
+
+## 1. Contenido: todos los derechos reservados
+
+Los siguientes elementos son obra y propiedad de Arteanía Honduras y **no pueden reproducirse,
+copiarse, modificarse, distribuirse ni usarse con fines comerciales** sin autorización previa y
+por escrito del titular:
+
+- Los **textos** del sitio: descripciones de productos, relatos de talleres, historia de la
+  marca, preguntas frecuentes y cualquier otro contenido editorial.
+- Las **fotografías** de producto y de taller.
+- Las **ilustraciones, motivos decorativos, logotipo y elementos gráficos** de la marca.
+- La **identidad visual**: nombre comercial, lema y signos distintivos.
+
+Lo anterior incluye el uso del contenido para entrenar o alimentar sistemas automatizados, salvo
+autorización expresa.
+
+**Fotografías de producto pendientes:** el catálogo publicado hoy usa ilustraciones SVG generadas
+por el propio proyecto (`scripts/generar-imagenes.mjs`) como material de sustitución. Están
+cubiertas por esta misma reserva de derechos. `TODO:` sustituirlas por fotografías reales y
+confirmar la titularidad de cada imagen antes de usarla en campañas pagadas.
+
+## 2. Código del sitio: publicado tal cual, sin garantía
+
+El código fuente de este sitio se entrega **"tal cual" (*as is*)**, sin garantía de ningún tipo,
+expresa o implícita, incluyendo —sin limitarse a— las garantías de comerciabilidad, idoneidad
+para un propósito particular y ausencia de infracción.
+
+Al usar, copiar o adaptar este código, usted acepta que:
+
+- El titular **no es responsable** de daños directos o indirectos, pérdida de datos, lucro
+  cesante ni de ningún perjuicio derivado del uso del código o de la imposibilidad de usarlo.
+- El titular **no ofrece soporte técnico, mantenimiento ni actualizaciones** por el hecho de que
+  el código sea accesible.
+- El titular **no garantiza** que el código esté libre de errores ni que sea apto para un uso
+  distinto del que se le dio en este sitio.
+
+## 3. Dependencias de terceros
+
+El proyecto usa paquetes de código abierto (entre otros, Astro, Tailwind CSS, Zod, Prettier y las
+tipografías de `@fontsource`). Cada uno conserva **su propia licencia**, y su uso se rige por los
+términos de su respectivo titular. Esta licencia **no modifica ni sustituye** esas licencias.
+Consulte el archivo de licencia de cada paquete en `node_modules/` o en su repositorio de origen.
+
+## 4. Marcas y contenido de terceros
+
+Los nombres de bancos, billeteras móviles y servicios de pago o envío mencionados en el sitio
+—por ejemplo BAC Credomatic, Tigo Money o cualquier courier— son **marcas de sus respectivos
+titulares** y se mencionan únicamente con fines descriptivos e informativos. Su mención no
+implica patrocinio, afiliación ni respaldo alguno.
+
+## 5. Datos personales
+
+El sitio de la Fase 1 es **estático**: no tiene formularios, no tiene base de datos y no recopila
+información personal en el servidor. La conversación con el cliente ocurre en WhatsApp y se rige
+por las condiciones de ese servicio. Ver la página de privacidad del sitio.
+
+`TODO:` revisar la política de privacidad y los términos del sitio con criterio propio antes de
+publicar. **Los textos actuales son un punto de partida y no constituyen asesoría legal.**
+
+## 6. Decisión pendiente del titular
+
+**El titular de los derechos debe decidir si desea abrir el código del sitio.** Si esa es la
+intención, hay que:
+
+1. Elegir una licencia de código abierto (por ejemplo MIT o Apache 2.0 para el código).
+2. Mantener esta reserva de derechos **únicamente sobre el contenido** (textos, fotografías,
+   ilustraciones y marca), que normalmente no se abre junto con el código.
+3. Reemplazar este archivo por el texto de la licencia elegida, dejando explícita esa separación
+   entre código y contenido.
+
+`TODO:` decisión pendiente del titular. Mientras no se tome, aplica esta reserva de derechos.
+
+---
+
+## Resumen en una línea
+
+**El contenido es de Arteanía Honduras y no se puede reutilizar; el código se ofrece tal cual y
+sin garantía; abrir el código es una decisión que el titular todavía no ha tomado.**
+
+Para permisos de uso del contenido, escribir por WhatsApp al canal de contacto publicado en el
+sitio.

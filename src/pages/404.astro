@@ -1,0 +1,112 @@
+---
+import Base from '@/layouts/Base.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import Motivo from '@/components/Motivo.astro';
+import { categorias, productosDestacados } from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+const sugerencias = [
+  { etiqueta: 'Ir al catálogo', ruta: '/tienda', icono: 'bolsa' as const },
+  { etiqueta: 'Nuestra historia', ruta: '/nosotros', icono: 'personas' as const },
+  { etiqueta: 'Envíos y pagos', ruta: '/envios-y-pagos', icono: 'camion' as const },
+  { etiqueta: 'Preguntas frecuentes', ruta: '/preguntas-frecuentes', icono: 'chat' as const },
+];
+---
+
+<Base
+  titulo="Página no encontrada"
+  descripcion="La página que buscas no existe o cambió de dirección. Te ayudamos a encontrar las piezas de artesanía hondureña que estabas buscando."
+  noindex={true}
+  mensajeFlotante={mensajeGeneral('No encontré lo que buscaba en el sitio')}
+>
+  <section class="degradado-calido relative overflow-hidden">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative py-20 text-center sm:py-28">
+      <div class="mx-auto flex max-w-2xl flex-col items-center">
+        <div class="flex gap-3 text-barro-400">
+          <Motivo nombre="vasija" tamano={48} grosor={1.7} clase="h-10 w-10" />
+          <Motivo nombre="tejido" tamano={48} grosor={1.7} clase="h-10 w-10" />
+          <Motivo nombre="collar" tamano={48} grosor={1.7} clase="h-10 w-10" />
+        </div>
+
+        <p class="mt-8 font-display text-6xl font-semibold text-barro-300 sm:text-7xl">404</p>
+
+        <h1 class="mt-4 font-display text-3xl font-semibold text-tinta-900 sm:text-4xl">
+          Esta pieza no está en el catálogo
+        </h1>
+
+        <p class="entradilla mt-4">
+          La página que buscabas no existe, cambió de dirección o el enlace tiene un error. Pero
+          tenemos bastante más que mostrarte.
+        </p>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href={enlace('/tienda')} class="btn-primario btn-lg">
+            <Icono nombre="bolsa" clase="h-5 w-5" />
+            Ver el catálogo
+          </a>
+          <BotonWhatsApp
+            variante="claro"
+            tamano="grande"
+            etiqueta="Preguntar por WhatsApp"
+            mensaje={mensajeGeneral('No encontré una página en el sitio y necesito ayuda')}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ACCESOS ===================== -->
+  <section class="seccion">
+    <div class="contenedor">
+      <h2 class="text-center font-display text-2xl font-semibold text-tinta-900">
+        Quizá buscabas una de estas secciones
+      </h2>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          sugerencias.map((sugerencia) => (
+            <a href={enlace(sugerencia.ruta)} class="tarjeta-interactiva flex-row items-center gap-3 p-5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+                <Icono nombre={sugerencia.icono} clase="h-5 w-5" />
+              </span>
+              <span class="font-medium text-tinta-800">{sugerencia.etiqueta}</span>
+              <Icono nombre="flecha" clase="ml-auto h-4 w-4 text-tinta-300" />
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-12">
+        <p class="antetitulo text-center">Categorías del catálogo</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          {
+            categorias.map((categoria) => (
+              <a href={enlace(`/tienda/${categoria.slug}`)} class="btn-claro">
+                <Motivo nombre={categoria.icono} tamano={48} grosor={1.8} clase="h-4 w-4" />
+                {categoria.nombre}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      {
+        productosDestacados.length > 0 && (
+          <div class="mt-14">
+            <p class="antetitulo text-center">Piezas destacadas</p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+              {productosDestacados.slice(0, 6).map((producto) => (
+                <a href={producto.ruta} class="etiqueta transition hover:border-barro-300 hover:text-barro-700">
+                  {producto.nombre}
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>

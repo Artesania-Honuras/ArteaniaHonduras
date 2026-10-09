@@ -1,0 +1,46 @@
+{
+  "slug": "canasta-fibra-tuno-puerto-lempira",
+  "nombre": "Canasta de fibra de tuno",
+  "categoria": "artesanias",
+  "subtitulo": "Tejida a mano por manos miskitas",
+  "resumen": "Canasta tejida con fibra de tuno por artesanas miskitas de Gracias a Dios, resistente y liviana.",
+  "descripcion": [
+    "El tuno es un árbol de hoja ancha que crece junto a los ríos de La Mosquitia. De su corteza se sacan tiras largas y flexibles que las tejedoras miskitas lavan, secan y tiñen con cortezas y raíces antes de entretejerlas. Cada canasta se levanta desde el fondo, hebra por hebra, apretando con la palma para que la pared quede firme y pareja. El tejido avanza en espiral y admite figuras geométricas que se transmiten de madre a hija. Una pieza mediana puede llevar tres días de trabajo tranquilo, hecho en casa, a la sombra del rancho y al ritmo de la familia.",
+    "Es una canasta liviana pero resistente, pensada para el uso diario. Aguanta el mercado, la ropa, la cosecha del patio o los juguetes de los niños, y también luce bien como pieza decorativa en una pared o sobre una mesa. La fibra natural se acomoda con el tiempo y toma un tono más profundo con los años.",
+    "Para conservarla, manténgala seca y fuera del sol directo por temporadas largas. Si se humedece, déjela secar a la sombra y recuperará su forma. Cada compra apoya a las tejedoras de Ahuas, que venden su trabajo para sostener sus casas y seguir enseñando el oficio a las nuevas generaciones."
+  ],
+  "materiales": [
+    "Fibra de corteza de tuno",
+    "Tintes de corteza y raíz",
+    "Hilo de algodón para el remate"
+  ],
+  "medidas": "30 x 24 x 24 cm; 450 g aproximadamente",
+  "cuidados": [
+    "Mantener seca y lejos del sol directo",
+    "Secar a la sombra si se humedece",
+    "Sacudir el polvo con cepillo suave"
+  ],
+  "origen": {
+    "departamento": "Gracias a Dios",
+    "municipio": "Puerto Lempira",
+    "pueblo": "Ahuas"
+  },
+  "taller": {
+    "nombre": "Cooperativa de Tejedoras Miskitas de Ahuas",
+    "artesano": "Ana Feliciana Ávila",
+    "historia": "Grupo de mujeres miskitas que se reúne a tejer bajo el mismo techo y reparte el trabajo por encargo. Doña Ana Feliciana coordina los pedidos y enseña a las más jóvenes a seleccionar y preparar la fibra de tuno."
+  },
+  "tiempoElaboracion": "3 a 4 días",
+  "personalizable": true,
+  "destacado": false,
+  "etiquetas": [
+    "tejido miskito",
+    "fibra natural",
+    "cesta"
+  ],
+  "colores": [
+    "#C98A3C",
+    "#6B7A3A"
+  ],
+  "icono": "canasta"
+}

@@ -1,0 +1,292 @@
+---
+import Base from '@/layouts/Base.astro';
+import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
+import TarjetaProducto from '@/components/TarjetaProducto.astro';
+import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
+import Icono from '@/components/Icono.astro';
+import { SITE } from '@/config/site';
+import {
+  categorias,
+  conteoPorCategoria,
+  etiquetasDisponibles,
+  productos,
+} from '@/lib/catalogo';
+import { enlace } from '@/lib/rutas';
+import { itemListSchema } from '@/lib/seo';
+import { mensajeGeneral } from '@/lib/whatsapp';
+
+const conteos = conteoPorCategoria();
+const etiquetas = etiquetasDisponibles.slice(0, 10);
+---
+
+<Base
+  titulo="Catálogo de artesanía hondureña"
+  descripcion="Explora vasijas lenca, telares, hamacas, joyería de tagua y plata, y más piezas hechas a mano en Honduras. Consulta disponibilidad y precio por WhatsApp."
+  jsonLd={[
+    itemListSchema(productos, `Catálogo de ${SITE.nombre}`),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: `Catálogo de ${SITE.nombre}`,
+      description:
+        'Catálogo completo de artesanías, textiles y joyería hechas a mano en Honduras.',
+      url: `${SITE.url}${enlace('/tienda')}`,
+    },
+  ]}
+  mensajeFlotante={mensajeGeneral('Quiero información sobre el catálogo')}
+>
+  <section class="degradado-calido relative overflow-hidden border-b border-crema-200">
+    <div class="patron-lenca absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="contenedor relative py-14 sm:py-16">
+      <nav aria-label="Ruta de navegación" class="mb-6">
+        <ol class="flex items-center gap-2 text-xs text-tinta-500">
+          <li><a href={enlace('/')} class="transition hover:text-barro-700">Inicio</a></li>
+          <li class="flex items-center gap-2">
+            <Icono nombre="flecha" clase="h-3 w-3 text-tinta-300" />
+            <span aria-current="page" class="font-semibold text-tinta-700">Catálogo</span>
+          </li>
+        </ol>
+      </nav>
+
+      <SeccionEncabezado
+        nivel="h1"
+        antetitulo={`${productos.length} piezas publicadas`}
+        titulo="Catálogo de artesanía hondureña"
+        descripcion="Todo lo que ves aquí está hecho a mano en Honduras. Los precios se cotizan según tamaño, acabado y destino del envío: escríbenos y te damos el total exacto."
+      />
+
+      <div class="mt-8 flex flex-wrap gap-2">
+        {
+          categorias.map((categoria) => (
+            <a href={enlace(`/tienda/${categoria.slug}`)} class="etiqueta-barro transition hover:-translate-y-0.5">
+              {categoria.nombre}
+              <span class="text-tinta-400">({conteos[categoria.slug] ?? 0})</span>
+            </a>
+          ))
+        }
+        <span class="etiqueta-olivo">
+          <Icono nombre="globo" clase="h-3.5 w-3.5" />
+          Envíos internacionales
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FILTROS Y RESULTADOS ===================== -->
+  <section class="seccion" data-catalogo>
+    <div class="contenedor">
+      <div class="tarjeta gap-4 p-5 sm:p-6">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div class="w-full lg:max-w-sm">
+            <label for="buscador" class="mb-2 block text-xs font-semibold tracking-wide text-tinta-500 uppercase">
+              Buscar en el catálogo
+            </label>
+            <div class="relative">
+              <span class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-tinta-400">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+              </span>
+              <input
+                id="buscador"
+                type="search"
+                placeholder="Vasija, hamaca, tagua, Marcala…"
+                autocomplete="off"
+                class="w-full rounded-full border border-crema-300 bg-crema-50 py-2.5 pr-4 pl-11 text-sm text-tinta-800 placeholder:text-tinta-400 focus:border-barro-400 focus:bg-superficie focus:outline-none"
+                data-buscador
+              />
+            </div>
+          </div>
+
+          <div class="w-full lg:w-auto">
+            <p class="mb-2 text-xs font-semibold tracking-wide text-tinta-500 uppercase">
+              Filtrar por categoría
+            </p>
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Filtros de categoría">
+              <button type="button" class="btn-claro px-4 py-2 text-xs" data-filtro-categoria="todas" aria-pressed="true">
+                Todas
+              </button>
+              {
+                categorias.map((categoria) => (
+                  <button
+                    type="button"
+                    class="btn-claro px-4 py-2 text-xs"
+                    data-filtro-categoria={categoria.slug}
+                    aria-pressed="false"
+                  >
+                    {categoria.nombre}
+                  </button>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-crema-200 pt-4">
+          <p class="mb-2 text-xs font-semibold tracking-wide text-tinta-500 uppercase">
+            Filtrar por etiqueta
+          </p>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filtros de etiqueta">
+            {
+              etiquetas.map((etiqueta) => (
+                <button
+                  type="button"
+                  class="etiqueta transition hover:border-barro-300 hover:text-barro-700"
+                  data-filtro-etiqueta={etiqueta}
+                  aria-pressed="false"
+                >
+                  {etiqueta}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-6 text-sm text-tinta-500" role="status" aria-live="polite" data-contador>
+        Mostrando {productos.length} de {productos.length} piezas
+      </p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-grilla>
+        {
+          productos.map((producto, indice) => (
+            <div
+              data-producto
+              data-categoria={producto.categoria}
+              data-etiquetas={producto.etiquetas.join('|').toLowerCase()}
+              data-busqueda={`${producto.nombre} ${producto.subtitulo} ${producto.resumen} ${producto.origen.municipio} ${producto.origen.departamento} ${producto.taller.nombre} ${producto.materiales.join(' ')}`.toLowerCase()}
+            >
+              <TarjetaProducto producto={producto} prioridad={indice < 4} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-12 hidden rounded-[var(--radius-bloque)] border border-dashed border-crema-300 bg-crema-50 px-6 py-12 text-center" data-vacio>
+        <p class="font-display text-xl font-semibold text-tinta-800">
+          No encontramos piezas con esos filtros
+        </p>
+        <p class="mx-auto mt-2 max-w-md text-sm text-tinta-600">
+          Prueba con otra palabra o quita los filtros. Si buscas algo que no está en el catálogo,
+          escríbenos: trabajamos piezas sobre pedido.
+        </p>
+        <div class="mt-6 flex justify-center">
+          <BotonWhatsApp
+            etiqueta="Pedir algo a la medida"
+            mensaje={mensajeGeneral('Busco una pieza que no vi en el catálogo')}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CIERRE ===================== -->
+  <section class="pb-20">
+    <div class="contenedor">
+      <div class="tarjeta flex flex-col items-center gap-5 p-8 text-center sm:p-12">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-barro-50 text-barro-600">
+          <Icono nombre="regalo" clase="h-6 w-6" />
+        </span>
+        <h2 class="font-display text-2xl font-semibold text-tinta-900 sm:text-3xl">
+          ¿No sabes cuál elegir?
+        </h2>
+        <p class="max-w-xl text-sm leading-relaxed text-tinta-600">
+          Cuéntanos para quién es, cuánto quieres invertir y para qué fecha lo necesitas. Te
+          proponemos dos o tres opciones con precio y tiempo de entrega.
+        </p>
+        <BotonWhatsApp
+          tamano="grande"
+          etiqueta="Pedir una recomendación"
+          mensaje={mensajeGeneral('Necesito una recomendación para elegir una pieza')}
+        />
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const raiz = document.querySelector('[data-catalogo]');
+      if (!raiz) return;
+
+      const tarjetas = Array.from(raiz.querySelectorAll('[data-producto]'));
+      const buscador = raiz.querySelector('[data-buscador]');
+      const botonesCategoria = Array.from(raiz.querySelectorAll('[data-filtro-categoria]'));
+      const botonesEtiqueta = Array.from(raiz.querySelectorAll('[data-filtro-etiqueta]'));
+      const contador = raiz.querySelector('[data-contador]');
+      const vacio = raiz.querySelector('[data-vacio]');
+
+      let categoriaActiva = 'todas';
+      let etiquetaActiva = null;
+      let termino = '';
+
+      const pluralizar = (n) => (n === 1 ? 'pieza' : 'piezas');
+
+      const aplicar = () => {
+        let visibles = 0;
+
+        tarjetas.forEach((tarjeta) => {
+          const coincideCategoria =
+            categoriaActiva === 'todas' || tarjeta.dataset.categoria === categoriaActiva;
+          const coincideEtiqueta =
+            !etiquetaActiva || (tarjeta.dataset.etiquetas || '').includes(etiquetaActiva);
+          const coincideTexto =
+            termino === '' || (tarjeta.dataset.busqueda || '').includes(termino);
+
+          const mostrar = coincideCategoria && coincideEtiqueta && coincideTexto;
+          tarjeta.hidden = !mostrar;
+          if (mostrar) visibles += 1;
+        });
+
+        if (contador) {
+          contador.textContent = `Mostrando ${visibles} de ${tarjetas.length} ${pluralizar(tarjetas.length)}`;
+        }
+        if (vacio) vacio.classList.toggle('hidden', visibles !== 0);
+      };
+
+      const normalizar = (texto) =>
+        (texto || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+
+      if (buscador) {
+        buscador.addEventListener('input', (evento) => {
+          termino = normalizar(evento.target.value.trim());
+          aplicar();
+        });
+      }
+
+      botonesCategoria.forEach((boton) => {
+        boton.addEventListener('click', () => {
+          categoriaActiva = boton.dataset.filtroCategoria || 'todas';
+          botonesCategoria.forEach((otro) => {
+            const activo = otro === boton;
+            otro.setAttribute('aria-pressed', String(activo));
+            otro.classList.toggle('border-barro-400', activo);
+            otro.classList.toggle('bg-barro-50', activo);
+            otro.classList.toggle('text-barro-700', activo);
+          });
+          aplicar();
+        });
+      });
+
+      botonesEtiqueta.forEach((boton) => {
+        boton.addEventListener('click', () => {
+          const valor = boton.dataset.filtroEtiqueta || '';
+          etiquetaActiva = etiquetaActiva === valor ? null : valor;
+          botonesEtiqueta.forEach((otro) => {
+            const activo = otro.dataset.filtroEtiqueta === etiquetaActiva;
+            otro.setAttribute('aria-pressed', String(activo));
+            otro.classList.toggle('border-barro-400', activo);
+            otro.classList.toggle('bg-barro-50', activo);
+            otro.classList.toggle('text-barro-700', activo);
+          });
+          aplicar();
+        });
+      });
+
+      aplicar();
+    })();
+  </script>
+</Base>

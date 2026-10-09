@@ -1,0 +1,46 @@
+{
+  "slug": "vasija-barro-lenca-marcala",
+  "nombre": "Vasija de barro lenca",
+  "categoria": "artesanias",
+  "subtitulo": "Barro cocido a mano con herencia lenca",
+  "resumen": "Vasija moldeada a mano y cocida en horno de leña por alfareras de Marcala, La Paz.",
+  "descripcion": [
+    "En las faldas de Marcala, La Paz, el barro rojo se trabaja como se ha hecho por generaciones. Cada vasija comienza como un puño de tierra que se amasa, se deja reposar y luego se levanta a mano, sin molde y sin prisa. La alfarera corrige el grosor con los dedos, alisa la superficie con una concha y traza las líneas que recuerdan los diseños lenca. Después viene el secado a la sombra y la cochura en horno de leña, donde el fuego decide el tono final. Por eso ninguna pieza sale idéntica a otra: el color, las manchas y las pequeñas huellas del pulgar son parte de su carácter.",
+    "Su boca ancha y su cuerpo redondeado la hacen útil en la casa y hermosa en la repisa. Sirve para lucir flores secas, semillas o frutas de temporada, y también para guardar objetos pequeños en la entrada. Al no llevar barniz industrial, la pieza respira y conserva ese olor suave a tierra mojada que solo tiene el barro cocido a fuego lento.",
+    "Recomendamos limpiarla con un paño seco o apenas húmedo y evitar dejarla en remojo. Es una pieza de decoración y de uso cuidadoso, pensada para acompañar la casa durante años. Al comprarla, usted sostiene el oficio de un taller familiar hondureño y ayuda a que el torno siga girando en Marcala."
+  ],
+  "materiales": [
+    "Barro rojo local",
+    "Arena fina de río",
+    "Pigmentos naturales de tierra"
+  ],
+  "medidas": "28 x 20 x 20 cm; 1.6 kg aproximadamente",
+  "cuidados": [
+    "Limpiar con paño seco o ligeramente húmedo",
+    "No dejarla en remojo ni usarla en microondas",
+    "Evitar golpes y cambios bruscos de temperatura"
+  ],
+  "origen": {
+    "departamento": "La Paz",
+    "municipio": "Marcala",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Taller Barro de Marcala",
+    "artesano": "Doña Marta Hernández",
+    "historia": "Taller familiar donde tres generaciones de alfareras comparten el mismo horno de leña. Doña Marta enseña a sus sobrinas el amasado, el alisado y la cochura, y cada pieza sale firmada con la huella del pulgar."
+  },
+  "tiempoElaboracion": "5 a 7 días",
+  "personalizable": true,
+  "destacado": true,
+  "etiquetas": [
+    "alfarería lenca",
+    "barro cocido",
+    "hecho a mano"
+  ],
+  "colores": [
+    "#B4552D",
+    "#8A3B1E"
+  ],
+  "icono": "vasija"
+}

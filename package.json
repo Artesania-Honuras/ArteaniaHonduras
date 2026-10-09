@@ -1,0 +1,39 @@
+{
+  "name": "arteania-honduras",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio web de marca y catálogo de Arteanía Honduras: artesanías, textiles y joyería hecha a mano en Honduras.",
+  "author": "Arteanía Honduras",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "verify": "astro check && astro build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "catalogo:validar": "node scripts/validar-catalogo.mjs",
+    "imagenes:generar": "node scripts/generar-imagenes.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/figtree": "^5.2.5",
+    "@fontsource-variable/fraunces": "^5.2.5",
+    "astro": "^5.14.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/vite": "^4.1.13",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2"
+  }
+}

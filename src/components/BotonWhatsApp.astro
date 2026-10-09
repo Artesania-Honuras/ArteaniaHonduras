@@ -1,0 +1,64 @@
+---
+import { enlaceWhatsApp } from '@/lib/whatsapp';
+import Icono from '@/components/Icono.astro';
+
+interface Props {
+  /** Mensaje prellenado del chat. Si se omite usa el saludo por defecto. */
+  mensaje?: string;
+  /** Texto del botón. */
+  etiqueta?: string;
+  /** Variante visual. */
+  variante?: 'whatsapp' | 'primario' | 'secundario' | 'claro';
+  /** Tamaño del botón. */
+  tamano?: 'normal' | 'grande' | 'compacto';
+  /** Clases adicionales. */
+  clase?: string;
+  /** Oculta el icono de WhatsApp. */
+  sinIcono?: boolean;
+  /** Etiqueta accesible cuando el texto visible es corto. */
+  etiquetaAccesible?: string;
+}
+
+const {
+  mensaje,
+  etiqueta = 'Pedir por WhatsApp',
+  variante = 'whatsapp',
+  tamano = 'normal',
+  clase = '',
+  sinIcono = false,
+  etiquetaAccesible,
+} = Astro.props;
+
+const clasesVariante = {
+  whatsapp: 'btn-whatsapp',
+  primario: 'btn-primario',
+  secundario: 'btn-secundario',
+  claro: 'btn-claro',
+} as const;
+
+const clasesTamano = {
+  compacto: 'px-4 py-2 text-xs',
+  normal: '',
+  grande: 'btn-lg',
+} as const;
+
+const clases = [
+  'group',
+  tamano === 'normal' ? clasesVariante[variante] : `${clasesVariante[variante]} ${clasesTamano[tamano]}`,
+  clase,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<a
+  href={enlaceWhatsApp(mensaje)}
+  class={clases}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={etiquetaAccesible ?? etiqueta}
+  data-analytics="whatsapp"
+>
+  {!sinIcono && <Icono nombre="whatsapp" clase="h-4 w-4 shrink-0" />}
+  <span>{etiqueta}</span>
+</a>

@@ -1,0 +1,46 @@
+{
+  "slug": "manta-telar-cintura-lenca",
+  "nombre": "Manta tejida en telar de cintura",
+  "categoria": "textiles",
+  "subtitulo": "Telar de cintura, herencia viva lenca",
+  "resumen": "Manta de algodón tejida en telar de cintura por tejedoras lencas de La Esperanza, Intibucá.",
+  "descripcion": [
+    "El telar de cintura es una de las técnicas más antiguas que se siguen practicando en Honduras. La tejedora amarra un extremo del hilo a un poste y el otro a su cintura, y con esa tensión arma la urdimbre hasta convertirla en tela. Así se teje esta manta de algodón, franja por franja, con diseños que vienen de la memoria lenca: rombos, escaleras y líneas que se repiten con variaciones. El proceso es lento y no admite atajos; un lienzo grande puede tomar dos semanas de trabajo constante. El resultado es una tela firme, fresca y única.",
+    "La manta funciona como pieza de cama, como cobertor de sofá o como tapiz de pared. El algodón respira y se siente fresco en clima cálido, y su peso alcanza para abrigar en las noches de montaña. Los colores se eligieron para combinar con madera, barro y fibras naturales.",
+    "Lave a mano con agua fría y jabón neutro, sin tallar ni exprimir con fuerza. Seque a la sombra y planche a temperatura media. Guárdela doblada en un lugar seco y ventilado. Comprar una manta así mantiene activo el telar de las tejedoras de La Esperanza y su enseñanza a las más jóvenes."
+  ],
+  "materiales": [
+    "Hilo de algodón",
+    "Tintes de añil y cochinilla",
+    "Hilo de algodón para el remate"
+  ],
+  "medidas": "180 x 60 cm; 700 g aproximadamente",
+  "cuidados": [
+    "Lavar a mano con agua fría y jabón neutro",
+    "Secar a la sombra sin exprimir con fuerza",
+    "Planchar a temperatura media"
+  ],
+  "origen": {
+    "departamento": "Intibucá",
+    "municipio": "La Esperanza",
+    "pueblo": ""
+  },
+  "taller": {
+    "nombre": "Cooperativa de Tejedoras Lencas de La Esperanza",
+    "artesano": "Doña María Elena Hernández",
+    "historia": "Cooperativa de tejedoras que comparte un solo patio para armar los telares y repartir los pedidos. Doña María Elena lleva el cuaderno de diseños y enseña a las nuevas a contar los hilos antes de empezar."
+  },
+  "tiempoElaboracion": "10 a 15 días",
+  "personalizable": true,
+  "destacado": true,
+  "etiquetas": [
+    "telar de cintura",
+    "algodón",
+    "lenca"
+  ],
+  "colores": [
+    "#B03A2E",
+    "#D9A441"
+  ],
+  "icono": "tejido"
+}

@@ -1,0 +1,362 @@
+/* Tipografías autoalojadas (sin CDN externo, sin FOUT de terceros) */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/figtree';
+
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Arteanía Honduras — sistema de diseño
+   Paleta: barro, crema, olivo, añil y ocre. Estilo artesanal cálido premium.
+   ========================================================================== */
+
+@theme {
+  /* Tipografías (autoalojadas con @fontsource, sin CDN externo) */
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Crema / arena — fondos */
+  --color-crema-50: #fefbf7;
+  --color-crema-100: #faf4ec;
+  --color-crema-200: #f3e7d8;
+  --color-crema-300: #e9d6bd;
+
+  /* Barro / terracota — color primario de marca */
+  --color-barro-50: #fbf1ec;
+  --color-barro-100: #f5ded1;
+  --color-barro-200: #ebbfa6;
+  --color-barro-300: #de9a76;
+  --color-barro-400: #ce754b;
+  --color-barro-500: #b4522c;
+  --color-barro-600: #9a4322;
+  --color-barro-700: #7c351b;
+  --color-barro-800: #5f2915;
+  --color-barro-900: #451d0f;
+
+  /* Olivo — acento natural */
+  --color-olivo-100: #edefe2;
+  --color-olivo-300: #b9c295;
+  --color-olivo-500: #6e7c4b;
+  --color-olivo-700: #4c5733;
+
+  /* Añil — acento frío, tradición textil hondureña */
+  --color-anil-100: #e4eaf1;
+  --color-anil-300: #9bb0c7;
+  --color-anil-500: #2f4a66;
+  --color-anil-700: #1f3247;
+
+  /* Ocre — detalles, filetes y precios */
+  --color-ocre-300: #e3c485;
+  --color-ocre-400: #d9a94f;
+  --color-ocre-500: #c8933a;
+  --color-ocre-600: #a87829;
+
+  /* Tinta — textos y neutrales cálidos */
+  --color-tinta-50: #f7f4f1;
+  --color-tinta-100: #ebe4de;
+  --color-tinta-200: #d9cec5;
+  --color-tinta-300: #b9aaa0;
+  --color-tinta-400: #9a8a7e;
+  --color-tinta-500: #7a6a5e;
+  --color-tinta-600: #5d4e44;
+  --color-tinta-700: #4a3b31;
+  --color-tinta-800: #362a22;
+  --color-tinta-900: #2a1f18;
+
+  /* Verde de WhatsApp, reservado para acciones de contacto */
+  --color-whatsapp-500: #25d366;
+  --color-whatsapp-600: #1eb455;
+  --color-whatsapp-700: #128c7e;
+
+  /* Aliases semánticos */
+  --color-fondo: var(--color-crema-100);
+  --color-superficie: #fffdfa;
+  --color-borde: var(--color-crema-300);
+  --color-texto: var(--color-tinta-900);
+  --color-texto-suave: var(--color-tinta-500);
+  --color-primario: var(--color-barro-500);
+  --color-primario-oscuro: var(--color-barro-700);
+  --color-acento: var(--color-ocre-500);
+
+  /* Radios coherentes con la idea de "pieza hecha a mano" */
+  --radius-pieza: 1.25rem;
+  --radius-bloque: 1.75rem;
+
+  /* Sombras cálidas, nunca grises fríos */
+  --shadow-suave: 0 1px 2px rgb(69 29 15 / 0.05), 0 4px 12px rgb(69 29 15 / 0.06);
+  --shadow-pieza: 0 2px 4px rgb(69 29 15 / 0.06), 0 12px 28px -8px rgb(69 29 15 / 0.16);
+  --shadow-elevada: 0 4px 8px rgb(69 29 15 / 0.07), 0 24px 48px -12px rgb(69 29 15 / 0.22);
+
+  /* Animaciones discretas */
+  --animate-aparecer: aparecer 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --ease-artesanal: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-variation-settings: 'SOFT' 20, 'WONK' 1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    color: var(--color-tinta-900);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-barro-600);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-barro-200);
+    color: var(--color-tinta-900);
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   Componentes
+   ========================================================================== */
+
+@layer components {
+  .contenedor {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .contenedor-angosto {
+    @apply mx-auto w-full max-w-3xl px-5 sm:px-8;
+  }
+
+  .seccion {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* --- Botones ----------------------------------------------------------
+     Tailwind v4 no permite `@apply` de clases propias, así que la base se
+     comparte agrupando selectores en lugar de componer clases. El orden
+     importa: `.btn-lg` va después para poder sobrescribir el tamaño. */
+
+  .btn,
+  .btn-primario,
+  .btn-secundario,
+  .btn-claro,
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+           transition duration-200 ease-[var(--ease-artesanal)] active:scale-[0.98]
+           disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .btn-primario {
+    @apply bg-barro-600 text-crema-50 shadow-[var(--shadow-suave)]
+           hover:-translate-y-0.5 hover:bg-barro-700 hover:shadow-[var(--shadow-pieza)];
+  }
+
+  .btn-secundario {
+    @apply border border-barro-300 bg-transparent text-barro-700
+           hover:-translate-y-0.5 hover:border-barro-500 hover:bg-barro-50;
+  }
+
+  .btn-claro {
+    @apply border border-crema-300 bg-superficie text-tinta-800
+           hover:-translate-y-0.5 hover:bg-crema-50 hover:shadow-[var(--shadow-suave)];
+  }
+
+  .btn-whatsapp {
+    @apply bg-whatsapp-600 text-white shadow-[var(--shadow-suave)]
+           hover:-translate-y-0.5 hover:bg-whatsapp-700 hover:shadow-[var(--shadow-pieza)];
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  /* --- Tarjetas --------------------------------------------------------- */
+
+  .tarjeta,
+  .tarjeta-interactiva {
+    @apply flex flex-col overflow-hidden rounded-[var(--radius-pieza)] border border-crema-200
+           bg-superficie shadow-[var(--shadow-suave)] transition duration-300
+           ease-[var(--ease-artesanal)];
+  }
+
+  .tarjeta-interactiva {
+    @apply hover:-translate-y-1 hover:border-barro-200 hover:shadow-[var(--shadow-pieza)];
+  }
+
+  /* --- Textos ----------------------------------------------------------- */
+
+  .antetitulo {
+    @apply text-xs font-semibold tracking-[0.2em] text-barro-600 uppercase;
+  }
+
+  .titulo-seccion {
+    @apply font-display text-3xl leading-tight text-tinta-900 sm:text-4xl lg:text-[2.75rem];
+  }
+
+  .entradilla {
+    @apply text-lg leading-relaxed text-tinta-600;
+  }
+
+  .prosa {
+    @apply space-y-4 text-base leading-relaxed text-tinta-600;
+  }
+
+  .prosa a {
+    @apply font-medium text-barro-700 underline decoration-barro-300 underline-offset-4
+           transition hover:decoration-barro-600;
+  }
+
+  /* --- Etiquetas -------------------------------------------------------- */
+
+  .etiqueta,
+  .etiqueta-barro,
+  .etiqueta-olivo,
+  .etiqueta-acento {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold
+           tracking-wide;
+  }
+
+  .etiqueta {
+    @apply border-crema-300 bg-crema-50 text-tinta-600;
+  }
+
+  .etiqueta-barro {
+    @apply border-barro-200 bg-barro-50 text-barro-700;
+  }
+
+  .etiqueta-olivo {
+    @apply border-olivo-300 bg-olivo-100 text-olivo-700;
+  }
+
+  .etiqueta-acento {
+    @apply border-ocre-300 bg-ocre-300/25 text-ocre-600;
+  }
+
+  /* --- Enlaces ---------------------------------------------------------- */
+
+  .enlace-subrayado {
+    @apply font-medium text-barro-700 underline decoration-barro-300 decoration-2 underline-offset-4
+           transition hover:decoration-barro-600;
+  }
+
+  /* --- Utilidades de fondo ---------------------------------------------- */
+
+  .patron-lenca {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23b4522c' stroke-opacity='0.12' stroke-width='1.1'%3E%3Cpath d='M22 3l19 19-19 19L3 22z'/%3E%3Cpath d='M22 12l10 10-10 10-10-10z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .patron-puntos {
+    background-image: radial-gradient(var(--color-crema-300) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .degradado-calido {
+    background-image: linear-gradient(
+      140deg,
+      var(--color-crema-100) 0%,
+      var(--color-crema-200) 45%,
+      var(--color-barro-100) 100%
+    );
+  }
+
+  .degradado-barro {
+    background-image: linear-gradient(
+      150deg,
+      var(--color-barro-700),
+      var(--color-barro-500) 55%,
+      var(--color-ocre-500)
+    );
+  }
+
+  /* --- Separadores ------------------------------------------------------ */
+
+  .filete {
+    @apply h-px w-full bg-linear-to-r from-transparent via-crema-300 to-transparent;
+  }
+
+  /* --- Accesibilidad ---------------------------------------------------- */
+
+  .salto-contenido {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50
+           focus:rounded-full focus:bg-barro-700 focus:px-5 focus:py-3 focus:text-sm
+           focus:font-semibold focus:text-crema-50;
+  }
+}
+
+/* ==========================================================================
+   Utilidades propias
+   ========================================================================== */
+
+@utility texto-equilibrado {
+  text-wrap: balance;
+}
+
+/* Oculta la barra de desplazamiento en carruseles horizontales de categorías. */
+@utility sin-barra {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
