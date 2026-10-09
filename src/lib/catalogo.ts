@@ -83,6 +83,21 @@ const modulosProductos = import.meta.glob<{ default: unknown }>('../data/product
   eager: true,
 });
 
+/**
+ * Formatea los problemas de validación de Zod en una lista legible.
+ *
+ * No se usa `z.prettifyError` porque es API de Zod 4 y el proyecto va sobre
+ * Zod 3 (la versión que trae Astro 5).
+ */
+function describirErrores(error: z.ZodError): string {
+  return error.issues
+    .map((problema) => {
+      const ruta = problema.path.length > 0 ? problema.path.join('.') : '(raíz)';
+      return `  · ${ruta}: ${problema.message}`;
+    })
+    .join('\n');
+}
+
 function validarCategorias(): Categoria[] {
   const entrada = Object.values(modulosCategorias)[0]?.default;
   if (!entrada) {
@@ -91,7 +106,7 @@ function validarCategorias(): Categoria[] {
 
   const resultado = z.array(CategoriaSchema).safeParse(entrada);
   if (!resultado.success) {
-    throw new Error(`categorias.json no es válido:\n${z.prettifyError(resultado.error)}`);
+    throw new Error(`categorias.json no es válido:\n${describirErrores(resultado.error)}`);
   }
 
   return resultado.data;
@@ -107,7 +122,7 @@ function validarProductos(categorias: Categoria[]): Producto[] {
 
     if (!resultado.success) {
       throw new Error(
-        `${rutaArchivo} no cumple el esquema de producto:\n${z.prettifyError(resultado.error)}`,
+        `${rutaArchivo} no cumple el esquema de producto:\n${describirErrores(resultado.error)}`,
       );
     }
 

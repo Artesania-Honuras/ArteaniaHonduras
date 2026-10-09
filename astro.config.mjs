@@ -27,7 +27,11 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss()],
+    // `tailwindcss()` se declara como `any` a propósito: el plugin expone los
+    // tipos de su propia copia de Vite, que no coincide con la copia anidada
+    // dentro de Astro, y `astro check` reporta ts(2322) por esa duplicación.
+    // El objeto es válido en tiempo de ejecución; solo sobra el tipo.
+    plugins: [/** @type {any} */ (tailwindcss())],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
