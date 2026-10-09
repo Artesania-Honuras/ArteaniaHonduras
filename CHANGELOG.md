@@ -118,14 +118,22 @@ para artesanías, textiles y joyería hechas a mano en Honduras.
   en Windows con `LongPathsEnabled=0`. Se conserva `package-lock.json` para instalaciones
   reproducibles en CI.
 
+### Corregido
+
+- **`astro check` fallaba en CI** por tres motivos: el plugin de Tailwind declara los tipos de su
+  propia copia de Vite (ts 2322), se usaba `z.prettifyError` (API de Zod 4) sobre Zod 3, y había
+  dos importaciones sin usar. Los tres quedaron resueltos y el comando pasa con 0 errores.
+- **El enlace de producto dentro del mensaje de WhatsApp apuntaba a un 404.** Se construía con
+  `new URL()` contra el dominio sin el subdirectorio de GitHub Pages, así que faltaba
+  `/ArteaniaHonduras/`. Ahora usa el helper `urlAbsoluta()`, que respeta el `base`.
+- **`tsconfig.json` ahora excluye `dist`, `node_modules`, `.npm-cache` y `_revision`.** Con el
+  patrón `include: ["**/*"]`, cualquier carpeta de trabajo con copias del sitio compilado hacía
+  que `astro check` intentara analizar bundles minificados hasta agotar la memoria.
+
 ### Pendiente
 
-Datos del negocio por confirmar antes de difundir el enlace del sitio. Están marcados con `TODO:`
-en el código y detallados en [docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md).
+Datos del negocio por confirmar antes de difundir el enlace del sitio a gran escala.
 
-- **Número de WhatsApp real.** `CONTACTO.whatsapp.numero` sigue en `50400000000`, valor de
-  ejemplo. Mientras no se reemplace, los botones de contacto no abren ningún chat y el build
-  imprime un aviso por consola. **Es el pendiente bloqueante número uno.**
 - **Dirección de la tienda física** y horarios de atención (`ENVIOS`, modalidad `tienda-fisica`).
 - **Fotografías reales de producto.** Hoy el catálogo usa ilustraciones SVG generadas; se
   sustituyen por fotografías mediante el campo `imagen` de cada producto.
@@ -133,6 +141,11 @@ en el código y detallados en [docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LAN
   como punto de partida y no constituyen asesoría legal.
 - **Dominio propio (opcional).** De adoptarse, hay que actualizar `site` y `base` en
   `astro.config.mjs` y en `src/config/site.ts`.
+
+### Resuelto durante el lanzamiento
+
+- **Número de WhatsApp real publicado** (`50499653413`). El canal de venta del sitio ya abre el
+  chat correcto y el guardián del CI deja de fallar en `master`.
 - **Redes sociales y correo de respaldo:** campos vacíos en `src/config/site.ts`, de modo que no
   se muestran en el sitio mientras no existan cuentas oficiales.
 - **Analítica y medición:** sin herramienta instalada; su adopción implica cookies y, por lo

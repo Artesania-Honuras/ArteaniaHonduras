@@ -13,13 +13,13 @@ bloque 5 (operación).
 
 ## 1. Identidad y contacto 🔴 BLOQUEANTE
 
-- [ ] **`TODO:` Reemplazar el número de WhatsApp de ejemplo (`50400000000`) por el número real**
-      en `src/config/site.ts` → `CONTACTO.whatsapp.numero` (formato `504` + 8 dígitos, sin `+`, sin
+- [x] **Número de WhatsApp real configurado** (`50499653413`, visible como +504 9965-3413) en
+      `src/config/site.ts` → `CONTACTO.whatsapp.numero` (formato `504` + 8 dígitos, sin `+`, sin
       espacios ni guiones).
-- [ ] **`TODO:` Actualizar el número visible** (`CONTACTO.whatsapp.numeroVisible`) con el mismo
-      número, escrito como se quiere mostrar al público.
-- [ ] **`TODO:` Confirmar que el número es el correcto para atención al cliente** y que hay
-      alguien disponible para responderlo en el horario publicado.
+- [x] **Número visible actualizado** (`CONTACTO.whatsapp.numeroVisible`) con el mismo número,
+      escrito como se quiere mostrar al público.
+- [ ] **Confirmar que hay alguien disponible para responder ese número** en el horario publicado
+      (lunes a sábado, 8:00 a.m. a 6:00 p.m.).
 - [ ] Confirmar que el build **ya no imprime el aviso** del número de ejemplo (`npm run dev` o
       `npm run build` y revisar la consola).
 - [ ] **Probar el botón flotante de WhatsApp desde un celular:** debe abrir WhatsApp con el

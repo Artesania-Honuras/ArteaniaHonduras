@@ -15,22 +15,22 @@ por **WhatsApp**, que es el único canal de contacto de la marca en esta primera
 
 ---
 
-## ⚠️ Antes de publicar: pendientes bloqueantes
+## ⚠️ Antes de publicar: pendientes
 
-El sitio está completo y compila, pero **todavía no se puede difundir el enlace** hasta resolver
-esto. Los datos marcados con `TODO:` en el código son de ejemplo.
+El sitio está en línea y funcionando. El canal de venta ya apunta al número real del negocio
+(**+504 9965-3413**), así que los botones de WhatsApp sí abren el chat. Queda esto por resolver
+antes de difundir el enlace a gran escala:
 
-| # | Pendiente | Dónde se corrige | Por qué es bloqueante |
-| - | --------- | ---------------- | --------------------- |
-| 1 | **Número de WhatsApp real.** Hoy es `50400000000` | `src/config/site.ts` → `CONTACTO.whatsapp` | El enlace de WhatsApp **no abre ningún chat**. Es el único canal de venta del sitio: sin número real, el sitio no vende. |
-| 2 | **Dirección de la tienda física** y horarios | `src/config/site.ts` → `ENVIOS` (modalidad `tienda-fisica`) | La página de envíos y pagos anuncia una tienda sin dirección. |
-| 3 | **Fotografías reales de producto** | Campo `imagen` de cada JSON en `src/data/productos/` | Hoy hay ilustraciones SVG generadas con `npm run imagenes:generar`. Sirven para maquetar, no para vender. |
-| 4 | **Revisar privacidad y términos** con criterio propio | `src/pages/privacidad.astro`, `src/pages/terminos.astro` | Son textos base redactados como punto de partida. **No son asesoría legal.** |
-| 5 | **Dominio propio (opcional)** | `site` y `base` en `astro.config.mjs` y `src/config/site.ts` | Sin dominio propio el sitio funciona, pero la URL es larga y no es de marca. |
+| # | Pendiente | Dónde se corrige | Por qué importa |
+| - | --------- | ---------------- | --------------- |
+| 1 | **Dirección de la tienda física** y horarios | `src/config/site.ts` → `ENVIOS` (modalidad `tienda-fisica`) | La página de envíos y pagos anuncia una tienda sin dirección. |
+| 2 | **Fotografías reales de producto** | Campo `imagen` de cada JSON en `src/data/productos/` | Hoy hay ilustraciones SVG generadas con `npm run imagenes:generar`. Sirven para maquetar, no para vender. |
+| 3 | **Revisar privacidad y términos** con criterio propio | `src/pages/privacidad.astro`, `src/pages/terminos.astro` | Son textos base redactados como punto de partida. **No son asesoría legal.** |
+| 4 | **Dominio propio (opcional)** | `site` y `base` en `astro.config.mjs` y `src/config/site.ts` | Sin dominio propio el sitio funciona, pero la URL es larga y no es de marca. |
 
-Cuando reemplaces el número de WhatsApp, el build dejará de imprimir el aviso de advertencia en
-consola (ver `src/lib/whatsapp.ts`). La lista completa y accionable está en
-[docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md).
+El CI mantiene una comprobación automática: si `CONTACTO.whatsapp.numero` volviera a quedar en un
+valor de ejemplo, el build imprime un aviso y el workflow **falla en `master`**. La lista completa
+y accionable está en [docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md).
 
 ---
 

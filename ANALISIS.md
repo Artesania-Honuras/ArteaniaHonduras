@@ -77,7 +77,7 @@ No todo era deuda. El punto de partida tenía tres ventajas reales:
    gratuita para un sitio estático. Eso eliminó por completo la necesidad de contratar hosting.
 2. **Repositorio público y en una organización.** Base adecuada para trabajar con ramas y pull
    requests desde el inicio.
-3. **Sin deuda técnica que arrastrar.** Los 26 archivos-línea originales no imponían nada: no
+3. **Sin deuda técnica que arrastrar.** Los 3 archivos originales (26 líneas) no imponían nada: no
    había código legado que respetar, ni dependencias internas, ni decisiones previas que
    dificultaran rehacer el proyecto con criterio. Empezar de nuevo era más barato que reparar.
 
@@ -249,6 +249,8 @@ accesible y desplegado automáticamente. El cambio de fondo no es estético: es 
 contenido está separado del diseño y **validado antes de publicarse**, de modo que el negocio
 puede crecer el catálogo sin romper el sitio.
 
-Lo que falta no es código: son **datos del negocio**. Mientras el número de WhatsApp siga siendo
-un marcador de posición, el sitio no cumple su única función comercial. Ese es el pendiente
-número uno de [docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md).
+Lo que falta ya no es código: son **datos y contenido del negocio**. El canal de venta quedó
+resuelto con el número real de WhatsApp (+504 9965-3413), así que el sitio ya puede cerrar
+pedidos. Los pendientes que quedan —dirección de la tienda física, fotografías reales de producto
+y revisión legal de las políticas— están listados en
+[docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md).

@@ -45,22 +45,27 @@ Y abre en el navegador `http://localhost:4321/ArteaniaHonduras/`.
 
 ## 1. Cambiar el número de WhatsApp ⚠️ (el cambio más importante)
 
-**Hoy el sitio tiene un número de ejemplo (`50400000000`). Mientras siga así, los botones de
-WhatsApp NO abren ningún chat.** Este es el único cambio que impide publicar el sitio.
+**El sitio ya tiene el número real del negocio: `50499653413` (se muestra como +504 9965-3413).**
+Es el único canal de venta del sitio, así que si algún día cambia, este es el primer dato que hay
+que actualizar.
+
+> **Cómo saber si está mal configurado:** si el número queda con un valor de ejemplo, el build
+> imprime un aviso por consola y el workflow de CI **falla en la rama `master`** a propósito, para
+> que nunca se publique una tienda cuyo único canal de contacto no existe.
 
 ### Paso a paso
 
 1. Abre el archivo `src/config/site.ts`.
 2. Busca el bloque que empieza con `export const CONTACTO`.
-3. Reemplaza estas dos líneas:
+3. Verás estas dos líneas (hoy con el número real):
 
 ```ts
-    numero: '50400000000',
+    numero: '50499653413',
     /** Cómo se muestra el número en el sitio. */
-    numeroVisible: '+504 0000-0000',
+    numeroVisible: '+504 9965-3413',
 ```
 
-por tus datos reales:
+Reemplázalas por el número nuevo, en los dos formatos:
 
 ```ts
     numero: '50488887777',
