@@ -2,7 +2,7 @@
 import Logo from '@/components/Logo.astro';
 import Icono from '@/components/Icono.astro';
 import { CATEGORIAS_FOOTER, ENLACES_LEGALES } from '@/config/navegacion';
-import { CONTACTO, ENVIOS, METODOS_PAGO, SITE } from '@/config/site';
+import { CONTACTO, ENVIOS, METODOS_PAGO, SITE, UBICACION_TEXTO } from '@/config/site';
 import { enlace } from '@/lib/rutas';
 import { enlaceWhatsApp } from '@/lib/whatsapp';
 
@@ -90,7 +90,7 @@ const ETIQUETAS_REDES: Record<string, string> = {
           </li>
           <li class="flex items-start gap-2.5">
             <Icono nombre="ubicacion" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />
-            <span>Honduras · envíos nacionales e internacionales</span>
+            <span>{UBICACION_TEXTO} · envíos nacionales e internacionales</span>
           </li>
           <li class="flex items-start gap-2.5">
             <Icono nombre="reloj" clase="mt-0.5 h-4 w-4 shrink-0 text-olivo-500" />

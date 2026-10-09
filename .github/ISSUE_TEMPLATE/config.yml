@@ -1,4 +1,4 @@
-# Configuración del selector de incidencias de Arteanía Honduras.
+# Configuración del selector de incidencias de Artesanías De Honduras.
 #
 # No hay plantillas de incidencia: este repositorio es privado de contenido y
 # no recibe reportes de terceros. Se deja abierta la opción de crear una
@@ -16,4 +16,4 @@ contact_links:
   # código: no abre ningún chat real.
   - name: Consultas sobre productos y pedidos (WhatsApp)
     url: https://wa.me/NUMERO_POR_CONFIRMAR
-    about: Escríbenos por WhatsApp para consultar precios, disponibilidad, envíos y pedidos. Canal oficial de atención de Arteanía Honduras.
+    about: Escríbenos por WhatsApp para consultar precios, disponibilidad, envíos y pedidos. Canal oficial de atención de Artesanías De Honduras.

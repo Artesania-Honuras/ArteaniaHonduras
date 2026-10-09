@@ -1,5 +1,5 @@
 """
-Genera las dos imágenes raster de Arteanía Honduras:
+Genera las dos imágenes raster de Artesanías De Honduras:
 
   - public/imagenes/og-default.png   (1200x630, tarjeta para redes sociales)
   - public/apple-touch-icon.png      (180x180, icono para iOS)
@@ -157,11 +157,11 @@ def generar_og() -> Path:
 
     # Marca
     marca(dibujo, 110, 112, 44)
-    dibujo.text((170, 78), "Arteanía", font=cargar_fuente(FUENTES_SERIF, 76), fill=TINTA_900)
+    dibujo.text((170, 78), "Artesanías", font=cargar_fuente(FUENTES_SERIF, 76), fill=TINTA_900)
     dibujo.text(
         (174, 168),
-        "H O N D U R A S",
-        font=cargar_fuente(FUENTES_SANS, 28),
+        "D E   H O N D U R A S",
+        font=cargar_fuente(FUENTES_SANS, 27),
         fill=BARRO_600,
     )
 

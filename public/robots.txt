@@ -1,4 +1,4 @@
-# Arteanía Honduras
+# Artesanías De Honduras
 User-agent: *
 Allow: /
 

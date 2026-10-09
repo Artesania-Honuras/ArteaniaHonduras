@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Sitio web de marca y catálogo de Arteanía Honduras: artesanías, textiles y joyería hecha a mano en Honduras.",
-  "author": "Arteanía Honduras",
+  "description": "Sitio web de marca y catálogo de Artesanías De Honduras: artesanías, textiles y joyería hecha a mano en Honduras.",
+  "author": "Artesanías De Honduras",
   "license": "UNLICENSED",
   "engines": {
     "node": ">=20.11.0"

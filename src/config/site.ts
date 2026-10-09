@@ -1,5 +1,5 @@
 /**
- * Configuración central del sitio Arteanía Honduras.
+ * Configuración central del sitio Artesanías De Honduras.
  *
  * Este es el ÚNICO archivo que hay que tocar para cambiar datos de contacto,
  * métodos de pago, envíos y banderas de funcionalidad. Ninguna página debe
@@ -11,13 +11,13 @@
 
 export const SITE = {
   /** Nombre legal/comercial que aparece en el logo y los metadatos. */
-  nombre: 'Arteanía Honduras',
-  nombreCorto: 'Arteanía',
+  nombre: 'Artesanías De Honduras',
+  nombreCorto: 'Artesanías',
   /** Lema corto, se usa en el header, el footer y las tarjetas sociales. */
   eslogan: 'Artesanía hecha a mano en Honduras',
   /** Descripción de 150-160 caracteres para SEO y tarjetas sociales. */
   descripcion:
-    'Arteanía Honduras reúne artesanías, textiles y joyería hechas a mano por artesanos hondureños. Piezas únicas con historia, envíos a todo Honduras y al extranjero.',
+    'Artesanías De Honduras reúne artesanías, textiles y joyería hechas a mano por artesanos hondureños. Piezas únicas con historia, envíos a todo Honduras y al extranjero.',
   /** URL canónica del sitio (sin el subdirectorio). */
   url: 'https://artesania-honuras.github.io',
   /** Subdirectorio de publicación en GitHub Pages. Debe coincidir con astro.config.mjs. */
@@ -41,7 +41,7 @@ export const CONTACTO = {
     numeroVisible: '+504 9965-3413',
     /** Mensaje que se prellena cuando el visitante abre el chat genérico. */
     mensajePorDefecto:
-      '¡Hola Arteanía Honduras! Vengo desde su sitio web y quiero información sobre sus piezas artesanales.',
+      '¡Hola Artesanías De Honduras! Vengo desde su sitio web y quiero información sobre sus piezas artesanales.',
     horario: 'Lunes a sábado, 8:00 a.m. a 6:00 p.m. (hora de Honduras)',
   },
   /** Correo de respaldo para proveedores o facturación. Opcional. */
@@ -157,8 +157,8 @@ export const ENVIOS = [
     id: 'tienda-fisica',
     nombre: 'Tienda física y entrega en mano',
     descripcion:
-      'Puedes conocer las piezas en persona, ver los acabados y recoger tu pedido sin costo de envío. Te esperamos con cita previa por WhatsApp.',
-    detalle: 'Dirección y horarios por confirmar. Escríbenos para agendar tu visita.',
+      'Puedes conocer las piezas en persona, ver los acabados y recoger tu pedido sin costo de envío. Estamos en Choloma, Cortés, y te esperamos con cita previa por WhatsApp.',
+    detalle: 'En Choloma, Cortés. Dirección exacta y horarios por confirmar: escríbenos y te los compartimos.',
     icono: 'tienda',
   },
 ] as const;
@@ -218,3 +218,28 @@ export const NEGOCIO = {
   /** Rango de precios orientativo para datos estructurados. */
   rangoPrecios: '$$',
 } as const;
+
+/**
+ * Ubicación del negocio.
+ *
+ * La ciudad se publica porque ya es pública en la página de Facebook de la
+ * marca. La dirección exacta sigue pendiente: mientras `direccion` esté vacía,
+ * el marcado estructurado publica solo ciudad, departamento y país, y las
+ * páginas muestran el aviso de "por confirmar".
+ */
+export const UBICACION = {
+  ciudad: 'Choloma',
+  departamento: 'Cortés',
+  pais: 'Honduras',
+  paisCodigo: 'HN',
+  /** TODO: dirección exacta de la tienda, cuando esté confirmada. */
+  direccion: '',
+  /** TODO: enlace de Google Maps de la ubicación exacta. */
+  mapsUrl: '',
+} as const;
+
+/** Ubicación tal como se muestra en el sitio: "Choloma, Cortés". */
+export const UBICACION_TEXTO = `${UBICACION.ciudad}, ${UBICACION.departamento}`;
+
+/** Ubicación completa para textos largos: "Choloma, Cortés, Honduras". */
+export const UBICACION_COMPLETA = `${UBICACION.ciudad}, ${UBICACION.departamento}, ${UBICACION.pais}`;

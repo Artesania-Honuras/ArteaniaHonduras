@@ -1,4 +1,4 @@
-# Hoja de ruta de la tienda — Arteanía Honduras
+# Hoja de ruta de la tienda — Artesanías De Honduras
 
 **De sitio de catálogo a tienda en línea.**
 

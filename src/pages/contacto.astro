@@ -4,7 +4,7 @@ import Migas from '@/components/Migas.astro';
 import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
 import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
 import Icono from '@/components/Icono.astro';
-import { CONTACTO, SITE } from '@/config/site';
+import { CONTACTO, SITE, UBICACION } from '@/config/site';
 import { enlace } from '@/lib/rutas';
 import { mensajeGeneral } from '@/lib/whatsapp';
 
@@ -58,7 +58,7 @@ const motivos = [
 <Base
   titulo="Contacto"
   descripcion="Escríbenos por WhatsApp para cotizar piezas de artesanía hondureña, consultar envíos o coordinar una visita a la tienda física. Respuesta personal, sin bots."
-  mensajeFlotante={mensajeGeneral('Quiero contactar a Arteanía Honduras')}
+  mensajeFlotante={mensajeGeneral('Quiero contactar a Artesanías De Honduras')}
 >
   <Migas items={[{ nombre: 'Contacto', ruta: '/contacto' }]} />
 
@@ -141,7 +141,11 @@ const motivos = [
             Puedes ver y tocar las piezas antes de comprar. Atendemos con cita previa para
             dedicarte el tiempo necesario.
           </p>
-          <p class="mt-3 text-xs text-tinta-500">
+          <p class="mt-3 flex items-center gap-2 text-sm font-medium text-tinta-800">
+            <Icono nombre="ubicacion" clase="h-4 w-4 shrink-0 text-olivo-500" />
+            {UBICACION.ciudad}, {UBICACION.departamento}
+          </p>
+          <p class="mt-2 text-xs text-tinta-500">
             TODO: dirección exacta, horarios y enlace de Google Maps cuando el espacio esté
             confirmado.
           </p>

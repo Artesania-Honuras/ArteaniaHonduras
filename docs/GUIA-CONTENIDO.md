@@ -1,4 +1,4 @@
-# Guía de contenido — Arteanía Honduras
+# Guía de contenido — Artesanías De Honduras
 
 **Para quien va a editar el sitio sin saber programar.**
 

@@ -1,4 +1,4 @@
-import { SITE, CONTACTO, NEGOCIO, FUNCIONES } from '@/config/site';
+import { SITE, CONTACTO, NEGOCIO, FUNCIONES, UBICACION } from '@/config/site';
 import { urlAbsoluta, enlace } from '@/lib/rutas';
 import type { ProductoVista } from '@/lib/catalogo';
 
@@ -25,6 +25,18 @@ export function organizacionSchema(): JsonLd {
     paymentAccepted: 'Transferencia bancaria, Tigo Money, BAC Credomatic, pago contra entrega',
     image: urlAbsoluta('/imagenes/og-default.png'),
     logo: urlAbsoluta('/favicon.svg'),
+    // Localización: ayuda a aparecer en búsquedas del tipo "artesanías en
+    // Cortés". La calle solo se publica cuando esté confirmada; mientras tanto
+    // se declara ciudad, departamento y país, que ya son información pública de
+    // la página de Facebook de la marca.
+    address: {
+      '@type': 'PostalAddress',
+      ...(UBICACION.direccion ? { streetAddress: UBICACION.direccion } : {}),
+      addressLocality: UBICACION.ciudad,
+      addressRegion: UBICACION.departamento,
+      addressCountry: UBICACION.paisCodigo,
+    },
+    ...(UBICACION.mapsUrl ? { hasMap: UBICACION.mapsUrl } : {}),
     contactPoint: [
       {
         '@type': 'ContactPoint',

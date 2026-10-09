@@ -77,7 +77,7 @@ export function mensajeGeneral(asunto?: string): string {
  */
 if (!whatsappConfigurado()) {
   console.warn(
-    '\n[Arteanía Honduras] ATENCIÓN: CONTACTO.whatsapp.numero sigue con el valor de ejemplo.\n' +
+    '\n[Artesanías De Honduras] ATENCIÓN: CONTACTO.whatsapp.numero sigue con el valor de ejemplo.\n' +
       '  Edita src/config/site.ts y coloca el número real en formato internacional (504 + 8 dígitos).\n' +
       '  Mientras no lo hagas, todos los botones de WhatsApp abrirán un chat inexistente.\n',
   );

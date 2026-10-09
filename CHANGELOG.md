@@ -9,7 +9,7 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y e
 
 ## [1.0.0] — 2026-10-09
 
-Primera versión publicable del sitio de Arteanía Honduras: sitio de marca y catálogo consultivo
+Primera versión publicable del sitio de Artesanías De Honduras: sitio de marca y catálogo consultivo
 para artesanías, textiles y joyería hechas a mano en Honduras.
 
 ### Añadido

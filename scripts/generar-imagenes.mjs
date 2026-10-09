@@ -1,5 +1,5 @@
 /**
- * Generador de ilustraciones de Arteanía Honduras.
+ * Generador de ilustraciones de Artesanías De Honduras.
  *
  * Crea, a partir del catálogo real, las ilustraciones SVG de cada producto, la
  * imagen del héroe y el favicon. Es determinista e idempotente: volver a
@@ -164,9 +164,9 @@ function ilustracionHero(iconos = ['vasija', 'tejido', 'collar']) {
 `;
 }
 
-/** Favicon: rombo lenca con la "A" de Arteanía. */
+/** Favicon: rombo lenca con la "A" de Artesanías. */
 function favicon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Arteanía Honduras">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Artesanías De Honduras">
   <rect width="48" height="48" rx="10" fill="#faf4ec" />
   <path d="M24 4 44 24 24 44 4 24z" fill="#b4522c" />
   <path d="M24 10.5 37.5 24 24 37.5 10.5 24z" fill="#c8933a" />
@@ -191,8 +191,8 @@ function escapar(texto) {
 function manifiesto() {
   return `${JSON.stringify(
     {
-      name: 'Arteanía Honduras',
-      short_name: 'Arteanía',
+      name: 'Artesanías De Honduras',
+      short_name: 'Artesanías',
       description:
         'Artesanías, textiles y joyería hechas a mano en Honduras. Pedidos por WhatsApp.',
       start_url: './',
@@ -213,7 +213,7 @@ function manifiesto() {
 
 /** robots.txt acorde al subdirectorio de publicación. */
 function robots() {
-  return `# Arteanía Honduras
+  return `# Artesanías De Honduras
 User-agent: *
 Allow: /
 

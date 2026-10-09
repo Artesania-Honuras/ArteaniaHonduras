@@ -5,7 +5,7 @@ import SeccionEncabezado from '@/components/SeccionEncabezado.astro';
 import Acordeon from '@/components/Acordeon.astro';
 import BotonWhatsApp from '@/components/BotonWhatsApp.astro';
 import Icono from '@/components/Icono.astro';
-import { ENVIOS, METODOS_PAGO, SITE } from '@/config/site';
+import { ENVIOS, METODOS_PAGO, SITE, UBICACION } from '@/config/site';
 import { enlace } from '@/lib/rutas';
 import { faqSchema } from '@/lib/seo';
 import { mensajeGeneral } from '@/lib/whatsapp';
@@ -98,7 +98,7 @@ const jsonLd = [faqSchema([...faqEnvio, ...faqPago])];
 
 <Base
   titulo="Envíos y formas de pago"
-  descripcion="Cómo comprar en Arteanía Honduras: envíos a todo Honduras y al extranjero, tienda física, y pago por transferencia bancaria, Tigo Money, BAC Credomatic o contra entrega."
+  descripcion="Cómo comprar en Artesanías De Honduras: envíos a todo Honduras y al extranjero, tienda física, y pago por transferencia bancaria, Tigo Money, BAC Credomatic o contra entrega."
   jsonLd={jsonLd}
   mensajeFlotante={mensajeGeneral('Tengo una duda sobre envíos o pagos')}
 >
@@ -215,12 +215,14 @@ const jsonLd = [faqSchema([...faqEnvio, ...faqPago])];
           Tienda física
         </h3>
         <p class="mt-2 text-sm leading-relaxed text-tinta-600">
-          Estamos habilitando el espacio para que puedas ver las piezas en persona. Escríbenos para
-          coordinar una visita y te compartimos la dirección exacta y los horarios de atención.
+          Puedes ver las piezas en persona, revisar los acabados y recoger tu pedido sin costo de
+          envío. Estamos en <strong>{UBICACION.ciudad}, {UBICACION.departamento}</strong>. Escríbenos y
+          coordinamos una visita con cita previa.
         </p>
         <p class="mt-3 text-xs text-tinta-500">
           TODO: publicar aquí la dirección completa, horarios y un enlace de Google Maps cuando el
-          espacio esté confirmado.
+          espacio esté confirmado. La ciudad ya se publica porque es información pública de la página
+          de Facebook de la marca.
         </p>
       </div>
     </div>

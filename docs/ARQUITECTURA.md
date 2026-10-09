@@ -1,4 +1,4 @@
-# Arquitectura del sitio — Arteanía Honduras
+# Arquitectura del sitio — Artesanías De Honduras
 
 Documento técnico. Explica **cómo está construido** el sitio, por qué está construido así y qué
 reglas hay que respetar al modificarlo. Para editar contenido no hace falta leer esto: ver
@@ -356,7 +356,7 @@ multilínea, no. Ya ocurrió una vez en este proyecto: no reintroducirlo.
 Todas las páginas pasan por la plantilla `Base.astro`, que recibe `titulo`, `descripcion`,
 `imagen`, `tipo`, `noindex`, `jsonLd`, `sufijo` y `mensajeFlotante`, y construye:
 
-- `<title>` compuesto (`Título | Arteanía Honduras`).
+- `<title>` compuesto (`Título | Artesanías De Honduras`).
 - `<meta name="description">` con el valor recibido o la descripción de la marca.
 - **Canónica** calculada con `canonica(Astro.url.pathname)`.
 - `robots` según `noindex`; si no, `index, follow, max-image-preview:large, max-snippet:-1`.

@@ -1,4 +1,4 @@
-# Análisis del repositorio Arteanía Honduras
+# Análisis del repositorio Artesanías De Honduras
 
 **Documento de análisis técnico y de decisiones**
 Repositorio: `Artesania-Honuras/ArteaniaHonduras`

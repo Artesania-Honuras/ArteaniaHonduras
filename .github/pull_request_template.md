@@ -1,4 +1,4 @@
-# Plantilla de pull request — Arteanía Honduras
+# Plantilla de pull request — Artesanías De Honduras
 
 Gracias por contribuir. Marca lo que ya verificaste; si algo no aplica, explica por qué.
 

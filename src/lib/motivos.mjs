@@ -1,5 +1,5 @@
 /**
- * Motivos gráficos de Arteanía Honduras.
+ * Motivos gráficos de Artesanías De Honduras.
  *
  * Módulo compartido entre el sitio (componente `Motivo.astro`) y el generador
  * de ilustraciones de producto (`scripts/generar-imagenes.mjs`). Se mantiene en

@@ -1,4 +1,4 @@
-# Checklist de lanzamiento — Arteanía Honduras
+# Checklist de lanzamiento — Artesanías De Honduras
 
 Lista de verificación para publicar el sitio. Marca cada casilla **solo cuando lo hayas
 comprobado tú mismo**, no cuando creas que está hecho.
@@ -35,8 +35,14 @@ bloque 5 (operación).
       la realidad.
 - [ ] Revisar el mensaje por defecto del chat (`mensajePorDefecto`): que suene natural y diga de
       dónde viene la persona.
-- [ ] Decidir si se publican redes sociales. Si sí, llenar los campos de `CONTACTO.redes`; si no,
-      **dejarlos vacíos** para que no aparezcan en el pie de página.
+- [x] **Página de Facebook publicada** en el pie de página y en la tarjeta de contacto, con el
+      enlace también en el marcado estructurado (`sameAs`) para que los buscadores la asocien.
+- [x] **Ciudad de la tienda física publicada** (Choloma, Cortés) en `UBICACION` y en el
+      `PostalAddress` del marcado estructurado.
+- [ ] **`TODO:` Completar la dirección exacta** en `UBICACION.direccion` y el enlace de Google Maps
+      en `UBICACION.mapsUrl`. Mientras estén vacíos, la web solo publica la ciudad.
+- [ ] **`TODO:` Publicar los horarios de la tienda física** y coordinar quién atiende las visitas
+      con cita previa.
 - [ ] Decidir si se publica un correo de respaldo (`CONTACTO.correo`). Si no hay, dejarlo vacío.
 - [ ] Revisar el nombre, el lema y la descripción de la marca en `SITE` (la descripción es la que
       aparece en Google): que sean correctos y estén bien escritos.

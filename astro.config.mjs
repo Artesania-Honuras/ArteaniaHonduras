@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 /**
- * Configuración de Astro para Arteanía Honduras.
+ * Configuración de Astro para Artesanías De Honduras.
  *
  * El sitio se publica como "project site" de GitHub Pages, por lo que vive
  * bajo el subdirectorio definido en `base`. Todos los enlaces internos del

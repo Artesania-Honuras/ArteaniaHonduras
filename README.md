@@ -1,8 +1,8 @@
-# Arteanía Honduras
+# Artesanías De Honduras
 
 **Artesanía hecha a mano en Honduras.**
 
-Sitio web de marca y catálogo de **Arteanía Honduras**: un espacio para mostrar piezas
+Sitio web de marca y catálogo de **Artesanías De Honduras**: un espacio para mostrar piezas
 artesanales hondureñas —barro, madera, fibra, textil, plata, tagua y cuero— hechas por talleres
 familiares de distintos departamentos del país.
 
@@ -23,7 +23,7 @@ antes de difundir el enlace a gran escala:
 
 | # | Pendiente | Dónde se corrige | Por qué importa |
 | - | --------- | ---------------- | --------------- |
-| 1 | **Dirección de la tienda física** y horarios | `src/config/site.ts` → `ENVIOS` (modalidad `tienda-fisica`) | La página de envíos y pagos anuncia una tienda sin dirección. |
+| 1 | **Dirección exacta de la tienda física** y horarios. La ciudad (**Choloma, Cortés**) ya está publicada | `src/config/site.ts` → `UBICACION` y `ENVIOS` (modalidad `tienda-fisica`) | El sitio ya dice en qué ciudad está, pero quien quiera visitarla todavía tiene que preguntar la dirección por WhatsApp. |
 | 2 | **Fotografías reales de producto** | Guarda las fotos en `fotos-originales/` y ejecuta `npm run fotos:procesar` | Hoy hay ilustraciones SVG generadas con `npm run imagenes:generar`. Sirven para maquetar, no para vender. |
 | 3 | **Revisar privacidad y términos** con criterio propio | `src/pages/privacidad.astro`, `src/pages/terminos.astro` | Son textos base redactados como punto de partida. **No son asesoría legal.** |
 | 4 | **Dominio propio (opcional)** | `site` y `base` en `astro.config.mjs` y `src/config/site.ts` | Sin dominio propio el sitio funciona, pero la URL es larga y no es de marca. |
@@ -249,5 +249,5 @@ Sin carrito de compras por decisión de negocio: la venta se cierra por WhatsApp
 
 ---
 
-© 2026 Arteanía Honduras. Contenido, fotografías, ilustraciones y textos: todos los derechos
+© 2026 Artesanías De Honduras. Contenido, fotografías, ilustraciones y textos: todos los derechos
 reservados. Ver [LICENSE](LICENSE).
