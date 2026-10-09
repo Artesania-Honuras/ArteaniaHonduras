@@ -19,7 +19,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "catalogo:validar": "node scripts/validar-catalogo.mjs",
-    "imagenes:generar": "node scripts/generar-imagenes.mjs"
+    "imagenes:generar": "node scripts/generar-imagenes.mjs",
+    "fotos:procesar": "python scripts/procesar-fotos.py"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

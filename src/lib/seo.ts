@@ -84,7 +84,9 @@ export function productoSchema(producto: ProductoVista): JsonLd {
     '@id': urlAbsoluta(`/producto/${producto.slug}/`),
     name: producto.nombre,
     description: producto.resumen,
-    image: urlAbsoluta(`/imagenes/productos/${producto.slug}.svg`),
+    // `imagenPrincipal` ya viene con el base aplicado por `catalogo.ts`, así que
+    // solo falta anteponerle el dominio.
+    image: new URL(producto.imagenPrincipal, SITE.url).href,
     sku: producto.slug.toUpperCase().replace(/-/g, ''),
     category: producto.categoriaNombre,
     material: producto.materiales.join(', '),

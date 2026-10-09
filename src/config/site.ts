@@ -46,10 +46,15 @@ export const CONTACTO = {
   },
   /** Correo de respaldo para proveedores o facturación. Opcional. */
   correo: '',
-  /** Redes sociales. Dejar vacío para que no se muestren en el footer. */
+  /**
+   * Redes sociales. Dejar vacío para que no se muestren en el footer.
+   * Se usan también como `sameAs` en el marcado estructurado, para que Google
+   * relacione el sitio con los perfiles oficiales de la marca.
+   */
   redes: {
     instagram: '',
-    facebook: '',
+    /** Página de Facebook del negocio. */
+    facebook: 'https://www.facebook.com/people/Artesanias-De-Honduras/100063559657469/',
     tiktok: '',
   },
 } as const;

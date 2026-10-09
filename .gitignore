@@ -33,3 +33,7 @@ pnpm-debug.log*
 
 # Copias temporales para revisión de código de terceros (nunca se publican)
 _revision/
+
+# Fotografías originales sin procesar: no se publican, solo se optimizan con
+# `npm run fotos:procesar`, que escribe el resultado en public/imagenes/fotos/
+fotos-originales/

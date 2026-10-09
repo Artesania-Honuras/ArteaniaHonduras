@@ -8,6 +8,13 @@ import { enlaceWhatsApp } from '@/lib/whatsapp';
 
 const anioActual = new Date().getFullYear();
 const redes = Object.entries(CONTACTO.redes).filter(([, url]) => Boolean(url));
+
+/** Nombre público de cada red, para no mostrar la clave del objeto. */
+const ETIQUETAS_REDES: Record<string, string> = {
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  tiktok: 'TikTok',
+};
 ---
 
 <footer class="mt-20 border-t border-crema-200 bg-crema-100">
@@ -93,20 +100,25 @@ const redes = Object.entries(CONTACTO.redes).filter(([, url]) => Boolean(url));
 
         {
           redes.length > 0 && (
-            <ul class="mt-5 flex flex-wrap gap-2">
-              {redes.map(([red, url]) => (
-                <li>
-                  <a
-                    href={url}
-                    class="etiqueta transition hover:border-barro-300 hover:text-barro-700"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {red}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div class="mt-6">
+              <h2 class="antetitulo">Síguenos</h2>
+              <ul class="mt-3 flex flex-wrap gap-2">
+                {redes.map(([red, url]) => (
+                  <li>
+                    <a
+                      href={url}
+                      class="btn-claro px-4 py-2 text-xs"
+                      target="_blank"
+                      rel="noopener noreferrer me"
+                      aria-label={`Abrir la página de ${ETIQUETAS_REDES[red] ?? red} en una pestaña nueva`}
+                    >
+                      {red === 'facebook' && <Icono nombre="facebook" clase="h-4 w-4 text-barro-600" />}
+                      {ETIQUETAS_REDES[red] ?? red}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )
         }
       </div>

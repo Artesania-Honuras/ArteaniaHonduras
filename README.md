@@ -24,7 +24,7 @@ antes de difundir el enlace a gran escala:
 | # | Pendiente | Dónde se corrige | Por qué importa |
 | - | --------- | ---------------- | --------------- |
 | 1 | **Dirección de la tienda física** y horarios | `src/config/site.ts` → `ENVIOS` (modalidad `tienda-fisica`) | La página de envíos y pagos anuncia una tienda sin dirección. |
-| 2 | **Fotografías reales de producto** | Campo `imagen` de cada JSON en `src/data/productos/` | Hoy hay ilustraciones SVG generadas con `npm run imagenes:generar`. Sirven para maquetar, no para vender. |
+| 2 | **Fotografías reales de producto** | Guarda las fotos en `fotos-originales/` y ejecuta `npm run fotos:procesar` | Hoy hay ilustraciones SVG generadas con `npm run imagenes:generar`. Sirven para maquetar, no para vender. |
 | 3 | **Revisar privacidad y términos** con criterio propio | `src/pages/privacidad.astro`, `src/pages/terminos.astro` | Son textos base redactados como punto de partida. **No son asesoría legal.** |
 | 4 | **Dominio propio (opcional)** | `site` y `base` en `astro.config.mjs` y `src/config/site.ts` | Sin dominio propio el sitio funciona, pero la URL es larga y no es de marca. |
 
@@ -61,6 +61,7 @@ npm install
 | `npm run verify` | `astro check && astro build` | Verificación completa antes de subir cambios. **Es el comando a correr siempre.** |
 | `npm run catalogo:validar` | `node scripts/validar-catalogo.mjs` | Valida los JSON del catálogo sin compilar el sitio. Error claro y sin build. |
 | `npm run imagenes:generar` | `node scripts/generar-imagenes.mjs` | Regenera las ilustraciones SVG de los productos. |
+| `npm run fotos:procesar` | `python scripts/procesar-fotos.py` | Optimiza las fotos reales de `fotos-originales/` y las conecta al catálogo. Requiere Python con Pillow. |
 | `npm run format` | `prettier --write .` | Formatea todo el proyecto. |
 | `npm run format:check` | `prettier --check .` | Comprueba el formato sin escribir (lo que corre CI). |
 

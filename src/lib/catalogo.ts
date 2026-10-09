@@ -154,11 +154,24 @@ export function ilustracionProducto(slug: string): string {
   return enlace(`/imagenes/productos/${slug}.svg`);
 }
 
+/**
+ * Normaliza la ruta de una imagen declarada en el JSON del producto.
+ *
+ * En el catálogo las rutas se escriben relativas a la raíz del dominio
+ * (`/imagenes/fotos/mi-pieza.webp`), sin el subdirectorio de GitHub Pages. Aquí
+ * se les añade el `base` con `enlace()`. Las URLs absolutas y los data URI se
+ * respetan tal cual, para que también se puedan usar fotos alojadas fuera.
+ */
+export function rutaImagen(ruta: string): string {
+  if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(ruta)) return ruta;
+  return enlace(ruta);
+}
+
 function aVista(producto: Producto): ProductoVista {
   const categoria = categorias.find((c) => c.slug === producto.categoria);
   const imagenes = [
-    producto.imagen ?? ilustracionProducto(producto.slug),
-    ...(producto.galeria ?? []),
+    producto.imagen ? rutaImagen(producto.imagen) : ilustracionProducto(producto.slug),
+    ...(producto.galeria ?? []).map(rutaImagen),
   ];
 
   return {

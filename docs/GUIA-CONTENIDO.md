@@ -265,26 +265,66 @@ Después de crearla, **los productos que la usen deben tener ese `slug` exacto**
 
 ---
 
-## 4. Cambiar una ilustración por una fotografía real
+## 4. Poner fotografías reales de producto
 
 Hoy el catálogo muestra **ilustraciones SVG** generadas automáticamente. Sirven para maquetar,
 pero para vender hacen falta fotografías de verdad.
 
-### Paso a paso
+Hay dos caminos: el **automático** (recomendado, un solo comando) y el **manual** (control total
+sobre cada archivo).
+
+### 4.1 Camino automático (recomendado)
+
+**Paso 1 — Guarda las fotos.** Crea la carpeta `fotos-originales/` en la raíz del proyecto y mete
+ahí todas las fotos que quieras usar. Pueden ser `.jpg`, `.png`, `.webp`, `.bmp` o `.tiff`, del
+tamaño que salgan de tu teléfono o de tu cámara.
+
+**Paso 2 — Nombra los archivos.** El nombre es lo que conecta la foto con la pieza. Vale el `slug`
+o el nombre comercial, con o sin tildes, mayúsculas o espacios:
+
+| Nombre del archivo | Qué hace |
+| ------------------ | -------- |
+| `vasija-barro-lenca-marcala.jpg` | Imagen **principal** de esa pieza |
+| `Vasija de barro lenca.jpg` | Lo mismo, usando el nombre comercial |
+| `vasija-barro-lenca-marcala-2.jpg` | **Segunda** foto (entra a la galería) |
+| `vasija barro lenca 3.png` | **Tercera** foto |
+
+Una foto sin número siempre gana como principal; las numeradas van a la galería en orden. Así
+`producto-2.jpg` nunca desplaza a `producto.jpg` solo por orden alfabético.
+
+**Paso 3 — Ejecuta el procesador.**
+
+```sh
+npm run fotos:procesar
+```
+
+El script hace todo lo demás:
+
+- redimensiona cada foto a **1400 px** de lado mayor,
+- le quita los metadatos EXIF (incluidas las **coordenadas GPS**, que no queremos publicar),
+- la convierte a **WebP**, que pesa mucho menos que un JPG,
+- la publica en `public/imagenes/fotos/`,
+- y **actualiza solo** el JSON del producto con los campos `imagen` y `galeria`.
+
+Al terminar te dice qué foto quedó en qué pieza y **qué archivos no logró asignar** (esos no se
+tocan: solo les cambias el nombre y vuelves a ejecutarlo). Los originales nunca se borran.
+
+Para cambiar el tamaño o la calidad: `python scripts/procesar-fotos.py --lado 2000 --calidad 88`.
+
+Requiere Python con Pillow (`pip install Pillow`). Si no lo tienes, usa el camino manual.
+
+### 4.2 Camino manual
 
 1. Prepara la fotografía: horizontal o cuadrada, **al menos 1200 píxeles de ancho**, fondo limpio
    y buena luz. Formato `.jpg` o `.webp` (más liviano).
-2. Nombra el archivo con el `slug` del producto: `vasija-barro-lenca-marcala.jpg`.
-3. Copia la imagen a la carpeta `public/imagenes/productos/`.
-   **Debe ser esa carpeta exacta**, no `src/`. Todo lo que está en `public/` se publica tal cual.
-4. Abre el JSON del producto y agrega el campo `imagen`:
+2. Nómbrala con el `slug` del producto: `vasija-barro-lenca-marcala.jpg`.
+3. Cópiala a `public/imagenes/productos/`. **Debe ser esa carpeta exacta**, no `src/`.
+4. Agrega el campo `imagen` al JSON del producto:
 
 ```json
   "icono": "vasija",
   "imagen": "/imagenes/productos/vasija-barro-lenca-marcala.jpg"
 ```
-
-5. Guarda y ejecuta `npm run dev` para ver el resultado.
 
 ### Cómo se escribe la ruta
 
@@ -292,25 +332,29 @@ pero para vender hacen falta fotografías de verdad.
 | ----- | ----- |
 | Empieza con `/` | Sí, siempre. |
 | **NO** escribas `/ArteaniaHonduras/` | El sitio lo agrega solo. Si lo escribes, la imagen no carga. |
-| Nombre del archivo | Igual al que copiaste en `public/imagenes/productos/`, con su extensión. |
+| Nombre del archivo | Igual al que copiaste, con su extensión. |
 
 ### Si quieres varias fotos
 
 Usa `galeria`. La primera imagen de la ficha es `imagen` (o la ilustración si no hay foto):
 
 ```json
-  "imagen": "/imagenes/productos/vasija-barro-lenca-marcala.jpg",
+  "imagen": "/imagenes/fotos/vasija-barro-lenca-marcala.webp",
   "galeria": [
-    "/imagenes/productos/vasija-barro-lenca-marcala-detalle.jpg",
-    "/imagenes/productos/vasija-barro-lenca-marcala-taller.jpg"
+    "/imagenes/fotos/vasija-barro-lenca-marcala-2.webp",
+    "/imagenes/fotos/vasija-barro-lenca-marcala-3.webp"
   ]
 ```
 
-> **No borres el SVG** que está en `public/imagenes/productos/`. Deja de usarse solo, en cuanto el
-> campo `imagen` existe, y sirve de respaldo.
+> **No borres los SVG** de `public/imagenes/productos/`. Dejan de usarse solos, en cuanto el campo
+> `imagen` existe, y sirven de respaldo para las piezas que aún no tienen foto.
 
-> **Recomendación de peso:** procura que cada fotografía no pase de 300 KB. Comprime las imágenes
-> antes de subirlas; un catálogo con fotos pesadas se siente lento en datos móviles.
+> **Recomendación de peso:** no dejes que una fotografía pase de 300 KB. El procesador ya se
+> encarga de esto, pero si subes fotos a mano, comprímelas antes: un catálogo con fotos pesadas se
+> siente lento en datos móviles.
+
+> **Sobre las fotos de Facebook:** no se pueden descargar automáticamente; la página exige iniciar
+> sesión. Bájalas tú desde tu propia página (o desde tu teléfono) y déjalas en `fotos-originales/`.
 
 ---
 

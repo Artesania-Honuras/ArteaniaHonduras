@@ -43,6 +43,13 @@ const mensaje = mensajeProducto({
 
 const tieneGaleria = producto.imagenes.length > 1;
 
+/**
+ * Imagen para Open Graph: la principal de la pieza, ya absoluta.
+ * `imagenPrincipal` incluye el base de GitHub Pages, así que basta con
+ * anteponerle el dominio.
+ */
+const imagenSocial = new URL(producto.imagenPrincipal, SITE.url).href;
+
 const ficha = [
   { icono: 'reloj' as const, etiqueta: 'Tiempo de elaboración', valor: producto.tiempoElaboracion },
   { icono: 'hoja' as const, etiqueta: 'Materiales', valor: producto.materiales.join(' · ') },
@@ -60,7 +67,7 @@ const ficha = [
 <Base
   titulo={producto.nombre}
   descripcion={`${producto.resumen} Hecha a mano en ${producto.origen.municipio}, ${producto.origen.departamento}, Honduras. Consulta precio y envío por WhatsApp.`}
-  imagen={producto.imagenPrincipal.startsWith('http') ? producto.imagenPrincipal : undefined}
+  imagen={imagenSocial}
   tipo="product"
   jsonLd={[productoSchema(producto)]}
   mensajeFlotante={mensaje}
