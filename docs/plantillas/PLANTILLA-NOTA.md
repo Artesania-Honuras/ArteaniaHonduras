@@ -35,4 +35,4 @@ El desarrollo.
 
 ## Ver también
 
-- [INICIO](INICIO.md)
+- [INICIO](../INICIO.md)
