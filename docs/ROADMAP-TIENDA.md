@@ -1,3 +1,13 @@
+---
+titulo: Hoja de ruta de la tienda
+tags:
+  - proyecto
+  - roadmap
+  - tienda
+actualizado: 2026-10-09
+estado: vigente
+---
+
 # Hoja de ruta de la tienda — Artesanías De Honduras
 
 **De sitio de catálogo a tienda en línea.**

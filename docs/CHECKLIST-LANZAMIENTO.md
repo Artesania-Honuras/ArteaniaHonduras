@@ -1,3 +1,13 @@
+---
+titulo: Checklist de lanzamiento
+tags:
+  - proyecto
+  - lanzamiento
+  - checklist
+actualizado: 2026-10-09
+estado: vigente
+---
+
 # Checklist de lanzamiento — Artesanías De Honduras
 
 Lista de verificación para publicar el sitio. Marca cada casilla **solo cuando lo hayas

@@ -1,3 +1,13 @@
+---
+titulo: Arquitectura del sitio
+tags:
+  - proyecto
+  - arquitectura
+  - tecnica
+actualizado: 2026-10-09
+estado: vigente
+---
+
 # Arquitectura del sitio — Artesanías De Honduras
 
 Documento técnico. Explica **cómo está construido** el sitio, por qué está construido así y qué

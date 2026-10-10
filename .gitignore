@@ -37,3 +37,12 @@ _revision/
 # Fotografías originales sin procesar: no se publican, solo se optimizan con
 # `npm run fotos:procesar`, que escribe el resultado en public/imagenes/fotos/
 fotos-originales/
+
+# Obsidian: se versiona la configuración de la bóveda (app, apariencia, plugins
+# activados y plantillas), pero NO el estado local de cada persona ni la caché.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/plugins/*/data.json
+.trash/
+docs/adjuntos/

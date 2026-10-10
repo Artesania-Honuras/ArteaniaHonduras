@@ -7,13 +7,8 @@
 blank_issues_enabled: true
 
 contact_links:
-  # TODO: reemplazar por el enlace real de WhatsApp cuando el número esté
-  # confirmado en src/config/site.ts (CONTACTO.whatsapp.numero).
-  #
-  #   url: https://wa.me/50400000000
-  #
-  # El número de arriba es el MARCADOR DE EJEMPLO que todavía está en el
-  # código: no abre ningún chat real.
+  # Canal oficial de atención. El número es el real y está publicado en el
+  # sitio: CONTACTO.whatsapp.numero en src/config/site.ts.
   - name: Consultas sobre productos y pedidos (WhatsApp)
-    url: https://wa.me/NUMERO_POR_CONFIRMAR
+    url: https://wa.me/50499653413
     about: Escríbenos por WhatsApp para consultar precios, disponibilidad, envíos y pedidos. Canal oficial de atención de Artesanías De Honduras.

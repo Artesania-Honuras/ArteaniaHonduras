@@ -1,0 +1,229 @@
+{
+  "nodes": [
+    {
+      "id": "gA",
+      "type": "group",
+      "label": "Documentación base",
+      "x": -820,
+      "y": -460,
+      "width": 740,
+      "height": 660,
+      "color": "5"
+    },
+    {
+      "id": "gB",
+      "type": "group",
+      "label": "Guías y planificación",
+      "x": -40,
+      "y": -460,
+      "width": 740,
+      "height": 660,
+      "color": "4"
+    },
+    {
+      "id": "gC",
+      "type": "group",
+      "label": "Estado y registro",
+      "x": 740,
+      "y": -460,
+      "width": 680,
+      "height": 660,
+      "color": "6"
+    },
+    {
+      "id": "inicio",
+      "type": "file",
+      "file": "docs/INICIO.md",
+      "x": 780,
+      "y": -400,
+      "width": 600,
+      "height": 240
+    },
+    {
+      "id": "readme",
+      "type": "file",
+      "file": "README.md",
+      "x": -780,
+      "y": -400,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "analisis",
+      "type": "file",
+      "file": "ANALISIS.md",
+      "x": -440,
+      "y": -400,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "inventario",
+      "type": "file",
+      "file": "docs/INVENTARIO.md",
+      "x": -780,
+      "y": -160,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "historial",
+      "type": "file",
+      "file": "docs/HISTORIAL.md",
+      "x": -440,
+      "y": -160,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "arquitectura",
+      "type": "file",
+      "file": "docs/ARQUITECTURA.md",
+      "x": 0,
+      "y": -400,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "guia",
+      "type": "file",
+      "file": "docs/GUIA-CONTENIDO.md",
+      "x": 340,
+      "y": -400,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "checklist",
+      "type": "file",
+      "file": "docs/CHECKLIST-LANZAMIENTO.md",
+      "x": 0,
+      "y": -160,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "roadmap",
+      "type": "file",
+      "file": "docs/ROADMAP-TIENDA.md",
+      "x": 340,
+      "y": -160,
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "changelog",
+      "type": "file",
+      "file": "CHANGELOG.md",
+      "x": 780,
+      "y": -140,
+      "width": 600,
+      "height": 200
+    },
+    {
+      "id": "estado",
+      "type": "text",
+      "text": "## Artesanías De Honduras\n\nSitio de marca y catálogo consultivo, sin carrito.\n\n- **En vivo:** https://artesania-honuras.github.io/ArteaniaHonduras/\n- **Stack:** Astro 5 · Tailwind 4 · TypeScript\n- **Publicación:** GitHub Pages + Actions\n- **Catálogo:** 12 piezas · 3 categorías\n- **Venta:** WhatsApp +504 9965-3413\n- **Ciudad:** Choloma, Cortés",
+      "x": 780,
+      "y": 100,
+      "width": 600,
+      "height": 220
+    },
+    {
+      "id": "fases",
+      "type": "text",
+      "text": "## Fases\n\n**Fase 1 — actual**\nSitio de marca y catálogo. Pedidos por WhatsApp. ✅\n\n**Fase 2 — planificada**\nCarrito, checkout, Tigo Money, BAC Credomatic, transferencia y contra entrega.\n\n**Fase 3 — futuro**\nPanel de administración, inventario, cupones, cuentas de cliente y analítica.\n\nDetalle en el ROADMAP-TIENDA.",
+      "x": 1440,
+      "y": -400,
+      "width": 400,
+      "height": 420,
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "readme",
+      "toSide": "right"
+    },
+    {
+      "id": "e2",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "analisis",
+      "toSide": "right"
+    },
+    {
+      "id": "e3",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "inventario",
+      "toSide": "right"
+    },
+    {
+      "id": "e4",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "historial",
+      "toSide": "right"
+    },
+    {
+      "id": "e5",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "arquitectura",
+      "toSide": "right"
+    },
+    {
+      "id": "e6",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "guia",
+      "toSide": "right"
+    },
+    {
+      "id": "e7",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "checklist",
+      "toSide": "right"
+    },
+    {
+      "id": "e8",
+      "fromNode": "inicio",
+      "fromSide": "left",
+      "toNode": "roadmap",
+      "toSide": "right"
+    },
+    {
+      "id": "e9",
+      "fromNode": "inicio",
+      "fromSide": "bottom",
+      "toNode": "changelog",
+      "toSide": "top"
+    },
+    {
+      "id": "e10",
+      "fromNode": "changelog",
+      "fromSide": "bottom",
+      "toNode": "estado",
+      "toSide": "top"
+    },
+    {
+      "id": "e11",
+      "fromNode": "roadmap",
+      "fromSide": "right",
+      "toNode": "fases",
+      "toSide": "left"
+    },
+    {
+      "id": "e12",
+      "fromNode": "historial",
+      "fromSide": "bottom",
+      "toNode": "changelog",
+      "toSide": "left"
+    }
+  ]
+}

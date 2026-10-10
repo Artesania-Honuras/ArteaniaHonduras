@@ -1,3 +1,13 @@
+---
+titulo: Guía de contenido
+tags:
+  - proyecto
+  - guia
+  - contenido
+actualizado: 2026-10-09
+estado: vigente
+---
+
 # Guía de contenido — Artesanías De Honduras
 
 **Para quien va a editar el sitio sin saber programar.**

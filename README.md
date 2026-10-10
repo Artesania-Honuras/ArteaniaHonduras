@@ -227,13 +227,35 @@ es poder trabajar en ramas sin bloqueos, pero nunca dejar que llegue a producci�
 
 | Documento | Qué contiene |
 | --------- | ------------ |
+| [docs/INICIO.md](docs/INICIO.md) | **Mapa del proyecto.** Empieza aquí si vas a explorar la documentación. |
 | [ANALISIS.md](ANALISIS.md) | Análisis del repositorio original: estado encontrado, diagnóstico, decisiones, riesgos y hoja de ruta. |
-| [CHANGELOG.md](CHANGELOG.md) | Historial de cambios, en formato Keep a Changelog. |
+| [CHANGELOG.md](CHANGELOG.md) | Registro oficial de cambios, en formato Keep a Changelog. |
+| [docs/INVENTARIO.md](docs/INVENTARIO.md) | Inventario archivo por archivo: qué es cada cosa y para qué sirve. |
+| [docs/HISTORIAL.md](docs/HISTORIAL.md) | Línea de tiempo del proyecto, con los problemas que aparecieron y cómo se resolvieron. |
 | [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) | Flujo de datos, validación con Zod, sistema de diseño, SEO y accesibilidad. |
 | [docs/GUIA-CONTENIDO.md](docs/GUIA-CONTENIDO.md) | Guía paso a paso para editar el sitio sin conocimientos técnicos. |
 | [docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md) | Lista de verificación antes de publicar. |
 | [docs/ROADMAP-TIENDA.md](docs/ROADMAP-TIENDA.md) | Plan para convertir el sitio en tienda en línea (Fase 2 y 3). |
 | [LICENSE](LICENSE) | Condiciones de uso del contenido y del código. |
+
+### Bóveda de Obsidian
+
+Este repositorio **también es una bóveda de Obsidian**: la documentación está enlazada entre sí y
+tiene propiedades (etiquetas, fecha de actualización y estado).
+
+Para abrirla: en Obsidian, **Abrir carpeta como bóveda** → selecciona la raíz del repositorio. No
+hay que copiar ni convertir nada; la configuración ya está en `.obsidian/`, con el código, las
+dependencias y los artefactos de compilación excluidos del grafo.
+
+| Elemento | Para qué |
+| -------- | -------- |
+| [docs/INICIO.md](docs/INICIO.md) | Nota raíz con el mapa de toda la documentación |
+| [docs/mapa-proyecto.canvas](docs/mapa-proyecto.canvas) | El proyecto como lienzo visual (Obsidian Canvas) |
+| [docs/plantillas/PLANTILLA-NOTA.md](docs/plantillas/PLANTILLA-NOTA.md) | Plantilla para notas nuevas |
+| `.obsidian/` | Configuración de la bóveda (sí se versiona) |
+
+> Los enlaces se escriben en **Markdown normal**, no en formato wiki, para que funcionen igual en
+> Obsidian y en GitHub.
 
 ---
 
