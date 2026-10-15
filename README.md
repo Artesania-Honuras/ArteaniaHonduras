@@ -225,35 +225,59 @@ es poder trabajar en ramas sin bloqueos, pero nunca dejar que llegue a producci�
 
 ## Documentación
 
+### Memoria del proyecto (empieza aquí)
+
+El proyecto tiene memoria persistente, auditable y dentro del propio repositorio. **No se usa
+ninguna herramienta de memoria externa.**
+
 | Documento | Qué contiene |
 | --------- | ------------ |
-| [docs/INICIO.md](docs/INICIO.md) | **Mapa del proyecto.** Empieza aquí si vas a explorar la documentación. |
-| [ANALISIS.md](ANALISIS.md) | Análisis del repositorio original: estado encontrado, diagnóstico, decisiones, riesgos y hoja de ruta. |
-| [CHANGELOG.md](CHANGELOG.md) | Registro oficial de cambios, en formato Keep a Changelog. |
+| [docs/memoria/INDICE.md](docs/memoria/INDICE.md) | **Lo primero que debe leer una sesión nueva.** Mapa, reglas, decisiones vivas con su evidencia, fuentes de verdad, criterios de aceptación y pendientes priorizados. |
+| [docs/memoria/MANUAL-DE-CAMBIOS.md](docs/memoria/MANUAL-DE-CAMBIOS.md) | Una entrada `C-NN` por cambio aplicado: qué, por qué, evidencia numérica y **cómo revertirlo**. |
+| [docs/memoria/REGISTRO-DE-RESULTADOS.md](docs/memoria/REGISTRO-DE-RESULTADOS.md) | Una fila `E-NN` por medición: hipótesis, método, números y veredicto. **Incluye los descartes**, para no repetirlos. |
+| [docs/memoria/LOG-DE-SESIONES.md](docs/memoria/LOG-DE-SESIONES.md) | Bitácora: qué se hizo, qué se rompió, qué se decidió y qué quedó abierto. |
+| [docs/memoria/PLANTILLAS.md](docs/memoria/PLANTILLAS.md) | Formatos vacíos de `C-NN`, `E-NN` y entrada de sesión. |
+| [AGENTS.md](AGENTS.md) | **Reglas obligatorias** para agentes y sesiones nuevas: registro, cambios y estado. |
+
+### Referencia
+
+| Documento | Qué contiene |
+| --------- | ------------ |
 | [docs/INVENTARIO.md](docs/INVENTARIO.md) | Inventario archivo por archivo: qué es cada cosa y para qué sirve. |
-| [docs/HISTORIAL.md](docs/HISTORIAL.md) | Línea de tiempo del proyecto, con los problemas que aparecieron y cómo se resolvieron. |
 | [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) | Flujo de datos, validación con Zod, sistema de diseño, SEO y accesibilidad. |
 | [docs/GUIA-CONTENIDO.md](docs/GUIA-CONTENIDO.md) | Guía paso a paso para editar el sitio sin conocimientos técnicos. |
 | [docs/CHECKLIST-LANZAMIENTO.md](docs/CHECKLIST-LANZAMIENTO.md) | Lista de verificación antes de publicar. |
 | [docs/ROADMAP-TIENDA.md](docs/ROADMAP-TIENDA.md) | Plan para convertir el sitio en tienda en línea (Fase 2 y 3). |
+| [ANALISIS.md](ANALISIS.md) | Análisis del repositorio original: estado encontrado, diagnóstico, decisiones, riesgos y hoja de ruta. |
+| [CHANGELOG.md](CHANGELOG.md) | Historial público por versión, en formato Keep a Changelog. |
 | [LICENSE](LICENSE) | Condiciones de uso del contenido y del código. |
+
+### Estado del sistema
+
+```bash
+npm run estado      # checklist de solo lectura: 41 comprobaciones en 6 bloques
+```
+
+Es el **instrumento de medición oficial**. Cuando se pregunta "¿está todo al 100%?", se responde con
+su tabla, no con una opinión.
 
 ### Bóveda de Obsidian
 
 Este repositorio **también es una bóveda de Obsidian**: la documentación está enlazada entre sí y
 tiene propiedades (etiquetas, fecha de actualización y estado).
 
-Para abrirla: en Obsidian, **Abrir carpeta como bóveda** → selecciona la raíz del repositorio. No
-hay que copiar ni convertir nada; la configuración ya está en `.obsidian/`, con el código, las
-dependencias y los artefactos de compilación excluidos del grafo.
+Para abrirla: en Obsidian, **Abrir carpeta como bóveda** → selecciona la raíz del repositorio.
+Obsidian genera su configuración sola en la primera apertura.
 
 | Elemento | Para qué |
 | -------- | -------- |
-| [docs/INICIO.md](docs/INICIO.md) | Nota raíz con el mapa de toda la documentación |
+| [docs/INICIO.md](docs/INICIO.md) | Nota raíz de la bóveda: apunta al índice de la memoria |
 | [docs/mapa-proyecto.canvas](docs/mapa-proyecto.canvas) | El proyecto como lienzo visual (Obsidian Canvas) |
 | [docs/plantillas/PLANTILLA-NOTA.md](docs/plantillas/PLANTILLA-NOTA.md) | Plantilla para notas nuevas |
-| `.obsidian/` | Configuración de la bóveda (sí se versiona) |
 
+> `.obsidian/` **no se versiona**: Obsidian la reescribe en cada apertura y tenerla en git dejaba el
+> repositorio sucio de forma permanente. Ver la entrada C-10 del manual de cambios.
+>
 > Los enlaces se escriben en **Markdown normal**, no en formato wiki, para que funcionen igual en
 > Obsidian y en GitHub.
 

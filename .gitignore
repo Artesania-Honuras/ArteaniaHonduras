@@ -38,11 +38,13 @@ _revision/
 # `npm run fotos:procesar`, que escribe el resultado en public/imagenes/fotos/
 fotos-originales/
 
-# Obsidian: se versiona la configuración de la bóveda (app, apariencia, plugins
-# activados y plantillas), pero NO el estado local de cada persona ni la caché.
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/cache/
-.obsidian/plugins/*/data.json
-.trash/
-docs/adjuntos/
+# Obsidian: NO se versiona la configuración de la bóveda.
+#
+# Motivo: Obsidian reescribe estos archivos cada vez que abre la bóveda (registra
+# los plugins de su versión, crea graph.json, cambia el salto de línea final). Al
+# versionarlos, el repositorio aparecía sucio en cada apertura y la comprobación
+# "sin commits pendientes" dejaba de ser una señal fiable.
+#
+# La bóveda se abre igual: Obsidian genera su configuración en la primera
+# apertura. Los ajustes recomendados están documentados en docs/memoria/INDICE.md.
+.obsidian/

@@ -10,6 +10,61 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y e
 
 ---
 
+## [1.1.0] — 2026-10-15
+
+Memoria persistente del proyecto, reglas obligatorias para agentes y checklist automatizado de
+estado.
+
+### Añadido
+
+- **Memoria persistente en el propio repositorio** (`docs/memoria/`), sin depender de ninguna
+  herramienta de memoria externa:
+  - `INDICE.md` — mapa, reglas, decisiones vivas con su evidencia, fuentes de verdad, criterios de
+    aceptación y pendientes priorizados. Es lo primero que debe leer una sesión nueva.
+  - `MANUAL-DE-CAMBIOS.md` — una entrada `C-NN` por cambio aplicado, con evidencia numérica y cómo
+    revertirlo. Diez entradas, incluida la reconstrucción del historial anterior.
+  - `REGISTRO-DE-RESULTADOS.md` — una fila `E-NN` por medición con hipótesis, método, números y
+    veredicto, **incluidos los experimentos descartados**: pnpm, descarga de fotos de Facebook, el
+    plugin de DSH, los saltos de versión de Dependabot y las trampas de Astro y Tailwind.
+  - `LOG-DE-SESIONES.md` — bitácora de las seis sesiones del proyecto.
+  - `PLANTILLAS.md` — formatos vacíos de `C-NN`, `E-NN` y entrada de sesión.
+- **`AGENTS.md`**: reglas obligatorias para cualquier agente o sesión nueva, encabezadas por el
+  puntero al índice. Define la regla de registro (cambio → `C-NN`, experimento → `E-NN`, sesión →
+  Log, todo commiteado y subido en la misma sesión), la de cambios (sin medición reproducible,
+  registro y despliegue verificado no hay cambio) y la de estado (preguntar "¿está al 100%?" se
+  responde con la tabla del checklist, nunca con una opinión).
+- **`scripts/estado.py`** y comando `npm run estado`: checklist de solo lectura, sin dependencias,
+  con **41 comprobaciones en 6 bloques** (procesos y servicios, conectividad externa, frescura de la
+  publicación, configuración viva, estado del repositorio y hardware). Devuelve código de salida 0
+  si no hay ningún ❌. Admite `--sin-red` y `--json`.
+
+### Cambiado
+
+- `docs/INICIO.md` pasa a ser un **puntero** al índice de la memoria, para que los enlaces antiguos
+  y la nota raíz de la bóveda sigan resolviendo sin duplicar el mapa.
+- El `README.md` reorganiza su sección de documentación: primero la memoria, después la referencia,
+  y añade cómo se consulta el estado del sistema.
+
+### Eliminado
+
+- **`docs/HISTORIAL.md`**, absorbido por `docs/memoria/LOG-DE-SESIONES.md`. Mantener dos líneas de
+  tiempo en paralelo garantizaba que una de las dos quedara desactualizada.
+- **`.obsidian/` deja de versionarse.** Obsidian reescribe su configuración en cada apertura
+  (registra los plugins de su versión, crea `graph.json`, quita el salto de línea final), así que
+  tenerla en git dejaba el repositorio sucio de forma permanente y la comprobación "sin commits
+  pendientes" dejaba de ser una señal fiable. La bóveda se abre igual: Obsidian regenera su
+  configuración sola.
+
+### Corregido
+
+- `scripts/estado.py` no detectaba `npm` en Windows (es un `.cmd` y `CreateProcess` no lo ejecuta
+  directamente) ni podía medir la RAM (`os.sysconf` no existe en Windows).
+- El informe de `estado.py` fallaba al imprimirse: la consola de Windows usa cp1252 y no puede
+  representar `➖`. Es la **segunda vez** que ese problema aparece en el proyecto, así que queda
+  anotado como trampa conocida en el índice.
+
+---
+
 ## [1.0.0] — 2026-10-09
 
 Primera versión publicable del sitio de **Artesanías De Honduras**: sitio de marca y catálogo

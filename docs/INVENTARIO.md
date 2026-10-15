@@ -10,7 +10,7 @@ estado: vigente
 
 # Inventario de archivos
 
-Mapa completo del proyecto: **100 archivos rastreados por git**. Sirve para saber qué es cada cosa
+Mapa completo del proyecto: **102 archivos rastreados por git**. Sirve para saber qué es cada cosa
 sin abrirla. Si es tu primera vez en la bóveda, empieza por [INICIO](INICIO.md).
 
 **Leyenda de la columna «Origen»:**
@@ -36,13 +36,14 @@ Configuración del proyecto y documentos de portada.
 | `.gitignore` | Qué queda fuera de git: dependencias, artefactos de compilación, cachés y las carpetas de trabajo privadas. | ✍️ A mano |
 | `.prettierignore` | Rutas que Prettier no debe formatear: compilación, dependencias y las ilustraciones generadas. | ✍️ A mano |
 | `.prettierrc.json` | Reglas de formato: 100 columnas, comillas simples, punto y coma, y el plugin de Astro. | ✍️ A mano |
+| `AGENTS.md` | **Reglas obligatorias para agentes y para cualquier sesión nueva.** Empieza con el puntero al índice de la memoria y define las tres reglas: registro, cambios y estado. | ✍️ A mano |
 | `ANALISIS.md` | Análisis del repositorio original: qué había, diagnóstico, riesgos, decisiones tomadas y hoja de ruta por fases. Ver [ANALISIS](../ANALISIS.md). | ✍️ A mano |
 | `CHANGELOG.md` | Historial de versiones en formato Keep a Changelog, con lo añadido, lo corregido y lo pendiente. Ver [CHANGELOG](../CHANGELOG.md). | ✍️ A mano |
 | `LICENSE` | Condiciones de uso: el contenido es propiedad de la marca con todos los derechos reservados y **no hay licencia de código abierto**. Ver [LICENSE](../LICENSE). | ✍️ A mano |
 | `README.md` | Portada del proyecto: requisitos, comandos, estructura, despliegue y la lista de pendientes antes de difundir el enlace. Ver [README](../README.md). | ✍️ A mano |
 | `astro.config.mjs` | Configuración de Astro: `site`, el `base` `/ArteaniaHonduras`, el sitemap, el plugin de Tailwind y el alias `@`. | ✍️ A mano |
 | `package-lock.json` | Árbol de dependencias exacto y congelado, para que `npm ci` instale siempre lo mismo en CI. Lo escribe npm. | ⚙️ Generado |
-| `package.json` | Dependencias del proyecto y **11 comandos**: `dev`, `start`, `build`, `preview`, `check`, `verify`, `format`, `format:check`, `catalogo:validar`, `imagenes:generar` y `fotos:procesar`. | ✍️ A mano |
+| `package.json` | Dependencias del proyecto y **12 comandos**: `dev`, `start`, `build`, `preview`, `check`, `verify`, `format`, `format:check`, `catalogo:validar`, `imagenes:generar`, `fotos:procesar` y `estado`. | ✍️ A mano |
 | `tsconfig.json` | Configuración de TypeScript: modo estricto, alias `@/*` hacia `src/` y exclusión de las carpetas que no deben analizarse. | ✍️ A mano |
 
 ---
@@ -67,15 +68,38 @@ Documentación de referencia y guías operativas.
 
 | Archivo | Para qué sirve | Origen |
 | ------- | -------------- | ------ |
-| `docs/INICIO.md` | **Nota raíz de la bóveda:** mapa de toda la documentación, estado del proyecto en una vista y convenciones de las notas. | ✍️ A mano |
-| `docs/HISTORIAL.md` | Línea de tiempo del proyecto: qué hizo cada commit, qué problemas aparecieron y cómo se resolvieron, y qué decisiones se tomaron. | ✍️ A mano |
+| `docs/INICIO.md` | **Puntero al índice de la memoria.** Se conserva para que los enlaces antiguos y la nota raíz de la bóveda sigan resolviendo. | ✍️ A mano |
 | `docs/INVENTARIO.md` | Este mismo documento: inventario archivo por archivo, con una marca de si se edita a mano o se genera. | ✍️ A mano |
 | `docs/ARQUITECTURA.md` | Cómo está construido el sitio: flujo de datos desde los JSON hasta las páginas, sistema de diseño, el helper `enlace()` y el problema del subdirectorio, SEO y accesibilidad. Ver [ARQUITECTURA](ARQUITECTURA.md). | ✍️ A mano |
 | `docs/CHECKLIST-LANZAMIENTO.md` | Checklist de lanzamiento por bloques (contacto, contenido, legal, SEO, operación y técnico) con lo ya resuelto y los pendientes reales. Ver [CHECKLIST-LANZAMIENTO](CHECKLIST-LANZAMIENTO.md). | ✍️ A mano |
 | `docs/GUIA-CONTENIDO.md` | Guía para editar el sitio **sin saber programar**: cambiar el WhatsApp, agregar un producto, poner fotografías reales, activar precios y qué hacer si el build falla. Ver [GUIA-CONTENIDO](GUIA-CONTENIDO.md). | ✍️ A mano |
 | `docs/ROADMAP-TIENDA.md` | Fases 2 y 3 del proyecto: carrito, checkout, Tigo Money, BAC Credomatic, contra entrega, panel de administración e inventario. Ver [ROADMAP-TIENDA](ROADMAP-TIENDA.md). | ✍️ A mano |
 
-### Configuración de la bóveda de Obsidian
+### Memoria del proyecto (`docs/memoria/`)
+
+Registro operativo del proyecto: qué se cambió, qué se midió y qué se decidió. Ver [INDICE](memoria/INDICE.md).
+
+| Archivo | Para qué sirve | Origen |
+| ------- | -------------- | ------ |
+| `docs/memoria/INDICE.md` | **Lo primero que debe leer una sesión nueva:** mapa, decisiones vivas con su evidencia, fuentes de verdad, criterios de aceptación y pendientes priorizados. | ✍️ A mano |
+| `docs/memoria/MANUAL-DE-CAMBIOS.md` | Una entrada `C-NN` por cambio aplicado: qué, por qué, evidencia numérica y cómo revertirlo. Diez entradas hasta hoy. | ✍️ A mano |
+| `docs/memoria/REGISTRO-DE-RESULTADOS.md` | Una fila `E-NN` por medición con hipótesis, método, números y veredicto. **Incluye los experimentos descartados.** Once entradas hasta hoy. | ✍️ A mano |
+| `docs/memoria/LOG-DE-SESIONES.md` | Bitácora de cada sesión: qué se hizo, qué se rompió, qué se decidió y qué quedó abierto. Absorbió al antiguo `docs/HISTORIAL.md`. | ✍️ A mano |
+| `docs/memoria/PLANTILLAS.md` | Formatos vacíos de `C-NN`, `E-NN` y entrada de sesión, para que el registro sea consistente. | ✍️ A mano |
+
+### Bóveda de Obsidian
+
+El repositorio se abre directamente como bóveda de Obsidian (*Abrir carpeta como bóveda* → la raíz).
+
+**La carpeta `.obsidian/` NO se versiona** (decisión C-10): Obsidian la reescribe en cada apertura
+—registra los plugins de su versión, crea `graph.json` y quita el salto de línea final—, así que
+tenerla en git dejaba el repositorio sucio de forma permanente. Obsidian la regenera sola al abrir
+la bóveda por primera vez.
+
+| Archivo | Para qué sirve | Origen |
+| ------- | -------------- | ------ |
+| `docs/mapa-proyecto.canvas` | Lienzo visual de Obsidian con la arquitectura, el estado y la hoja de ruta. | ✍️ A mano |
+| `docs/plantillas/PLANTILLA-NOTA.md` | Plantilla para crear notas nuevas. Obsidian la encuentra en `docs/plantillas`. | ✍️ A mano |
 
 El repositorio se abre directamente como bóveda de Obsidian. Se versiona la configuración; el
 estado local de cada persona (pestañas abiertas, caché) queda fuera por `.gitignore`.
@@ -101,6 +125,7 @@ la validación del catálogo, que va aparte.
 | `scripts/generar-imagenes.mjs` | Genera las 13 ilustraciones SVG, el favicon, el manifest y el `robots.txt` a partir del catálogo real. Comando: `npm run imagenes:generar`. | ✍️ A mano |
 | `scripts/generar-raster.py` | Genera las dos únicas imágenes raster: la tarjeta de Open Graph y el icono de iOS. Requiere Python con Pillow y se ejecuta a mano. | ✍️ A mano |
 | `scripts/procesar-fotos.py` | Toma las fotos de `fotos-originales/`, las redimensiona, **les quita el EXIF y el GPS**, las convierte a WebP y actualiza los JSON de producto. Comando: `npm run fotos:procesar`. | ✍️ A mano |
+| `scripts/estado.py` | **Instrumento de medición del proyecto.** Checklist de solo lectura y sin dependencias que recorre 41 comprobaciones en 6 bloques: servicios, conectividad externa, frescura de la publicación, configuración viva, repositorio y hardware. Comando: `npm run estado`. | ✍️ A mano |
 | `scripts/validar-catalogo.mjs` | Valida categorías y productos **sin dependencias externas ni compilar el sitio**, con mensajes de error claros. Comando: `npm run catalogo:validar`. | ✍️ A mano |
 
 ---
@@ -263,6 +288,7 @@ repositorio**.
 | `.npm-cache/` | Caché local de npm. Existe solo para no escribir en la caché global del sistema. |
 | `_revision/` | Carpeta de trabajo temporal: clones de código de terceros para auditarlos, capturas y scripts desechables. Nunca se publica. |
 | `fotos-originales/` | Las fotografías sin procesar. Se quedan en local y se optimizan con `npm run fotos:procesar`, que escribe el resultado en `public/imagenes/fotos/`. Así el repositorio no carga con archivos de varios megas. |
+| `.obsidian/` | Configuración de la bóveda de Obsidian. La reescribe la propia aplicación en cada apertura, así que versionarla dejaba el repositorio sucio de forma permanente (decisión C-10). |
 | `.env` y `.env.*` | Variables de entorno y secretos. Se ignoran **todas** salvo `.env.example`, para que ninguna credencial termine en el historial. |
 
 > Los archivos generados que **sí** se rastrean (las ilustraciones SVG, `og-default.png`,
