@@ -307,16 +307,32 @@ def bloque_frescura(sin_red: bool) -> None:
                 return ejecucion
         return None
 
+    # Estados transitorios: el flujo todavía no ha terminado, así que no se puede
+    # afirmar que esté bien. Cuenta como fallo (lo no verificable se declara
+    # pendiente), pero el mensaje lo distingue de una rotura real.
+    TRANSITORIOS = {"in_progress", "queued", "requested", "waiting", "pending", "action_required"}
+
     for flujo in ("Integración continua", "Desplegar en GitHub Pages"):
         ultima_ejecucion = ultima(flujo)
         if not ultima_ejecucion:
             anotar(bloque, flujo, AVISO, "sin ejecuciones registradas")
             continue
-        conclusion = ultima_ejecucion.get("conclusion") or ultima_ejecucion.get("status")
+        estado_flujo = ultima_ejecucion.get("conclusion") or ultima_ejecucion.get("status") or "?"
         dias = edad_dias(ultima_ejecucion.get("createdAt", ""))
         hace = f"hace {dias:.1f} días" if dias is not None else "fecha desconocida"
-        estado = OK if conclusion == "success" else FALLO
-        anotar(bloque, flujo, estado, f"{conclusion} · {hace}")
+
+        if estado_flujo in TRANSITORIOS:
+            anotar(
+                bloque,
+                flujo,
+                FALLO,
+                f"EN CURSO ({estado_flujo}) · aún no se puede verificar · {hace} — volver a medir "
+                "cuando termine",
+            )
+        elif estado_flujo == "success":
+            anotar(bloque, flujo, OK, f"{estado_flujo} · {hace}")
+        else:
+            anotar(bloque, flujo, FALLO, f"{estado_flujo} · {hace}")
 
     # ¿Lo publicado corresponde al código actual?
     despliegue = ultima("Desplegar en GitHub Pages")
