@@ -62,6 +62,18 @@ estado.
 - El informe de `estado.py` fallaba al imprimirse: la consola de Windows usa cp1252 y no puede
   representar `➖`. Es la **segunda vez** que ese problema aparece en el proyecto, así que queda
   anotado como trampa conocida en el índice.
+- `estado.py` trataba igual un flujo **en curso** que uno **roto**. Ahora los estados transitorios
+  siguen contando como ❌ —lo no verificable se declara pendiente— pero el mensaje dice *EN CURSO* y
+  pide volver a medir, en lugar de parecer una avería. Entrada C-11.
+
+### Verificado
+
+- **El checklist detectó un fallo real en su primera medición.** El despliegue del commit `824a2ac`
+  falló con un error 500 de la infraestructura de GitHub Pages **mientras la integración continua
+  pasaba en verde**. Sin la comprobación del flujo de despliegue, el proyecto se habría declarado al
+  100% con el sitio sin actualizar. Relanzar el flujo lo resolvió sin tocar el código. Ver E-12 en el
+  registro de resultados.
+- Medición final: **37 ✅ · 0 ❌ · 0 ⚠️ · 4 ➖**. Código de salida 0.
 
 ---
 

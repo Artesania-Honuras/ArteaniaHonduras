@@ -29,6 +29,7 @@ Formato en [PLANTILLAS](PLANTILLAS.md).
 | E-09 | ¿El plugin `dsh-find-plugin` es compatible con el runtime? | ⚠️ inconclusa — incompatibilidad nominal |
 | E-10 | ¿Dependabot propone saltos que rompen el build? | ✅ confirmada |
 | E-11 | Estado medido del proyecto al crear la memoria | 📊 medición base |
+| E-12 | ¿El checklist detecta fallos que "el CI está verde" oculta? | ✅ confirmada |
 
 ---
 
@@ -306,3 +307,37 @@ hacen a mano y en su propia rama.**
 Los 7 ❌ iniciales eran **esperados**: 6 por los archivos de memoria que se estaban creando en esa
 misma sesión y 1 por los cambios sin commitear. Tras aplicar C-09 y C-10 y subir el commit, la
 medición debe dar **0 ❌**. Esta es la línea base contra la que comparar las próximas mediciones.
+
+---
+
+### E-12 — ¿El checklist detecta fallos que "el CI está verde" oculta?
+
+- **Fecha:** 2026-10-15
+- **Hipótesis:** tener un checklist propio aporta algo sobre mirar si la integración continua está en verde.
+- **Método:** ejecutar `npm run estado` inmediatamente después de publicar el commit `824a2ac`.
+- **n / ventana:** 1 medición · 2026-10-15 13:55 (hora de Honduras)
+- **Veredicto:** ✅ **confirmada**
+
+**Números**
+
+| Componente | Estado |
+| ---------- | ------ |
+| Integración continua del commit `824a2ac` | ✅ `success` |
+| **Despliegue del commit `824a2ac`** | ❌ **`failure`** |
+| Paso "Construir el sitio" del despliegue | ✅ `success` en 20 s |
+| Paso "Publicar en GitHub Pages" | ❌ error 500 de la API de GitHub |
+| Mensaje del error | *"Failed to create deployment (status: 500) … is githubstatus.com reporting a Pages outage?"* |
+| Detección | el checklist lo marcó como ❌ en el bloque 3 |
+| Tras relanzar el flujo | ✅ `success` en 18 s |
+| Medición final | **37 ✅ · 0 ❌ · 0 ⚠️ · 4 ➖** |
+
+**Conclusión**
+
+**El CI y el despliegue son flujos independientes: el CI puede estar en verde con el sitio sin
+actualizar.** Mirando solo "el CI está verde" —que es lo que yo habría hecho— el proyecto se habría
+declarado al 100% con la publicación caída. El fallo fue de **infraestructura de GitHub** (HTTP 500
+al crear el despliegue), no del código: relanzar el flujo lo resolvió sin tocar nada.
+
+**Regla derivada:** *"CI en verde" no equivale a "desplegado".* Hay que verificar el flujo de
+despliegue por separado y confirmar que lo publicado corresponde al commit actual (comprobación
+"Despliegue al día" del bloque 3).

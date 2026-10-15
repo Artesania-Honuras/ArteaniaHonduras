@@ -121,6 +121,8 @@ hay que corregir el código o la tabla en la misma sesión.
 | Medir móvil con ventana estrecha en Chrome | Usar `--force-device-scale-factor=2` con el **doble** de ancho | [E-06](REGISTRO-DE-RESULTADOS.md) |
 | `@apply btn` / rutas sin el helper `enlace()` | Todo enlace y toda imagen interna pasa por `enlace()` | C-05 |
 | Renombrar la ruta base | La marca lleva tilde; **la ruta no** | [E-07](REGISTRO-DE-RESULTADOS.md) |
+| Confundir "CI en verde" con "desplegado" | Son **flujos independientes**: verificar el despliegue por separado | [E-12](REGISTRO-DE-RESULTADOS.md) |
+| Afirmar el estado sin medirlo | Correr `npm run estado` y pegar la tabla | [E-12](REGISTRO-DE-RESULTADOS.md) |
 
 ---
 
@@ -239,4 +241,8 @@ python scripts/estado.py --json       # salida legible por máquina
 
 Devuelve `0` si no hay ningún ❌ y `1` si hay al menos uno.
 
-**Última medición:** 2026-10-15 13:49 (hora de Honduras) — ver [E-11](REGISTRO-DE-RESULTADOS.md).
+**Última medición:** 2026-10-15 13:59 (hora de Honduras) — **37 ✅ · 0 ❌ · 0 ⚠️ · 4 ➖**,
+veredicto *todo al 100%*. Ver [E-11](REGISTRO-DE-RESULTADOS.md) y [E-12](REGISTRO-DE-RESULTADOS.md).
+
+> **Un flujo en curso cuenta como ❌.** Si el CI o el despliegue aún no han terminado, el proyecto
+> **no** está al 100%: lo no verificable se declara pendiente. Volver a medir cuando terminen.

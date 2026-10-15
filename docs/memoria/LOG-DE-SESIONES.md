@@ -35,6 +35,9 @@ commiteado y subido en la misma sesión.
   **segunda vez** que aparece este problema en el proyecto (ya pasó en `procesar-fotos.py`).
 - La detección de `npm` fallaba: en Windows es un `.cmd` y `CreateProcess` no lo ejecuta directo.
 - La medición de RAM no funcionaba en Windows porque `os.sysconf` no existe ahí.
+- **El despliegue del primer commit de esta sesión falló** mientras el CI pasaba en verde. Lo detectó
+  el propio checklist recién creado (ver [E-12](REGISTRO-DE-RESULTADOS.md)): era un error 500 de la
+  infraestructura de GitHub Pages, no del código. Relanzar el flujo lo resolvió.
 
 **Qué se decidió**
 
@@ -56,8 +59,17 @@ commiteado y subido en la misma sesión.
 
 **Evidencia de cierre**
 
-Medición base de [E-11](REGISTRO-DE-RESULTADOS.md): 28 ✅ · 7 ❌ · 1 ⚠️ · 5 ➖, con los 7 ❌
-esperados (6 archivos de memoria que se estaban creando y 1 por cambios sin commitear).
+Medición final **37 ✅ · 0 ❌ · 0 ⚠️ · 4 ➖ — veredicto: todo al 100%**, con código de salida 0.
+
+El recorrido de la medición en esta sesión, que es el mejor argumento de por qué existe el
+instrumento:
+
+| Momento | Resultado |
+| ------- | --------- |
+| Antes de crear la memoria | 28 ✅ · 7 ❌ · 1 ⚠️ · 5 ➖ |
+| Tras publicar, con el despliegue corriendo | 35 ✅ · 2 ❌ |
+| Tras el fallo del despliegue | 35 ✅ · 2 ❌ (uno por el 500 de GitHub) |
+| **Tras relanzar y cerrar** | **37 ✅ · 0 ❌ · 0 ⚠️ · 4 ➖** |
 
 ---
 

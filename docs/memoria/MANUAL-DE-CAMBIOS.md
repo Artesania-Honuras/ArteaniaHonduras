@@ -26,8 +26,9 @@ Ver [INDICE](INDICE.md) para las reglas completas.
 | C-06 | Cambio de marca a Artesanías De Honduras y ubicación | `dcee4ff` | aplicado y desplegado |
 | C-07 | Registro completo, bóveda de Obsidian y limpieza | `a6556c9` | aplicado y desplegado |
 | C-08 | Enlace roto en la plantilla de notas | `2f3c29d` | aplicado y desplegado |
-| C-09 | Sistema de memoria persistente y checklist de estado | *(este)* | aplicado y desplegado |
-| C-10 | Dejar de versionar `.obsidian/` | *(este)* | aplicado y desplegado |
+| C-09 | Sistema de memoria persistente y checklist de estado | `824a2ac` | aplicado y desplegado |
+| C-10 | Dejar de versionar `.obsidian/` | `824a2ac` | aplicado y desplegado |
+| C-11 | Distinguir un flujo en curso de una rotura real en el checklist | `e3a5d24` | aplicado y desplegado |
 
 ---
 
@@ -349,7 +350,7 @@ git revert 2f3c29d
 ### C-09 — Sistema de memoria persistente y checklist de estado
 
 - **Fecha:** 2026-10-15
-- **Commit:** *(este)*
+- **Commit:** `824a2ac` — *"feat: memoria persistente del proyecto, reglas para agentes y checklist de estado"*
 - **Alcance:** `AGENTS.md`, `docs/memoria/` (5 archivos), `scripts/estado.py`, `package.json`
 - **Estado:** aplicado y desplegado
 
@@ -388,7 +389,7 @@ Al revertir se pierde el registro entero. **Exportar antes** si el motivo es reh
 ### C-10 — Dejar de versionar `.obsidian/`
 
 - **Fecha:** 2026-10-15
-- **Commit:** *(este)*
+- **Commit:** `824a2ac` — *"feat: memoria persistente del proyecto, reglas para agentes y checklist de estado"*
 - **Alcance:** `.gitignore`, índice de git (4 archivos destrackeados)
 - **Estado:** aplicado y desplegado
 
@@ -420,3 +421,40 @@ git revert <hash> && git add .obsidian
 ```
 
 **No recomendado:** vuelve el repositorio sucio en cada apertura de la bóveda.
+
+---
+
+### C-11 — Distinguir un flujo en curso de una rotura real en el checklist
+
+- **Fecha:** 2026-10-15
+- **Commit:** `e3a5d24` — *"fix(estado): distinguir un flujo en curso de una rotura real"*
+- **Alcance:** `scripts/estado.py`
+- **Estado:** aplicado y desplegado
+
+**Qué se hizo**
+
+Los flujos en estado transitorio (`in_progress`, `queued`, `waiting`…) siguen contando como ❌, pero
+el mensaje ahora dice **EN CURSO** y pide volver a medir, en lugar de parecer una avería.
+
+**Por qué**
+
+La primera medición tras publicar marcó dos ❌ porque el CI y el despliegue todavía estaban
+corriendo. Es correcto que cuenten como fallo —lo no verificable se declara pendiente, y no se puede
+afirmar que el proyecto esté al 100% mientras el despliegue no termine—, pero el mensaje no
+distinguía "aún no terminó" de "se rompió".
+
+**Evidencia**
+
+| Métrica | Antes | Después | Cómo se midió |
+| ------- | ----- | ------- | ------------- |
+| Mensaje de un flujo en curso | `in_progress · hace 0.0 días` | `EN CURSO (in_progress) · aún no se puede verificar` | `npm run estado` |
+| ¿Se confunde con una rotura? | sí | no | Inspección del informe |
+| Semántica del veredicto | sin cambio | sin cambio (sigue siendo ❌) | `npm run estado` |
+
+**Cómo revertirlo**
+
+```bash
+git revert e3a5d24
+```
+
+Vuelve el mensaje ambiguo. No afecta a ninguna otra comprobación.
